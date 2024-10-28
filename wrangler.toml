@@ -1,6 +1,6 @@
 name = "newsnow"
 pages_build_output_dir = "dist/output/public"
-compatibility_date = "2024-10-03"
+compatibility_date = "2024-10-28"
 
 [[d1_databases]]
 binding = "NEWSNOW_DB"

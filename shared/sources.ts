@@ -167,19 +167,19 @@ export const originSources = {
       },
     },
   },
-  "xueqiu": {
-    name: "雪球",
-    color: "blue",
-    home: "https://xueqiu.com",
-    column: "finance",
-    sub: {
-      hotstock: {
-        title: "热门股票",
-        interval: Time.Realtime,
-        type: "hottest",
-      },
-    },
-  },
+  // "xueqiu": {
+  //   name: "雪球",
+  //   color: "blue",
+  //   home: "https://xueqiu.com",
+  //   column: "finance",
+  //   sub: {
+  //     hotstock: {
+  //       title: "热门股票",
+  //       interval: Time.Realtime,
+  //       type: "hottest",
+  //     },
+  //   },
+  // },
   "gelonghui": {
     name: "格隆汇",
     color: "blue",

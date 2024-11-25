@@ -1,6 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion"
 import { useCallback, useMemo, useRef } from "react"
-import { useHoverDirty, useMount, useUpdateEffect, useWindowSize } from "react-use"
+import { useMount, useWindowSize } from "react-use"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import type { ToastItem } from "~/atoms/types"
 import { Timer } from "~/utils"
 
@@ -12,33 +12,20 @@ export function Toast() {
     return t > width * 0.9 ? width * 0.9 : t
   }, [width])
   const toastItems = useAtomValue(toastAtom)
-
+  const [parent] = useAutoAnimate({ duration: 200 })
   return (
-    <AnimatePresence>
-      {toastItems.length && (
-        <motion.ol
-          initial="hidden"
-          animate="visible"
-          style={{
-            width: WIDTH,
-            left: center,
-          }}
-          variants={{
-            visible: {
-              transition: {
-                delayChildren: 0.1,
-                staggerChildren: 0.2,
-              },
-            },
-          }}
-          className="absolute top-0 z-99 flex flex-col gap-2"
-        >
-          {
-            toastItems.map(k => <Item key={k.id} info={k} />)
-          }
-        </motion.ol>
-      )}
-    </AnimatePresence>
+    <ol
+      ref={parent}
+      style={{
+        width: WIDTH,
+        left: center,
+      }}
+      className="absolute top-4 z-99 flex flex-col gap-2"
+    >
+      {
+        toastItems.map(k => <Item key={k.id} info={k} />)
+      }
+    </ol>
   )
 }
 
@@ -67,30 +54,22 @@ function Item({ info }: { info: ToastItem }) {
     return () => timer.current?.clear()
   })
 
-  const ref = useRef(null)
-  const isHoverd = useHoverDirty(ref)
-  useUpdateEffect(() => {
-    if (isHoverd) {
+  const [hoverd, setHoverd] = useState(false)
+  useEffect(() => {
+    if (hoverd) {
       timer.current?.pause()
     } else {
       timer.current?.resume()
     }
-  }, [isHoverd])
+  }, [hoverd])
 
   return (
-    <motion.li
-      ref={ref}
-      layout
-      variants={{
-        hidden: { y: 0, opacity: 0 },
-        visible: {
-          y: 15,
-          opacity: 1,
-        },
-      }}
+    <li
       className={$(
         "bg-base rounded-lg shadow-xl relative",
       )}
+      onMouseEnter={() => setHoverd(true)}
+      onMouseLeave={() => setHoverd(false)}
     >
       <div className={$(
         `bg-${color}-500 dark:bg-${color} bg-op-40! p2 backdrop-blur-5 rounded-lg w-full`,
@@ -98,7 +77,7 @@ function Item({ info }: { info: ToastItem }) {
       )}
       >
         {
-          isHoverd
+          hoverd
             ? <button type="button" className={`i-ph:x-circle color-${color}-500 i-ph:info`} onClick={() => hidden(false)} />
             : <span className={`i-ph:info color-${color}-500 `} />
         }
@@ -117,6 +96,6 @@ function Item({ info }: { info: ToastItem }) {
           )}
         </div>
       </div>
-    </motion.li>
+    </li>
   )
 }

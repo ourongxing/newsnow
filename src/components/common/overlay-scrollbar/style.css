@@ -1,0 +1,12 @@
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}

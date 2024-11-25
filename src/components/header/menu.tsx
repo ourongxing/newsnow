@@ -1,5 +1,4 @@
 import { motion } from "framer-motion"
-import { useHoverDirty } from "react-use"
 
 function ThemeToggle() {
   const { isDark, toggleDark } = useDark()
@@ -16,13 +15,8 @@ function ThemeToggle() {
 export function Menu() {
   const { loggedIn, login, logout, userInfo, enableLogin } = useLogin()
   const [shown, show] = useState(false)
-  const ref = useRef<HTMLElement>(null)
-  const isHover = useHoverDirty(ref)
-  useEffect(() => {
-    show(isHover)
-  }, [shown, isHover])
   return (
-    <span ref={ref} className="relative">
+    <span className="relative" onMouseEnter={() => show(true)} onMouseLeave={() => show(false)}>
       <span className="flex items-center scale-90">
         {
           enableLogin && loggedIn && userInfo.avatar
@@ -42,7 +36,7 @@ export function Menu() {
         }
       </span>
       {shown && (
-        <div className="absolute right-0 z-99 bg-transparent pt-8 top-0">
+        <div className="absolute right-0 z-99 bg-transparent pt-4 top-4">
           <motion.div
             id="dropdown-menu"
             className={$([

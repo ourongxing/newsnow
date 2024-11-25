@@ -1,7 +1,6 @@
 import type { NewsItem, SourceID, SourceResponse } from "@shared/types"
 import { useQuery } from "@tanstack/react-query"
 import { AnimatePresence, motion, useInView } from "framer-motion"
-import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities"
 import { useWindowSize } from "react-use"
 import { forwardRef, useImperativeHandle } from "react"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
@@ -12,31 +11,32 @@ export interface ItemsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * 是否显示透明度，拖动时原卡片的样式
    */
-  isDragged?: boolean
-  handleListeners?: SyntheticListenerMap
+  isDragging?: boolean
+  setHandleRef?: (ref: HTMLElement | null) => void
 }
 
 interface NewsCardProps {
   id: SourceID
-  handleListeners?: SyntheticListenerMap
+  setHandleRef?: (ref: HTMLElement | null) => void
 }
 
-export const CardWrapper = forwardRef<HTMLDivElement, ItemsProps>(({ id, isDragged, handleListeners, style, ...props }, dndRef) => {
+export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging, setHandleRef, style, ...props }, dndRef) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const inView = useInView(ref, {
     once: true,
   })
 
-  useImperativeHandle(dndRef, () => ref.current!)
+  useImperativeHandle(dndRef, () => ref.current! as HTMLDivElement)
 
   return (
     <div
       ref={ref}
       className={$(
         "flex flex-col h-500px rounded-2xl p-4 cursor-default",
-        "backdrop-blur-5 transition-opacity-300",
-        isDragged && "op-50",
+        // "backdrop-blur-5",
+        "transition-opacity-300",
+        isDragging && "op-50",
         `bg-${sources[id].color}-500 dark:bg-${sources[id].color} bg-op-40!`,
       )}
       style={{
@@ -45,12 +45,12 @@ export const CardWrapper = forwardRef<HTMLDivElement, ItemsProps>(({ id, isDragg
       }}
       {...props}
     >
-      {inView && <NewsCard id={id} handleListeners={handleListeners} />}
+      {inView && <NewsCard id={id} setHandleRef={setHandleRef} />}
     </div>
   )
 })
 
-function NewsCard({ id, handleListeners }: NewsCardProps) {
+function NewsCard({ id, setHandleRef }: NewsCardProps) {
   const { refresh } = useRefetch()
   const { data, isFetching, isError } = useQuery({
     queryKey: ["source", id],
@@ -109,7 +109,7 @@ function NewsCard({ id, handleListeners }: NewsCardProps) {
       <div className={$("flex justify-between mx-2 mt-0 mb-2 items-center")}>
         <div className="flex gap-2 items-center">
           <a
-            className={$("w-8 h-8 rounded-full bg-cover hover:animate-spin")}
+            className={$("w-8 h-8 rounded-full bg-cover")}
             target="_blank"
             href={sources[id].home}
             title={sources[id].desc}
@@ -141,10 +141,10 @@ function NewsCard({ id, handleListeners }: NewsCardProps) {
             className={$("btn", isFocused ? "i-ph:star-fill" : "i-ph:star-duotone")}
             onClick={toggleFocus}
           />
-          {handleListeners && (
-            <button
-              {...handleListeners}
-              type="button"
+          {/* firefox cannot drag a button */}
+          {setHandleRef && (
+            <div
+              ref={setHandleRef}
               className={$("btn", "i-ph:dots-six-vertical-duotone", "cursor-grab")}
             />
           )}
@@ -160,7 +160,7 @@ function NewsCard({ id, handleListeners }: NewsCardProps) {
         options={{
           overflow: { x: "hidden" },
         }}
-        defer={false}
+        defer
       >
         <div className={$("transition-opacity-500", isFetching && "op-20")}>
           {!!data?.items?.length && (sources[id].type === "hottest" ? <NewsListHot items={data.items} /> : <NewsListTimeLine items={data.items} />)}
@@ -228,7 +228,7 @@ function NewsUpdatedTime({ date }: { date: string | number }) {
 function NewsListHot({ items }: { items: NewsItem[] }) {
   const { width } = useWindowSize()
   return (
-    <>
+    <ol className="flex flex-col gap-2">
       {items?.map((item, i) => (
         <a
           href={width < 768 ? item.mobileUrl || item.url : item.url}
@@ -236,7 +236,7 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           key={item.id}
           title={item.extra?.hover}
           className={$(
-            "flex gap-2 items-center mb-2 items-stretch relative",
+            "flex gap-2 items-center items-stretch relative",
             "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
           )}
         >
@@ -254,7 +254,7 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           </span>
         </a>
       ))}
-    </>
+    </ol>
   )
 }
 

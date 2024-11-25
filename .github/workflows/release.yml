@@ -2,6 +2,7 @@ name: Release
 
 on:
   push:
+    branch: main
     tags:
       - 'v*'
 

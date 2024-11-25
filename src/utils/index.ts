@@ -42,3 +42,15 @@ export const myFetch = $fetch.create({
   retry: 0,
   baseURL: "/api",
 })
+
+export function isiOS() {
+  return [
+    "iPad Simulator",
+    "iPhone Simulator",
+    "iPod Simulator",
+    "iPad",
+    "iPhone",
+    "iPod",
+  ].includes(navigator.platform)
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}

@@ -51,3 +51,8 @@ button:disabled {
 #dropdown-menu li {
   --at-apply: hover:bg-neutral-400/10 rounded-md flex items-center p-1 gap-1;
 }
+
+
+.grabbing * {
+  cursor: grabbing;
+}

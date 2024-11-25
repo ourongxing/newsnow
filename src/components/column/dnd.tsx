@@ -1,34 +1,29 @@
 import type { PropsWithChildren } from "react"
-import { useCallback, useState } from "react"
-import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core"
-import {
-  DndContext,
-  DragOverlay,
-  MeasuringStrategy,
-  MouseSensor,
-  TouchSensor,
-  closestCenter,
-  defaultDropAnimationSideEffects,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core"
-import type { AnimateLayoutChanges } from "@dnd-kit/sortable"
-import { SortableContext, arrayMove, defaultAnimateLayoutChanges, rectSortingStrategy, useSortable } from "@dnd-kit/sortable"
 import type { SourceID } from "@shared/types"
-import { CSS } from "@dnd-kit/utilities"
+import type { BaseEventPayload, ElementDragType } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types"
+import { extractClosestEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge"
+import { reorderWithEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/util/reorder-with-edge"
+import { createPortal } from "react-dom"
+import { useThrottleFn } from "ahooks"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { motion } from "framer-motion"
+import { DndContext } from "../common/dnd"
+import { useSortable } from "../common/dnd/useSortable"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
 import { currentSourcesAtom } from "~/atoms"
 
+const AnimationDuration = 200
 export function Dnd() {
   const [items, setItems] = useAtom(currentSourcesAtom)
+  const [parent] = useAutoAnimate({ duration: AnimationDuration })
   useEntireQuery(items)
 
   return (
     <DndWrapper items={items} setItems={setItems}>
       <motion.ol
         className="grid w-full gap-6"
+        ref={parent}
         style={{
           gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
         }}
@@ -52,15 +47,14 @@ export function Dnd() {
             key={id}
             transition={{
               type: "tween",
+              duration: AnimationDuration / 1000,
             }}
             variants={{
               hidden: {
                 y: 20,
                 opacity: 0,
-                display: "none",
               },
               visible: {
-                display: "block",
                 y: 0,
                 opacity: 1,
               },
@@ -74,65 +68,36 @@ export function Dnd() {
   )
 }
 
-interface DndProps {
+function DndWrapper({ items, setItems, children }: PropsWithChildren<{
   items: SourceID[]
-  setItems: (update: SourceID[]) => void
-}
-
-function DndWrapper({ items, setItems, children }: PropsWithChildren<DndProps>) {
-  const [activeId, setActiveId] = useState<string | null>(null)
-  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
-
-  const handleDragStart = useCallback((event: DragStartEvent) => {
-    setActiveId(event.active.id as string)
-  }, [])
-  const handleDragEnd = useCallback((event: DragEndEvent) => {
-    const { active, over } = event
-
-    if (active.id !== over?.id) {
-      const oldIndex = items.indexOf(active.id as any)
-      const newIndex = items.indexOf(over!.id as any)
-      setItems(arrayMove(items, oldIndex, newIndex))
-    }
-
-    setActiveId(null)
-  }, [setItems, items])
-
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null)
-  }, [])
-
+  setItems: (items: SourceID[]) => void
+}>) {
+  const onDropTargetChange = useCallback(({ location, source }: BaseEventPayload<ElementDragType>) => {
+    const traget = location.current.dropTargets[0]
+    if (!traget?.data || !source?.data) return
+    const closestEdgeOfTarget = extractClosestEdge(traget.data)
+    const fromIndex = items.indexOf(source.data.id as SourceID)
+    const toIndex = items.indexOf(traget.data.id as SourceID)
+    if (fromIndex === toIndex || fromIndex === -1 || toIndex === -1) return
+    const update = reorderWithEdge({
+      list: items,
+      startIndex: fromIndex,
+      indexOfTarget: toIndex,
+      closestEdgeOfTarget,
+      axis: "vertical",
+    })
+    setItems(update)
+  }, [items, setItems])
+  // 避免动画干扰
+  const { run } = useThrottleFn(onDropTargetChange, {
+    leading: true,
+    trailing: true,
+    wait: AnimationDuration,
+  })
+  const { el } = useAtomValue(goToTopAtom)
   return (
-    <DndContext
-      sensors={sensors}
-      measuring={{
-        droppable: {
-          strategy: MeasuringStrategy.Always,
-        },
-      }}
-      collisionDetection={closestCenter}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      onDragCancel={handleDragCancel}
-    >
-      <SortableContext items={items} strategy={rectSortingStrategy}>
-        {children}
-      </SortableContext>
-      <DragOverlay
-        className="transition-opacity-300"
-        dropAnimation={{
-          easing: "cubic-bezier(0.25, 1, 0.5, 1)",
-          duration: 300,
-          sideEffects: defaultDropAnimationSideEffects({
-            className: {
-              active: "op-100",
-              dragOverlay: "op-0",
-            },
-          }),
-        }}
-      >
-        {!!activeId && <CardOverlay id={activeId as SourceID} />}
-      </DragOverlay>
+    <DndContext onDropTargetChange={run} autoscroll={el ? { element: el } : undefined}>
+      {children}
     </DndContext>
   )
 }
@@ -140,8 +105,9 @@ function DndWrapper({ items, setItems, children }: PropsWithChildren<DndProps>) 
 function CardOverlay({ id }: { id: SourceID }) {
   return (
     <div className={$(
-      "flex flex-col rounded-2xl p-4 backdrop-blur-5",
+      "flex flex-col p-4 backdrop-blur-5",
       `bg-${sources[id].color}-500 dark:bg-${sources[id].color} bg-op-40!`,
+      !isiOS() && "rounded-2xl",
     )}
     >
       <div className={$("flex justify-between mx-2 items-center")}>
@@ -173,45 +139,29 @@ function CardOverlay({ id }: { id: SourceID }) {
   )
 }
 
-const animateLayoutChanges: AnimateLayoutChanges = (args) => {
-  const { isSorting, wasDragging } = args
-  if (isSorting || wasDragging) {
-    return defaultAnimateLayoutChanges(args)
-  }
-  return true
-}
-
-function SortableCardWrapper({ id, ...props }: ItemsProps) {
+function SortableCardWrapper({ id }: ItemsProps) {
   const {
     isDragging,
-    attributes,
-    listeners,
     setNodeRef,
-    transform,
-    transition,
-  } = useSortable({
-    id,
-    animateLayoutChanges,
-    transition: {
-      duration: 300,
-      easing: "cubic-bezier(0.25, 1, 0.5, 1)",
-    },
-  })
+    setHandleRef,
+    OverlayContainer,
+  } = useSortable({ id })
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  }
+  useEffect(() => {
+    if (OverlayContainer) {
+      OverlayContainer!.className += $(`bg-base`, !isiOS() && "rounded-2xl")
+    }
+  }, [OverlayContainer])
 
   return (
-    <CardWrapper
-      ref={setNodeRef}
-      id={id}
-      style={style}
-      isDragged={isDragging}
-      handleListeners={listeners}
-      {...attributes}
-      {...props}
-    />
+    <>
+      <CardWrapper
+        ref={setNodeRef}
+        id={id}
+        isDragging={isDragging}
+        setHandleRef={setHandleRef}
+      />
+      {OverlayContainer && createPortal(<CardOverlay id={id} />, OverlayContainer)}
+    </>
   )
 }

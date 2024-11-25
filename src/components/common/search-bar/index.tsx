@@ -47,7 +47,7 @@ export function SearchBar() {
           title: source.title,
           column: source.column ? columns[source.column].zh : "未分类",
           name: source.name,
-          pinyin: pinyin?.[k as keyof typeof pinyin],
+          pinyin: pinyin?.[k as keyof typeof pinyin] ?? "",
         })))
     , [],
   )
@@ -86,7 +86,7 @@ export function SearchBar() {
         placeholder="搜索你想要的"
       />
       <div className="md:flex pt-2">
-        <OverlayScrollbar defer={false} className="overflow-y-auto md:min-w-275px">
+        <OverlayScrollbar defer className="overflow-y-auto md:min-w-275px">
           <Command.List>
             <Command.Empty> 没有找到，可以前往 Github 提 issue </Command.Empty>
             {

@@ -159,10 +159,11 @@ export const originSources = {
         type: "realtime",
       },
       depth: {
-        title: "深度头条",
-        // invalid, not way to get
-        disable: true,
-        interval: Time.Common,
+        title: "深度",
+      },
+      hot: {
+        title: "热门",
+        type: "hottest",
       },
     },
   },

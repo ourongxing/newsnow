@@ -18,6 +18,9 @@ export class UserTable {
         updated INTEGER
       );
     `).run()
+    await this.db.prepare(`
+      CREATE INDEX IF NOT EXISTS idx_user_id ON user(id);
+    `).run()
     logger.success(`init user table`)
   }
 
@@ -29,7 +32,7 @@ export class UserTable {
         .run(id, email, "", type, now, now)
       logger.success(`add user ${id}`)
     } else if (u.email !== email && u.type !== type) {
-      await this.db.prepare(`UPDATE user SET email = ?, updated = ? WHERE id = ?`).run(id, email, now)
+      await this.db.prepare(`UPDATE user SET email = ?, updated = ? WHERE id = ?`).run(email, now, id)
       logger.success(`update user ${id} email`)
     } else {
       logger.info(`user ${id} already exists`)

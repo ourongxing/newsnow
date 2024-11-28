@@ -8,7 +8,6 @@ export function Footer() {
           {Author.name}
         </a>
       </span>
-      <span>京ICP备19045691号</span>
     </>
   )
 }

@@ -282,6 +282,24 @@ export const originSources = {
     type: "hottest",
     home: "https://www.baidu.com",
   },
+  "linuxdo": {
+    name: "LINUX DO",
+    column: "tech",
+    color: "slate",
+    home: "https://linux.do/",
+    sub: {
+      latest: {
+        title: "最新",
+        home: "https://linux.do/latest",
+      },
+      hot: {
+        title: "今日最热",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://linux.do/hot",
+      },
+    },
+  },
 } as const satisfies Record<string, OriginSource>
 
 export const sources = genSources()

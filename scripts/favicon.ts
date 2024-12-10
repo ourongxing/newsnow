@@ -3,7 +3,6 @@ import fs from "node:fs"
 import { fileURLToPath } from "node:url"
 import { join } from "node:path"
 import { Buffer } from "node:buffer"
-import { getLogos } from "favicons-scraper"
 import { consola } from "consola"
 import { originSources } from "../shared/sources"
 
@@ -34,10 +33,7 @@ async function main() {
           return
         }
         if (!source.home) return
-        const res = await getLogos(source.home)
-        if (res.length) {
-          await downloadImage(res[0].src, icon, id)
-        }
+        await downloadImage(`https://icons.duckduckgo.com/ip3/${source.home.replace(/^https?:\/\//, "").replace(/\/$/, "")}.ico`, icon, id)
       } catch (e) {
         consola.error(id, "\n", e)
       }

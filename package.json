@@ -99,7 +99,7 @@
     "vitest": "^3.0.7",
     "workbox-build": "^7.3.0",
     "workbox-window": "^7.3.0",
-    "wrangler": "^3.111.0"
+    "wrangler": "^4.4.0"
   },
   "pnpm": {
     "patchedDependencies": {

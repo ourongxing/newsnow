@@ -306,7 +306,7 @@ export const originSources = {
     },
   },
   "gamebiz": {
-    name: "GameBiz.jp",
+    name: "GameBiz",
     type: "realtime",
     column: "tech",
     color: "blue",

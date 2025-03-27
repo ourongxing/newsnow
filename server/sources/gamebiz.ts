@@ -10,7 +10,7 @@ const quick = defineSource(async () => {
 
   $(".article--horizontal").each((_, element) => {
     const title = $(element).find(".article__title").text().trim()
-    const linkElement = $(element).find("link[rel='canonical']")
+    const linkElement = $(element).find("a.article__link")
     const link = linkElement.attr("href")
     const category = $(element).find(".article__category").text().trim()
     const publishedAt = $(element).find(".article__published-at").text().trim()

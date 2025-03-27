@@ -16,6 +16,7 @@ const quick = defineSource(async () => {
 
     if (title && link) {
       const fullLink = link.startsWith("http") ? link : `${baseURL}${link}`
+      console.log(`Title: ${title}, Link: ${fullLink}`)
       news.push({
         title,
         link: fullLink,

@@ -8,28 +8,23 @@ const quick = defineSource(async () => {
   const $ = load(response)
   const news: NewsItem[] = []
 
-  // 选择新闻列表项
-  const $items = $(".article")
+  $(".article--vertical").each((_, element) => {
+    const titleElement = $(element).find(".article__title")
+    const linkElement = $(element).find("a.article__link")
+    const categoryElement = $(element).find(".article__category")
+    const dateElement = $(element).find(".article__published-at")
 
-  $items.each((_, el) => {
-    const $el = $(el)
-    const $link = $el.find(".article__title a")
-    const url = $link.attr("href")
-    const title = $link.text().trim()
+    const title = titleElement.text().trim()
+    const link = linkElement.attr("href")
+    const category = categoryElement.text().trim()
+    const date = dateElement.text().trim()
 
-    // 获取分类和时间
-    const category = $el.find(".article__category a").text().trim()
-    const dateStr = $el.find(".article__published-at").text().trim()
-
-    if (url && title && dateStr) {
+    if (title && link) {
       news.push({
-        url: url.startsWith("http") ? url : `${baseURL}${url}`,
         title,
-        id: url,
-        extra: {
-          category,
-          date: parseRelativeDate(dateStr, "Asia/Tokyo").valueOf(),
-        },
+        link: link.startsWith("http") ? link : `${baseURL}${link}`,
+        category,
+        date,
       })
     }
   })

@@ -236,7 +236,7 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           key={item.id}
           title={item.extra?.hover}
           className={$(
-            "flex gap-2 items-center items-stretch relative",
+            "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
             "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
           )}
         >
@@ -274,7 +274,10 @@ function NewsListTimeLine({ items }: { items: NewsItem[] }) {
             </span>
           </span>
           <a
-            className={$("ml-2 px-1 hover:bg-neutral-400/10 rounded-md visited:(text-neutral-400/80)")}
+            className={$(
+              "ml-2 px-1 hover:bg-neutral-400/10 rounded-md visited:(text-neutral-400/80)",
+              "cursor-pointer [&_*]:cursor-pointer transition-all",
+            )}
             href={width < 768 ? item.mobileUrl || item.url : item.url}
             title={item.extra?.hover}
             target="_blank"

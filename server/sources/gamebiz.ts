@@ -1,6 +1,24 @@
 import type { NewsItem } from "@shared/types"
 import { load } from "cheerio"
 
+async function translateToChinese(text: string): Promise<string> {
+  try {
+    const response = await myFetch("https://translate.googleapis.com/translate_a/single", {
+      params: {
+        client: "gtx",
+        sl: "ja",
+        tl: "zh-CN",
+        dt: "t",
+        q: text
+      }
+    })
+    return response[0][0][0]
+  } catch (error) {
+    console.error("Translation error:", error)
+    return text
+  }
+}
+
 const quick = defineSource(async () => {
   const baseURL = "https://gamebiz.jp"
   const url = `${baseURL}/news`
@@ -8,7 +26,7 @@ const quick = defineSource(async () => {
   const $ = load(response)
   const news: NewsItem[] = []
 
-  $(".article--horizontal").each((_, element) => {
+  for (const element of $(".article--horizontal").toArray()) {
     const title = $(element).find(".article__title").text().trim()
     const linkElement = $(element).find("a.article__link")
     const link = linkElement.attr("href")
@@ -27,19 +45,23 @@ const quick = defineSource(async () => {
       
       console.log(`Final link: ${fullLink}`)
       
+      // 翻译标题
+      const translatedTitle = await translateToChinese(title)
+      
       news.push({
         id: link,
-        title,
+        title: translatedTitle,
         url: fullLink,
         pubDate: publishedAt,
         extra: {
-          info: category
+          info: category,
+          hover: title // 添加原始日文标题作为悬停提示
         }
       })
     } else {
       console.log(`Missing link for title: ${title}`)
     }
-  })
+  }
 
   return news
 })

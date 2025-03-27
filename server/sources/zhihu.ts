@@ -25,13 +25,14 @@ export default defineSource({
     const res: Res = await myFetch(url)
     return res.data
       .map((k) => {
+        const urlId = k.target.url?.match(/(\d+)$/)?.[1]
         return {
           id: k.target.id,
           title: k.target.title,
           extra: {
             icon: k.card_label?.night_icon && proxyPicture(k.card_label.night_icon),
           },
-          url: `https://www.zhihu.com/question/${k.target.id}`,
+          url: `https://www.zhihu.com/question/${urlId || k.target.id}`,
         }
       })
   },

@@ -10,7 +10,8 @@ const quick = defineSource(async () => {
 
   $(".article--horizontal").each((_, element) => {
     const title = $(element).find(".article__title").text().trim()
-    const link = $(element).find("a.article__link").attr("href")
+    const linkElement = $(element).find("a.article__link")
+    const link = linkElement.attr("href")
     const category = $(element).find(".article__category").text().trim()
     const publishedAt = $(element).find(".article__published-at").text().trim()
 
@@ -23,6 +24,8 @@ const quick = defineSource(async () => {
         category,
         publishedAt,
       })
+    } else {
+      console.log(`Missing link for title: ${title}`)
     }
   })
 

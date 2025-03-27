@@ -15,9 +15,10 @@ const quick = defineSource(async () => {
     const publishedAt = $(element).find(".article__published-at").text().trim()
 
     if (title && link) {
+      const fullLink = link.startsWith("http") ? link : `${baseURL}${link}`
       news.push({
         title,
-        link: link.startsWith("http") ? link : `${baseURL}${link}`,
+        link: fullLink,
         category,
         publishedAt,
       })

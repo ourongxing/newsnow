@@ -10,7 +10,7 @@ export default defineSource(async () => {
   $main.each((_, el) => {
     const a = $(el).find("a").first()
     const url = a.attr("href")
-    const title = $(el).find("a[data-test^=post-name]").text()
+    const title = $(el).find("a[data-test^=post-name]").text().replace(/^\d+\.\s*/, '')
     const id = $(el).attr("data-test")?.replace("post-item-", "")
     const vote = $(el).find("[data-test=vote-button]").text()
     if (url && id && title) {

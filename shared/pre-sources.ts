@@ -305,6 +305,19 @@ export const originSources = {
       },
     },
   },
+  "gamebiz": {
+    name: "GameBiz.jp",
+    type: "realtime",
+    column: "tech",
+    color: "blue",
+    home: "https://gamebiz.jp/",
+    sub: {
+      quick: {
+        title: "最新ニュース",
+        interval: Time.Default, // 使用默认的10分钟间隔
+      },
+    },
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

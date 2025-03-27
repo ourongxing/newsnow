@@ -28,10 +28,13 @@ const quick = defineSource(async () => {
       console.log(`Final link: ${fullLink}`)
       
       news.push({
+        id: link,
         title,
-        link: fullLink,
-        category,
-        publishedAt,
+        url: fullLink,
+        pubDate: publishedAt,
+        extra: {
+          info: category
+        }
       })
     } else {
       console.log(`Missing link for title: ${title}`)

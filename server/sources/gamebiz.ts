@@ -33,5 +33,6 @@ const quick = defineSource(async () => {
 })
 
 export default defineSource({
-  "gamebiz": quick
+  "gamebiz": quick,
+  "gamebiz-quick": quick,
 }) 

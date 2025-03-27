@@ -313,6 +313,16 @@
     "interval": 600000
   },
   "gamebiz": {
+    "redirect": "gamebiz-quick",
+    "name": "GameBiz.jp",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://gamebiz.jp/",
+    "color": "blue",
+    "interval": 600000,
+    "title": "最新ニュース"
+  },
+  "gamebiz-quick": {
     "name": "GameBiz.jp",
     "type": "realtime",
     "column": "tech",

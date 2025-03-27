@@ -8,23 +8,18 @@ const quick = defineSource(async () => {
   const $ = load(response)
   const news: NewsItem[] = []
 
-  $(".article--vertical").each((_, element) => {
-    const titleElement = $(element).find(".article__title")
-    const linkElement = $(element).find("a.article__link")
-    const categoryElement = $(element).find(".article__category")
-    const dateElement = $(element).find(".article__published-at")
-
-    const title = titleElement.text().trim()
-    const link = linkElement.attr("href")
-    const category = categoryElement.text().trim()
-    const date = dateElement.text().trim()
+  $(".article--horizontal").each((_, element) => {
+    const title = $(element).find(".article__title").text().trim()
+    const link = $(element).find("a.article__link").attr("href")
+    const category = $(element).find(".article__category").text().trim()
+    const publishedAt = $(element).find(".article__published-at").text().trim()
 
     if (title && link) {
       news.push({
         title,
         link: link.startsWith("http") ? link : `${baseURL}${link}`,
         category,
-        date,
+        publishedAt,
       })
     }
   })

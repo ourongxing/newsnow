@@ -6,6 +6,7 @@ interface Res {
         word: string
         rawUrl: string
         desc?: string
+        hotScore?: number
       }[]
     }[]
   }
@@ -23,6 +24,7 @@ export default defineSource(async () => {
       url: k.rawUrl,
       extra: {
         hover: k.desc,
+        hotScore: k.hotScore ? `热搜指数：${k.hotScore}` : undefined,
       },
     }
   })

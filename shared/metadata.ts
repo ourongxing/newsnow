@@ -4,16 +4,25 @@ import type { ColumnID, HiddenColumnID, Metadata, SourceID } from "./types"
 
 export const columns = {
   china: {
-    zh: "国内",
+    zh: "中国",
   },
-  world: {
-    zh: "国际",
+  jp: {
+    zh: "日本",
   },
-  tech: {
-    zh: "科技",
+  sea: {
+    zh: "东南亚",
   },
-  finance: {
-    zh: "财经",
+  na: {
+    zh: "北美",
+  },
+  eu: {
+    zh: "欧洲",
+  },
+  ai: {
+    zh: "AI",
+  },
+  dev: {
+    zh: "开发",
   },
   focus: {
     zh: "关注",

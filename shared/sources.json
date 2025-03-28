@@ -6,7 +6,8 @@
     "home": "https://v2ex.com/",
     "color": "slate",
     "interval": 600000,
-    "title": "最新分享"
+    "title": "最新分享",
+    "hidden": true
   },
   "v2ex-share": {
     "name": "V2EX",
@@ -59,7 +60,8 @@
     "home": "https://wallstreetcn.com/",
     "color": "blue",
     "interval": 300000,
-    "title": "实时快讯"
+    "title": "实时快讯",
+    "hidden": true
   },
   "wallstreetcn-quick": {
     "name": "华尔街见闻",
@@ -144,7 +146,8 @@
     "home": "https://www.cls.cn",
     "color": "red",
     "interval": 300000,
-    "title": "电报"
+    "title": "电报",
+    "hidden": true
   },
   "cls-telegraph": {
     "name": "财联社",
@@ -180,7 +183,8 @@
     "home": "https://xueqiu.com",
     "color": "blue",
     "interval": 120000,
-    "title": "热门股票"
+    "title": "热门股票",
+    "hidden": true
   },
   "xueqiu-hotstock": {
     "name": "雪球",
@@ -208,7 +212,8 @@
     "home": "https://www.fastbull.cn",
     "color": "emerald",
     "interval": 120000,
-    "title": "快讯"
+    "title": "快讯",
+    "hidden": true
   },
   "fastbull-express": {
     "name": "法布财经",
@@ -258,7 +263,8 @@
     "home": "https://github.com/",
     "color": "gray",
     "interval": 600000,
-    "title": "Today"
+    "title": "Today",
+    "hidden": true
   },
   "github-trending-today": {
     "name": "Github",
@@ -277,7 +283,8 @@
     "home": "https://www.bilibili.com",
     "color": "blue",
     "interval": 600000,
-    "title": "热搜"
+    "title": "热搜",
+    "hidden": true
   },
   "bilibili-hot-search": {
     "name": "哔哩哔哩",

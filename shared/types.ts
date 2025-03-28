@@ -77,6 +77,11 @@ export interface Source {
    */
   disable?: boolean | "cf"
   redirect?: SourceID
+  /**
+   * 是否在首页隐藏
+   * @default false
+   */
+  hidden?: boolean
 }
 
 export interface Column {

@@ -41,7 +41,7 @@ export function SearchBar() {
   const sourceItems = useMemo(
     () =>
       groupByColumn(typeSafeObjectEntries(sources)
-        .filter(([_, source]) => !source.redirect)
+        .filter(([_, source]) => !source.redirect && !source.hidden)
         .map(([k, source]) => ({
           id: k,
           title: source.title,

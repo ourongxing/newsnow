@@ -4,7 +4,7 @@
 
 ![](screenshots/preview-2.png)
 
-[English](./README.md) | 简体中文
+[English](./README.md) | 简体中文 | [日本語](./README.ja-JP.md)
 
 ***优雅地阅读实时热门新闻***
 

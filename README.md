@@ -5,7 +5,7 @@
 
 ![](screenshots/preview-2.png)
 
-English | [简体中文](README.zh-CN.md)
+English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 
 > [!NOTE]
 > This project is just a demo and only supports Chinese. A formal version will be released later for better customization and the addition of more English content.

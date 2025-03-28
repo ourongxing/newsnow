@@ -39,12 +39,12 @@ export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntrie
     case "hottest":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "hottest" && !v.redirect).map(([k]) => k),
+        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "hottest" && !v.redirect && !v.hidden).map(([k]) => k),
       }]
     case "realtime":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "realtime" && !v.redirect).map(([k]) => k),
+        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "realtime" && !v.redirect && !v.hidden).map(([k]) => k),
       }]
     default:
       return [k, {

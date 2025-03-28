@@ -206,6 +206,9 @@ function ExtraInfo({ item }: { item: NewsItem }) {
   if (item?.extra?.info) {
     return <>{item.extra.info}</>
   }
+  if (item?.extra?.hotScore) {
+    return <>{item.extra.hotScore}</>
+  }
   if (item?.extra?.icon) {
     const { url, scale } = typeof item.extra.icon === "string" ? { url: item.extra.icon, scale: undefined } : item.extra.icon
     return (

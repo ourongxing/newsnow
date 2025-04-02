@@ -1,6 +1,6 @@
 import { defineConfig, presetIcons, presetWind3, transformerDirectives, transformerVariantGroup } from "unocss"
 import { hex2rgba } from "@unocss/rule-utils"
-import { sources } from "./shared/sources"
+import sources from "./shared/sources.json" with { type: "json" }
 
 export default defineConfig({
   mergeSelectors: false,

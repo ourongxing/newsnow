@@ -7,11 +7,13 @@
   "wallstreetcn-quick": "huaerjiejianwen-shishikuaixun",
   "wallstreetcn-news": "huaerjiejianwen-zuixinzixun",
   "wallstreetcn-hot": "huaerjiejianwen-zuirewenzhang",
+  "36kr-quick": "36ke-kuaixun",
   "douyin": "douyin",
   "tieba": "baidutieba-reyi",
   "toutiao": "jinritoutiao",
   "ithome": "ITzhijia",
   "thepaper": "pengpaixinwen-rebang",
+  "sputniknewscn": "weixingtongxunshe",
   "cankaoxiaoxi": "cankaoxiaoxi",
   "cls-telegraph": "cailianshe-dianbao",
   "cls-depth": "cailianshe-shendu",
@@ -25,7 +27,10 @@
   "producthunt": "Product Hunt",
   "github-trending-today": "Github-Today",
   "bilibili-hot-search": "bilibili-resou",
+  "kuaishou": "kuaishou",
   "kaopu": "kaopuxinwen",
   "jin10": "jinshishuju",
-  "baidu": "baiduresou"
+  "baidu": "baiduresou",
+  "linuxdo-latest": "LINUX DO-zuixin",
+  "linuxdo-hot": "LINUX DO-jinrizuire"
 }

@@ -7,6 +7,7 @@
 
 > [!NOTE]
 > 本バージョンはデモ版であり、現在中国語のみ対応しています。カスタマイズ機能や英語コンテンツをサポートした正式版は後日リリース予定です。
+> このブランチはデスクトップ版ブランチで、Tauriを使用して開発されています。ぜひお試しください。
 
 ***リアルタイムで最新のニュースをエレガントに読む***
 
@@ -23,6 +24,16 @@
 ログインとキャッシュ機能なしでデプロイする場合：
 1. このリポジトリをフォーク
 2. Cloudflare PagesやVercelなどのプラットフォームにインポート
+3. ビルドコマンドを実行:
+    ```bash
+    corepack enable
+    pnpm install
+    pnpm tauri dev
+    ```
+4. パッケージ化:
+    ```bash
+    pnpm tauri build
+    ```
 
 ### Cloudflare Pages設定
 - ビルドコマンド：`pnpm run build`
@@ -73,8 +84,8 @@ docker compose up
 
 ```sh
 corepack enable
-pnpm i
-pnpm dev
+pnpm install
+pnpm tauri dev
  ```
 
 ### データソースの追加

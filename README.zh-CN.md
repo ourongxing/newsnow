@@ -12,6 +12,7 @@
 
 > [!NOTE]
 > 当前版本为 DEMO，仅支持中文。正式版将提供更好的定制化功能和英文内容支持。
+> 此分支为桌面端分支，使用Tauri开发，欢迎体验。
 >
 
 ## 功能特性
@@ -23,9 +24,19 @@
 ## 部署指南
 
 ### 基础部署
-无需登录和缓存功能时，可直接部署至 Cloudflare Pages 或 Vercel：
+无需登录和缓存功能时，可直接构建：
 1. Fork 本仓库
 2. 导入至目标平台
+3. 执行构建命令
+    ```bash
+    corepack enable
+    pnpm install
+    pnpm tauri dev
+    ```
+4. 打包
+    ```bash
+    pnpm tauri build
+    ```
 
 ### Cloudflare Pages 配置
 - 构建命令：`pnpm run build`
@@ -74,8 +85,8 @@ docker compose up
 
 ```bash
 corepack enable
-pnpm i
-pnpm dev
+pnpm install
+pnpm tauri dev
 ```
 
 你可能想要添加数据源，请关注 `shared/sources` `server/sources`，项目类型完备，结构简单，请自行探索。

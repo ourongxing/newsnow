@@ -1,9 +1,8 @@
 {
-  "name": "newsnow",
-  "type": "module",
-  "version": "0.0.25",
+  "name": "newsnowapp",
   "private": true,
-  "packageManager": "pnpm@10.5.2",
+  "version": "0.1.0",
+  "type": "module",
   "author": {
     "url": "https://github.com/ourongxing/",
     "email": "orongxing@gmail.com",
@@ -11,16 +10,17 @@
   },
   "homepage": "https://github.com/ourongxing/newsnow",
   "scripts": {
-    "dev": "npm run presource && vite dev",
-    "build": "npm run presource && vite build",
+    "dev": "npm run presource && vite",
+    "build": "tsc && npm run presource && vite build",
     "lint": "eslint",
     "presource": "tsx ./scripts/favicon.ts && tsx ./scripts/source.ts",
     "start": "node --env-file .env.server dist/output/server/index.mjs",
-    "preview": "cross-env CF_PAGES=1 npm run build && wrangler pages dev dist/output/public",
+    "preview": "vite preview",
     "deploy": "cross-env CF_PAGES=1 npm run build && wrangler pages deploy dist/output/public",
     "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.app.json",
     "release": "bumpp",
     "prepare": "simple-git-hooks",
+    "tauri": "tauri",
     "log": "wrangler pages deployment tail --project-name newsnow",
     "test": "vitest -c vitest.config.ts"
   },
@@ -32,6 +32,8 @@
     "@iconify-json/si": "^1.2.3",
     "@tanstack/react-query-devtools": "^5.66.11",
     "@tanstack/react-router": "^1.112.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2",
     "@unocss/reset": "^66.0.0",
     "ahooks": "^3.8.4",
     "better-sqlite3": "^11.8.1",
@@ -69,6 +71,7 @@
     "@tanstack/react-query": "^5.66.11",
     "@tanstack/router-devtools": "^1.112.0",
     "@tanstack/router-plugin": "^1.112.0",
+    "@tauri-apps/cli": "^2",
     "@types/md5": "^2.3.5",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -93,7 +96,7 @@
     "typescript-eslint": "^8.25.0",
     "unimport": "^4.1.2",
     "unocss": "^66.0.0",
-    "vite": "^6.2.0",
+    "vite": "^6.2.4",
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-with-nitro": "0.0.3",
     "vitest": "^3.0.7",
@@ -129,5 +132,6 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
-  }
+  },
+  "packageManager": "pnpm@10.7.1+sha512.2d92c86b7928dc8284f53494fb4201f983da65f0fb4f0d40baafa5cf628fa31dae3e5968f12466f17df7e97310e30f343a648baea1b9b350685dafafffdf5808"
 }

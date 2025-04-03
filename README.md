@@ -8,6 +8,7 @@ English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 
 > [!NOTE]
 > This is a demo version currently supporting Chinese only. A full-featured version with better customization and English content support will be released later.
+> This branch is the desktop version branch, developed with Tauri. Welcome to try it out.
 
 ***Elegant reading of real-time and hottest news***
 
@@ -24,6 +25,16 @@ English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 For deployments without login and caching:
 1. Fork this repository
 2. Import to platforms like Cloudflare Page or Vercel
+3. Run build commands:
+    ```bash
+    corepack enable
+    pnpm install
+    pnpm tauri dev
+    ```
+4. Package:
+    ```bash
+    pnpm tauri build
+    ```
 
 ### Cloudflare Page Configuration
 - Build command: `pnpm run build`
@@ -72,10 +83,10 @@ You can also set Environment Variables in `docker-compose.yml`.
 > [!Note]
 > Requires Node.js >= 20
 
-```sh
+```bash
 corepack enable
-pnpm i
-pnpm dev
+pnpm install
+pnpm tauri dev
  ```
 
 ### Adding Data Sources

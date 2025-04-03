@@ -9,5 +9,5 @@
       "@shared/*": ["shared/*"]
     }
   },
-  "include": ["server", "*.config.*", "shared", "test", "scripts", "tools", "dist/.nitro/types"]
+  "include": ["server", "*.config.*", "shared", "test", "scripts", "tools", "dist/.nitro/types", "vite.config.ts"]
 }

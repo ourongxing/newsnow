@@ -87,6 +87,27 @@
     "interval": 1800000,
     "title": "最热文章"
   },
+  "36kr": {
+    "redirect": "36kr-quick",
+    "name": "36氪",
+    "type": "realtime",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "快讯"
+  },
+  "36kr-quick": {
+    "name": "36氪",
+    "type": "realtime",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "快讯"
+  },
   "douyin": {
     "name": "抖音",
     "type": "hottest",
@@ -128,6 +149,14 @@
     "home": "https://www.thepaper.cn",
     "color": "gray",
     "interval": 1800000
+  },
+  "sputniknewscn": {
+    "name": "卫星通讯社",
+    "disable": "cf",
+    "column": "world",
+    "home": "https://sputniknews.cn",
+    "color": "orange",
+    "interval": 600000
   },
   "cankaoxiaoxi": {
     "name": "参考消息",
@@ -288,6 +317,15 @@
     "interval": 600000,
     "title": "热搜"
   },
+  "kuaishou": {
+    "name": "快手",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "china",
+    "home": "https://www.kuaishou.com",
+    "color": "orange",
+    "interval": 600000
+  },
   "kaopu": {
     "name": "靠谱新闻",
     "desc": "不一定靠谱，多看多思考",
@@ -311,5 +349,34 @@
     "home": "https://www.baidu.com",
     "color": "blue",
     "interval": 600000
+  },
+  "linuxdo": {
+    "redirect": "linuxdo-latest",
+    "name": "LINUX DO",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://linux.do/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
+  "linuxdo-latest": {
+    "name": "LINUX DO",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://linux.do/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
+  "linuxdo-hot": {
+    "name": "LINUX DO",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://linux.do/hot",
+    "color": "slate",
+    "interval": 1800000,
+    "title": "今日最热"
   }
 }

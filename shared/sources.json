@@ -191,7 +191,7 @@
     "home": "https://bbs.pcbeta.com",
     "color": "blue",
     "interval": 300000,
-    "title": "Windows 资源区"
+    "title": "Windows 资源"
   },
   "cls": {
     "redirect": "cls-telegraph",
@@ -417,6 +417,7 @@
   },
   "ghxi": {
     "name": "果核剥壳",
+    "disable": "cf",
     "column": "china",
     "home": "https://www.ghxi.com/",
     "color": "yellow",

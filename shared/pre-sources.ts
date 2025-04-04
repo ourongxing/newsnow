@@ -334,6 +334,7 @@ export const originSources = {
     name: "果核剥壳",
     column: "china",
     color: "yellow",
+    disable: "cf",
     home: "https://www.ghxi.com/",
   },
 } as const satisfies Record<string, OriginSource>

@@ -286,6 +286,13 @@ export const originSources = {
     type: "hottest",
     home: "https://www.baidu.com",
   },
+  "nowcoder": {
+    name: "牛客",
+    column: "china",
+    color: "blue",
+    type: "hottest",
+    home: "https://www.nowcoder.com",
+  },
   "linuxdo": {
     name: "LINUX DO",
     column: "tech",

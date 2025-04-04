@@ -386,5 +386,13 @@
     "color": "slate",
     "interval": 1800000,
     "title": "今日最热"
+  },
+  "ghxi": {
+    "name": "果核剥壳",
+    "type": "realtime",
+    "column": "china",
+    "home": "https://www.ghxi.com/",
+    "color": "green",
+    "interval": 600000
   }
 }

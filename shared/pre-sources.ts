@@ -312,6 +312,13 @@ export const originSources = {
       },
     },
   },
+  "ghxi": {
+    name: "果核剥壳",
+    column: "china",
+    color: "green",
+    type: "realtime",
+    home: "https://www.ghxi.com/",
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

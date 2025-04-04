@@ -286,13 +286,6 @@ export const originSources = {
     type: "hottest",
     home: "https://www.baidu.com",
   },
-  "smzdm": {
-    name: "什么值得买",
-    column: "china",
-    color: "red",
-    type: "hottest",
-    home: "https://www.smzdm.com",
-  },
   "linuxdo": {
     name: "LINUX DO",
     column: "tech",
@@ -311,6 +304,27 @@ export const originSources = {
         home: "https://linux.do/hot",
       },
     },
+  },
+  "ghxi": {
+    name: "果核剥壳",
+    column: "china",
+    color: "green",
+    type: "realtime",
+    home: "https://www.ghxi.com/",
+  },
+  "smzdm": {
+    name: "什么值得买",
+    column: "china",
+    color: "red",
+    type: "hottest",
+    home: "https://www.smzdm.com",
+  },
+  "nowcoder": {
+    name: "牛客",
+    column: "china",
+    color: "blue",
+    type: "hottest",
+    home: "https://www.nowcoder.com",
   },
 } as const satisfies Record<string, OriginSource>
 

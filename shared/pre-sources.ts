@@ -286,6 +286,13 @@ export const originSources = {
     type: "hottest",
     home: "https://www.baidu.com",
   },
+  "smzdm": {
+    name: "什么值得买",
+    column: "china",
+    color: "red",
+    type: "hottest",
+    home: "https://www.smzdm.com",
+  },
   "linuxdo": {
     name: "LINUX DO",
     column: "tech",

@@ -1,3 +1,7 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch" // Add explicit import
+import { proxyPicture } from "../utils/proxy"
+
 interface Res {
   data: {
     card_label?: {
@@ -17,7 +21,7 @@ interface Res {
       excerpt: string
     }
   }[]
-}
+} // Add explicit import
 
 export default defineSource({
   zhihu: async () => {

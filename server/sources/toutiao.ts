@@ -1,3 +1,7 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch" // Add explicit import
+import { proxyPicture } from "../utils/proxy"
+
 interface Res {
   data: {
     ClusterIdStr: string
@@ -10,7 +14,7 @@ interface Res {
       url: string
     }
   }[]
-}
+} // Add explicit import
 
 export default defineSource(async () => {
   const url = "https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc"

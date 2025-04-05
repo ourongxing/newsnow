@@ -1,10 +1,13 @@
 import process from "node:process"
 import type { NewsItem } from "@shared/types"
-import type { Database } from "db0"
+import type { Database } from "db0" // Revert to original db0 type name
+// Remove better-sqlite3 type import
 import type { CacheInfo, CacheRow } from "../types"
+import { logger } from "../utils/logger" // Import logger explicitly
 
 export class Cache {
-  private db
+  // Revert to expecting only the db0 Database type
+  private db: Database
   constructor(db: Database) {
     this.db = db
   }

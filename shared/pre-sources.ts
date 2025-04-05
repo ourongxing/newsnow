@@ -184,6 +184,15 @@ export const originSources = {
       },
     },
   },
+  // Remove the extra closing brace from the previous incorrect diff
+  "yahoofinance": { // Add Yahoo Finance definition (renamed)
+    name: "Yahoo Finance",
+    column: "finance",
+    home: "https://finance.yahoo.com/",
+    color: "purple",
+    interval: 900000, // 15 minutes
+    title: "市场新闻",
+  }, // Ensure comma is after the closing brace
   "gelonghui": {
     name: "格隆汇",
     color: "blue",
@@ -343,10 +352,8 @@ export function genSources() {
   return typeSafeObjectFromEntries(_.filter(([_, v]) => {
     if (v.disable === "cf" && process.env.CF_PAGES) {
       return false
-    } else if (v.disable === true) {
-      return false
     } else {
-      return true
+      return v.disable !== true
     }
   }))
 }

@@ -1,3 +1,6 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch" // Add explicit import
+
 type Res = {
   description: string
   link: string

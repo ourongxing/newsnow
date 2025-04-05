@@ -1,5 +1,8 @@
 import * as cheerio from "cheerio"
 import type { NewsItem } from "@shared/types"
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch" // Add explicit import
+import { parseRelativeDate } from "../utils/date" // Add explicit import
 
 export default defineSource(async () => {
   const response: any = await myFetch("https://www.ithome.com/list/")

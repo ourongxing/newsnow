@@ -1,3 +1,6 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch"
+
 interface Res {
   data: {
     bang_topic: {
@@ -10,7 +13,7 @@ interface Res {
       }[]
     }
   }
-}
+} // Add explicit import
 
 export default defineSource(async () => {
   const url = "https://tieba.baidu.com/hottopic/browse/topicList"

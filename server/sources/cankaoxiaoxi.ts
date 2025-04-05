@@ -1,3 +1,7 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch" // Add explicit import
+import { tranformToUTC } from "../utils/date"
+
 interface Res {
   list: {
     data: {
@@ -8,7 +12,7 @@ interface Res {
       publishTime: string
     }
   }[]
-}
+} // Add explicit import
 
 export default defineSource(async () => {
   const res = await Promise.all(["zhongguo", "guandian", "gj"].map(k => myFetch(`https://china.cankaoxiaoxi.com/json/channel/${k}/list.json`) as Promise<Res>))

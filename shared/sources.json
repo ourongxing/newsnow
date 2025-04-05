@@ -345,6 +345,15 @@
     "interval": 600000,
     "title": "热搜"
   },
+  "bilibili-hot-video": {
+    "name": "哔哩哔哩",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.bilibili.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "热门视频"
+  },
   "kuaishou": {
     "name": "快手",
     "type": "hottest",

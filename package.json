@@ -1,15 +1,19 @@
 {
-  "name": "newsnow",
+  "name": "Ai-NEWS",
   "type": "module",
   "version": "0.0.25",
   "private": true,
   "packageManager": "pnpm@10.5.2",
   "author": {
-    "url": "https://github.com/ourongxing/",
-    "email": "orongxing@gmail.com",
-    "name": "ourongxing"
+    "url": "https://github.com/Souny-hub/newsnow/",
+    "email": "zhenghaosun@gmail.com",
+    "name": "Souny"
   },
-  "homepage": "https://github.com/ourongxing/newsnow",
+  "homepage": "https://github.com/Souny-hub/newsnow",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/Souny-hub/newsnow.git"
+},
   "scripts": {
     "dev": "npm run presource && vite dev",
     "build": "npm run presource && vite build",

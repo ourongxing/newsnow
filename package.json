@@ -103,7 +103,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "dayjs": "patches/dayjs.patch"
+      "dayjs@1.11.13": "patches/dayjs@1.11.13.patch"
     },
     "onlyBuiltDependencies": [
       "@napi-rs/pinyin",

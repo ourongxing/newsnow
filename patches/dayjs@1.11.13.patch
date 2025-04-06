@@ -1,5 +1,5 @@
 diff --git a/esm/plugin/duration/index.js b/esm/plugin/duration/index.js
-index a241d4b202e99c61467639a5756c586e0e50ceb7..9896d06941a0340fcde49641dfc8cb517d4ec400 100644
+index a241d4b202e99c61467639a5756c586e0e50ceb7..460b37d270ae97177fc4b5c0fb45b8d180f4f36c 100644
 --- a/esm/plugin/duration/index.js
 +++ b/esm/plugin/duration/index.js
 @@ -1,6 +1,6 @@
@@ -38,15 +38,15 @@ index a241d4b202e99c61467639a5756c586e0e50ceb7..9896d06941a0340fcde49641dfc8cb51
  export default (function (option, Dayjs, dayjs) {
    $d = dayjs;
    $u = dayjs().$utils();
-@@ -339,18 +334,12 @@ export default (function (option, Dayjs, dayjs) {
+@@ -339,17 +334,13 @@ export default (function (option, Dayjs, dayjs) {
    var oldSubtract = Dayjs.prototype.subtract;
  
    Dayjs.prototype.add = function (value, unit) {
 -    if (isDuration(value)) {
 -      return manipulateDuration(this, value, 1);
 -    }
--
 +    if (isDuration(value)) value = value.asMilliseconds();
+ 
      return oldAdd.bind(this)(value, unit);
    };
  
@@ -54,8 +54,7 @@ index a241d4b202e99c61467639a5756c586e0e50ceb7..9896d06941a0340fcde49641dfc8cb51
 -    if (isDuration(value)) {
 -      return manipulateDuration(this, value, -1);
 -    }
--
 +    if (isDuration(value)) value = value.asMilliseconds();
+ 
      return oldSubtract.bind(this)(value, unit);
    };
- });

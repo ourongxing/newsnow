@@ -14,6 +14,7 @@
     "dev": "npm run presource && vite dev",
     "build": "npm run presource && vite build",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "presource": "tsx ./scripts/favicon.ts && tsx ./scripts/source.ts",
     "start": "node --env-file .env.server dist/output/server/index.mjs",
     "preview": "cross-env CF_PAGES=1 npm run build && wrangler pages dev dist/output/public",
@@ -69,6 +70,7 @@
     "@tanstack/react-query": "^5.66.11",
     "@tanstack/router-devtools": "^1.112.0",
     "@tanstack/router-plugin": "^1.112.0",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/md5": "^2.3.5",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -93,15 +95,18 @@
     "typescript-eslint": "^8.25.0",
     "unimport": "^4.1.2",
     "unocss": "^66.0.0",
-    "vite": "^6.2.0",
+    "vite": "^6.2.5",
     "vite-plugin-pwa": "^0.21.1",
-    "vite-plugin-with-nitro": "0.0.3",
+    "vite-plugin-with-nitro": "^0.0.3",
     "vitest": "^3.0.7",
     "workbox-build": "^7.3.0",
     "workbox-window": "^7.3.0",
-    "wrangler": "^3.111.0"
+    "wrangler": "^3.114.4"
   },
   "pnpm": {
+    "overrides": {
+      "unenv": "1.10.0"
+    },
     "patchedDependencies": {
       "dayjs": "patches/dayjs.patch"
     },

@@ -1,3 +1,7 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch" // Add explicit import
+import { parseRelativeDate } from "../utils/date"
+
 interface Jin10Item {
   id: string
   time: string
@@ -17,7 +21,7 @@ interface Jin10Item {
   tags: string[]
   channel: number[]
   remark: any[]
-}
+} // Add explicit import
 
 export default defineSource(async () => {
   const timestamp = Date.now()

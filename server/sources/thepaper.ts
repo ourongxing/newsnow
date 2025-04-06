@@ -1,3 +1,6 @@
+import { defineSource } from "../utils/source" // Add explicit import
+import { myFetch } from "../utils/fetch"
+
 interface Res {
   data: {
     hotNews: {
@@ -6,7 +9,7 @@ interface Res {
       pubTimeLong: string
     }[]
   }
-}
+} // Add explicit import
 
 export default defineSource(async () => {
   const url = "https://cache.thepaper.cn/contentapi/wwwIndex/rightSidebar"

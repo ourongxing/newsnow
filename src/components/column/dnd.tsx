@@ -130,7 +130,7 @@ function CardOverlay({ id }: { id: SourceID }) {
               <span className="text-xl font-bold">
                 {sources[id].name}
               </span>
-              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
+              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50 px-1 rounded`)}>{sources[id].title}</span>}
             </span>
             <span className="text-xs op-70">拖拽中</span>
           </span>

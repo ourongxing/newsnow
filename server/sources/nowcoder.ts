@@ -5,8 +5,7 @@ interface Res {
       title: string
       type: number
       uuid: string
-      hotValueFromDolphin: number
-    }
+    }[]
   }
 }
 

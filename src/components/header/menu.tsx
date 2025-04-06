@@ -65,25 +65,24 @@ export function Menu() {
                     </li>
                   ))}
               <ThemeToggle />
-              <li onClick={() => window.open(Homepage)}>
-                <span className="i-ph:github-logo-duotone inline-block" />
+              <li onClick={() => window.open(Homepage)}>                <span className="i-ph:github-logo-duotone inline-block" />
                 <span>Star on Github </span>
               </li>
               <li className="flex gap-2 items-center">
                 <a
-                  href="https://github.com/ourongxing/newsnow"
+                  href="https://github.com/Souny-hub/newsnow"
                 >
                   <img
                     alt="GitHub stars badge"
-                    src="https://img.shields.io/github/stars/ourongxing/newsnow?logo=github"
+                    src="https://img.shields.io/github/stars/Souny-hub/newsnow?logo=github"
                   />
                 </a>
                 <a
-                  href="https://github.com/ourongxing/newsnow/fork"
+                  href="https://github.com/Souny-hub/newsnow/fork"
                 >
                   <img
                     alt="GitHub forks badge"
-                    src="https://img.shields.io/github/forks/ourongxing/newsnow?logo=github"
+                    src="https://img.shields.io/github/forks/Souny-hub/newsnow?logo=github"
                   />
                 </a>
               </li>

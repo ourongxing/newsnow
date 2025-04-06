@@ -8,8 +8,6 @@ import sourcesConfig from "../shared/sources.json"
 import { Cache } from "../server/database/cache" // Import Cache class directly
 import { logger } from "../server/utils/logger"
 import type { SourceGetter } from "../server/types"
-// import { createDatabase } from 'db0'; // Remove db0 imports
-// import BetterSqlite3Connector from 'db0/connectors/better-sqlite3';
 
 // --- Configuration ---
 const sourceIdsToRefresh = Object.keys(sourcesConfig) as SourceID[]

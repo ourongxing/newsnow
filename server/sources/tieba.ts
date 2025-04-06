@@ -1,4 +1,4 @@
-import { defineSource } from "../utils/source" // Add explicit import
+import { defineSource } from "../utils/source"
 import { myFetch } from "../utils/fetch"
 
 interface Res {
@@ -13,7 +13,7 @@ interface Res {
       }[]
     }
   }
-} // Add explicit import
+}
 
 export default defineSource(async () => {
   const url = "https://tieba.baidu.com/hottopic/browse/topicList"

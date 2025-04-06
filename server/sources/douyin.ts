@@ -1,7 +1,7 @@
 import { $fetch } from "ofetch"
-import { defineSource } from "../utils/source" // Add explicit import
+import { defineSource } from "../utils/source"
 import { myFetch } from "../utils/fetch"
-// Add explicit import
+
 interface Res {
   data: {
     word_list: {
@@ -11,7 +11,7 @@ interface Res {
       hot_value: string
     }[]
   }
-} // Add explicit import for direct use
+}
 
 export default defineSource(async () => {
   const url = "https://www.douyin.com/aweme/v1/web/hot/search/list/?device_platform=webapp&aid=6383&channel=channel_pc_web&detail_list=1"

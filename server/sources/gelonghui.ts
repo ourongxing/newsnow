@@ -1,8 +1,8 @@
 import * as cheerio from "cheerio"
 import type { NewsItem } from "@shared/types"
-import { defineSource } from "../utils/source" // Add explicit import
-import { myFetch } from "../utils/fetch" // Add explicit import
-import { parseRelativeDate } from "../utils/date" // Add explicit import
+import { defineSource } from "../utils/source"
+import { myFetch } from "../utils/fetch"
+import { parseRelativeDate } from "../utils/date"
 
 export default defineSource(async () => {
   const baseURL = "https://www.gelonghui.com"

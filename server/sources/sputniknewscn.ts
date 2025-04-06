@@ -1,7 +1,7 @@
 import * as cheerio from "cheerio"
 import type { NewsItem } from "@shared/types"
-import { defineSource } from "../utils/source" // Add explicit import
-import { myFetch } from "../utils/fetch" // Add explicit import
+import { defineSource } from "../utils/source"
+import { myFetch } from "../utils/fetch"
 
 export default defineSource(async () => {
   const response: any = await myFetch("https://sputniknews.cn/services/widget/lenta/")

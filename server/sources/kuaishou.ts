@@ -1,6 +1,6 @@
-import { defineSource } from "../utils/source" // Add explicit import
-import { myFetch } from "../utils/fetch" // Add explicit import
-import { proxyPicture } from "../utils/proxy" // Add explicit import
+import { defineSource } from "../utils/source"
+import { myFetch } from "../utils/fetch"
+import { proxyPicture } from "../utils/proxy"
 
 interface KuaishouRes {
   defaultClient: {

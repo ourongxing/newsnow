@@ -1,5 +1,5 @@
-import { defineSource } from "../utils/source" // Add explicit import
-import { myFetch } from "../utils/fetch" // Add explicit import
+import { defineSource } from "../utils/source"
+import { myFetch } from "../utils/fetch"
 import { proxyPicture } from "../utils/proxy"
 
 interface Res {
@@ -27,7 +27,7 @@ interface Res {
       rank: number
     }[]
   }
-} // Add explicit import
+}
 
 export default defineSource(async () => {
   const url = "https://weibo.com/ajax/side/hotSearch"

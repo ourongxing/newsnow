@@ -5,9 +5,9 @@
   "private": true,
   "packageManager": "pnpm@10.5.2",
   "author": {
-    "url": "https://github.com/ourongxing/",
+    "url": "https://github.com/Wakler-Wei/",
     "email": "orongxing@gmail.com",
-    "name": "ourongxing"
+    "name": "Wakler-Wei"
   },
   "homepage": "https://github.com/ourongxing/newsnow",
   "scripts": {

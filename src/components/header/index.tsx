@@ -45,17 +45,25 @@ export function Header() {
       <span className="flex justify-self-start">
         <Link to="/" className="flex gap-2 items-center">
           <div className="h-10 w-10 bg-cover" title="logo" style={{ backgroundImage: "url(/icon.svg)" }} />
-          <span className="text-2xl font-brand line-height-none!">
-            <p>News</p>
+          {/* <span className="text-2xl font-brand line-height-none!">
+            <p>Walker</p>
             <p className="mt--1">
               <span className="color-primary-6">N</span>
-              <span>ow</span>
+              <span>ews</span>
+            </p>
+          </span> */}
+          <span className="text-2xl font-brand !leading-none">
+            {/* <!-- 明确给所有文本元素加粗 --> */}
+            <p className="font-bold">Walker</p>
+            <p className="-mt-1">
+              <span className="text-primary-600 font-bold">N</span>
+              <span className="font-bold">ews</span>
             </p>
           </span>
         </Link>
-        <a target="_blank" href={`${Homepage}/releases/tag/v${Version}`} className="btn text-sm ml-1 font-mono">
+        {/* <a target="_blank" href={`${Homepage}/releases/tag/v${Version}`} className="btn text-sm ml-1 font-mono">
           {`v${Version}`}
-        </a>
+        </a> */}
       </span>
       <span className="justify-self-center">
         <span className="hidden md:(inline-block)">

@@ -151,6 +151,24 @@ export const originSources = {
     interval: Time.Common,
     home: "https://china.cankaoxiaoxi.com",
   },
+  "pcbeta": {
+    name: "远景论坛",
+    color: "blue",
+    column: "tech",
+    home: "https://bbs.pcbeta.com",
+    sub: {
+      windows11: {
+        title: "Windows 11",
+        type: "realtime",
+        interval: Time.Fast,
+      },
+      windows: {
+        title: "Windows 资源",
+        type: "realtime",
+        interval: Time.Fast,
+      },
+    },
+  },
   "cls": {
     name: "财联社",
     color: "red",
@@ -253,6 +271,19 @@ export const originSources = {
         column: "china",
         type: "hottest",
       },
+      "hot-video": {
+        title: "热门视频",
+        disable: "cf",
+        column: "china",
+        type: "hottest",
+      },
+      "ranking": {
+        title: "排行榜",
+        column: "china",
+        disable: "cf",
+        type: "hottest",
+        interval: Time.Common,
+      },
     },
   },
   "kuaishou": {
@@ -304,6 +335,27 @@ export const originSources = {
         home: "https://linux.do/hot",
       },
     },
+  },
+  "ghxi": {
+    name: "果核剥壳",
+    column: "china",
+    color: "yellow",
+    disable: "cf",
+    home: "https://www.ghxi.com/",
+  },
+  "smzdm": {
+    name: "什么值得买",
+    column: "china",
+    color: "red",
+    type: "hottest",
+    home: "https://www.smzdm.com",
+  },
+  "nowcoder": {
+    name: "牛客",
+    column: "china",
+    color: "blue",
+    type: "hottest",
+    home: "https://www.nowcoder.com",
   },
 } as const satisfies Record<string, OriginSource>
 

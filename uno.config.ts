@@ -33,7 +33,7 @@ export default defineConfig({
   shortcuts: {
     "color-base": "color-neutral-800 dark:color-neutral-300",
     "bg-base": "bg-zinc-200 dark:bg-dark-600",
-    "btn": "op50 hover:op85",
+    "btn": "op50 hover:op85 cursor-pointer transition-all",
   },
   safelist: [
     ...["orange", ...new Set(Object.values(sources).map(k => k.color))].map(k =>

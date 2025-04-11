@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio"
 import type { NewsItem } from "@shared/types"
+import { fetchHtmlContent } from "../utils/playwrightUtil"
 
 const relativeTimeToDate = function (timeStr) {
   const units = {
@@ -25,33 +26,38 @@ const relativeTimeToDate = function (timeStr) {
 }
 
 export default defineSource(async () => {
-  const html: any = await myFetch("https://www.ghxi.com/category/all")
-  const $ = cheerio.load(html)
   const news: NewsItem[] = []
-  $(".sec-panel .sec-panel-body .post-loop li").each((i, elem) => {
-    let summary_title = $(elem).find(".item-content .item-title").text()
-    if (summary_title) {
-      summary_title = summary_title.trim()
-      summary_title = summary_title.replaceAll("'", "''")
-    }
-    let summary_description = $(elem).find(".item-content .item-excerpt").text()
-    if (summary_description) {
-      summary_description = summary_description.trim()
-      summary_description = summary_description.replaceAll("'", "''")
-    }
-    const date = $(elem).find(".item-content .date").text()
-    console.log(date)
-    const url = $(elem).find(".item-content .item-title a").attr("href")
-    news.push({
-      id: url,
-      url,
-      title: summary_title,
-      extra: {
-        hover: summary_description,
-        date: relativeTimeToDate(date),
-      },
+  const targetUrl = "https://www.ghxi.com/category/all"
+  try {
+    const html = await fetchHtmlContent(targetUrl)
+    // console.log('HTML Content:', html);
+    const $ = cheerio.load(html)
+    $(".sec-panel .sec-panel-body .post-loop li").each((i, elem) => {
+      let summary_title = $(elem).find(".item-content .item-title").text()
+      if (summary_title) {
+        summary_title = summary_title.trim()
+        summary_title = summary_title.replaceAll("'", "''")
+      }
+      let summary_description = $(elem).find(".item-content .item-excerpt").text()
+      if (summary_description) {
+        summary_description = summary_description.trim()
+        summary_description = summary_description.replaceAll("'", "''")
+      }
+      const date = $(elem).find(".item-content .date").text()
+      // console.log(date)
+      const url = $(elem).find(".item-content .item-title a").attr("href")
+      news.push({
+        id: url,
+        url,
+        title: summary_title,
+        extra: {
+          hover: summary_description,
+          date: relativeTimeToDate(date),
+        },
+      })
     })
-  })
-
+  } catch (error) {
+    console.error("Failed to fetch HTML:", error)
+  }
   return news
 })

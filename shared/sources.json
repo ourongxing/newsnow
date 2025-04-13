@@ -348,6 +348,7 @@
   "bilibili-hot-video": {
     "name": "哔哩哔哩",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://www.bilibili.com",
     "color": "blue",
@@ -357,6 +358,7 @@
   "bilibili-ranking": {
     "name": "哔哩哔哩",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://www.bilibili.com",
     "color": "blue",
@@ -446,6 +448,22 @@
     "type": "hottest",
     "column": "china",
     "home": "https://www.nowcoder.com",
+    "color": "blue",
+    "interval": 600000
+  },
+  "sspai": {
+    "name": "少数派",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://sspai.com",
+    "color": "red",
+    "interval": 600000
+  },
+  "juejin": {
+    "name": "稀土掘金",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://juejin.cn",
     "color": "blue",
     "interval": 600000
   }

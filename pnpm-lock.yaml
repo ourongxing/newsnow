@@ -102,9 +102,9 @@ importers:
       overlayscrollbars:
         specifier: ^2.11.1
         version: 2.11.1
-      playright:
-        specifier: ^0.0.22
-        version: 0.0.22
+      playwright:
+        specifier: ^1.51.1
+        version: 1.51.1
       pnpm:
         specifier: ^10.5.2
         version: 10.5.2
@@ -5022,9 +5022,6 @@ packages:
   pkg-types@2.1.0:
     resolution: {integrity: sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==}
 
-  playright@0.0.22:
-    resolution: {integrity: sha512-CAnov0flTUoiXrypVkbtDmY/K0iKCrW/RGlUO9a8jIah7u7NkTteLFt3GKHkIWOAM7rp9N751MgBGg9IkhdiYw==}
-
   playwright-core@1.51.1:
     resolution: {integrity: sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==}
     engines: {node: '>=18'}
@@ -5874,11 +5871,6 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
-
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
 
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
@@ -11528,11 +11520,6 @@ snapshots:
       exsolve: 1.0.1
       pathe: 2.0.3
 
-  playright@0.0.22:
-    dependencies:
-      playwright: 1.51.1
-      typescript: 4.9.5
-
   playwright-core@1.51.1: {}
 
   playwright@1.51.1:
@@ -12509,8 +12496,6 @@ snapshots:
       typescript: 5.8.2
     transitivePeerDependencies:
       - supports-color
-
-  typescript@4.9.5: {}
 
   typescript@5.8.2: {}
 

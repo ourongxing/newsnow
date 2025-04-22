@@ -466,5 +466,13 @@
     "home": "https://juejin.cn",
     "color": "blue",
     "interval": 600000
+  },
+  "ifeng": {
+    "name": "凤凰网",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.ifeng.com",
+    "color": "red",
+    "interval": 600000
   }
 }

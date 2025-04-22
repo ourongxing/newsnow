@@ -13,6 +13,7 @@ declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const ghxi: typeof import('./sources/ghxi')
   export const github: typeof import('./sources/github')
   export const hackernews: typeof import('./sources/hackernews')
+  export const ifeng: typeof import('./sources/ifeng')
   export const ithome: typeof import('./sources/ithome')
   export const jin10: typeof import('./sources/jin10')
   export const juejin: typeof import('./sources/juejin')

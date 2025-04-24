@@ -475,5 +475,13 @@
     "home": "https://www.ifeng.com",
     "color": "red",
     "interval": 600000
+  },
+  "chongbuluo": {
+    "name": "虫部落",
+    "type": "realtime",
+    "column": "china",
+    "home": "https://www.ifeng.comhttps://www.chongbuluo.com",
+    "color": "green",
+    "interval": 600000
   }
 }

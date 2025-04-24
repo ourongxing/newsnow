@@ -468,6 +468,7 @@
     "interval": 600000
   },
   "ifeng": {
+    "title": "热点资讯",
     "name": "凤凰网",
     "type": "hottest",
     "column": "china",

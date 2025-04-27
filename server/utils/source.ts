@@ -1,3 +1,4 @@
+import process from "node:process"
 import type { AllSourceID } from "@shared/types"
 import defu from "defu"
 import type { RSSHubOption, RSSHubInfo as RSSHubResponse, SourceGetter, SourceOption } from "#/types"
@@ -43,4 +44,13 @@ export function defineRSSHubSource(route: string, RSSHubOptions?: RSSHubOption, 
       pubDate: !sourceOption?.hiddenDate ? item.date_published : undefined,
     }))
   }
+}
+
+export function proxySource(proxyUrl: string, source: SourceGetter) {
+  return process.env.CF_PAGES
+    ? defineSource(async () => {
+        const data = await myFetch(proxyUrl)
+        return data.items
+      })
+    : source
 }

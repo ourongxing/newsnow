@@ -9,6 +9,7 @@
   "wallstreetcn-hot": "huaerjiejianwen-zuirewenzhang",
   "36kr-quick": "36ke-kuaixun",
   "douyin": "douyin",
+  "hupu": "hupu-zhugandaoretie",
   "tieba": "baidutieba-reyi",
   "toutiao": "jinritoutiao",
   "ithome": "ITzhijia",
@@ -39,5 +40,10 @@
   "linuxdo-hot": "LINUX DO-jinrizuire",
   "ghxi": "guoheboke",
   "smzdm": "shenmezhidemai",
-  "nowcoder": "niuke"
+  "nowcoder": "niuke",
+  "sspai": "shaoshupai",
+  "juejin": "xitujuejin",
+  "ifeng": "fenghuangwang-redianzixun",
+  "chongbuluo-latest": "chongbuluo-zuixin",
+  "chongbuluo-hot": "chongbuluo-zuire"
 }

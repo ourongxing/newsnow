@@ -9,6 +9,7 @@
   "wallstreetcn-hot": "huaerjiejianwen-zuirewenzhang",
   "36kr-quick": "36ke-kuaixun",
   "douyin": "douyin",
+  "hupu": "hupu-zhugandaoretie",
   "tieba": "baidutieba-reyi",
   "toutiao": "jinritoutiao",
   "ithome": "ITzhijia",
@@ -41,5 +42,8 @@
   "smzdm": "shenmezhidemai",
   "nowcoder": "niuke",
   "sspai": "shaoshupai",
-  "juejin": "xitujuejin"
+  "juejin": "xitujuejin",
+  "ifeng": "fenghuangwang-redianzixun",
+  "chongbuluo-latest": "chongbuluo-zuixin",
+  "chongbuluo-hot": "chongbuluo-zuire"
 }

@@ -27,7 +27,6 @@ export default defineSource({
       headers: await genHeaders(),
     })
     if (!r.data.length) throw new Error("Failed to fetch")
-    console.log(r.data[0])
     return r.data.filter(k => k.id).map(i => ({
       id: i.id,
       title: i.editor_title || load(i.message).text().split("\n")[0],

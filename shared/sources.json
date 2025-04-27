@@ -116,6 +116,15 @@
     "color": "gray",
     "interval": 600000
   },
+  "hupu": {
+    "title": "主干道热帖",
+    "name": "虎扑",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://hupu.com",
+    "color": "red",
+    "interval": 600000
+  },
   "tieba": {
     "title": "热议",
     "name": "百度贴吧",
@@ -152,7 +161,6 @@
   },
   "sputniknewscn": {
     "name": "卫星通讯社",
-    "disable": "cf",
     "column": "world",
     "home": "https://sputniknews.cn",
     "color": "orange",
@@ -429,7 +437,6 @@
   },
   "ghxi": {
     "name": "果核剥壳",
-    "disable": "cf",
     "column": "china",
     "home": "https://www.ghxi.com/",
     "color": "yellow",
@@ -466,5 +473,40 @@
     "home": "https://juejin.cn",
     "color": "blue",
     "interval": 600000
+  },
+  "ifeng": {
+    "title": "热点资讯",
+    "name": "凤凰网",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.ifeng.com",
+    "color": "red",
+    "interval": 600000
+  },
+  "chongbuluo": {
+    "redirect": "chongbuluo-latest",
+    "name": "虫部落",
+    "column": "china",
+    "home": "https://www.chongbuluo.com/forum.php?mod=guide&view=newthread",
+    "color": "green",
+    "interval": 1800000,
+    "title": "最新"
+  },
+  "chongbuluo-latest": {
+    "name": "虫部落",
+    "column": "china",
+    "home": "https://www.chongbuluo.com/forum.php?mod=guide&view=newthread",
+    "color": "green",
+    "interval": 1800000,
+    "title": "最新"
+  },
+  "chongbuluo-hot": {
+    "name": "虫部落",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.chongbuluo.com/forum.php?mod=guide&view=hot",
+    "color": "green",
+    "interval": 1800000,
+    "title": "最热"
   }
 }

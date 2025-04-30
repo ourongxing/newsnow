@@ -4,7 +4,7 @@ import { VitePWA } from "vite-plugin-pwa"
 
 const pwaOption: Partial<VitePWAOptions> = {
   includeAssets: ["icon.svg", "apple-touch-icon.png"],
-  filename: "swx.js",
+  filename: "sw.js",
   manifest: {
     name: "NewsNow",
     short_name: "NewsNow",

@@ -1,4 +1,4 @@
-FROM node:20.12.2-alpine as builder
+FROM node:20.12.2-alpine AS builder
 WORKDIR /usr/src
 COPY . .
 RUN corepack enable

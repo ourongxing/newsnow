@@ -1,8 +1,6 @@
 # NewsNow
 
-![](screenshots/preview-1.png)
-
-![](screenshots/preview-2.png)
+![](/public/og-image.png)
 
 English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 
@@ -18,6 +16,25 @@ English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 - GitHub OAuth login with data synchronization
 - 30-minute default cache duration (logged-in users can force refresh)
 - Adaptive scraping interval (minimum 2 minutes) based on source update frequency to optimize resource usage and prevent IP bans
+- support MCP server
+
+```json
+{
+  "mcpServers": {
+    "newsnow": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "newsnow-mcp-server"
+      ],
+      "env": {
+        "BASE_URL": "https://newsnow.busiyi.world"
+      }
+    }
+  }
+}
+```
+You can change the `BASE_URL` to your own domain.
 
 ## Deployment
 

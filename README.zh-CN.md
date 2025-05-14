@@ -2,9 +2,7 @@
 
 <a href="https://hellogithub.com/repository/c2978695e74a423189e9ca2543ab3b36" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=c2978695e74a423189e9ca2543ab3b36&claim_uid=SMJiFwlsKCkWf89&theme=small" alt="Featured｜HelloGitHub" /></a>
 
-![](screenshots/preview-1.png)
-
-![](screenshots/preview-2.png)
+![](/public/og-image.png)
 
 [English](./README.md) | 简体中文 | [日本語](README.ja-JP.md)
 
@@ -19,6 +17,26 @@
 - 支持 GitHub 登录及数据同步
 - 默认缓存时长为 30 分钟，登录用户可强制刷新获取最新数据
 - 根据内容源更新频率动态调整抓取间隔（最快每 2 分钟），避免频繁抓取导致 IP 被封禁
+- 支持 MCP server
+
+```json
+{
+  "mcpServers": {
+    "newsnow": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "newsnow-mcp-server"
+      ],
+      "env": {
+        "BASE_URL": "https://newsnow.busiyi.world"
+      }
+    }
+  }
+}
+```
+
+你可以将 `BASE_URL` 修改为你的域名。
 
 ## 部署指南
 

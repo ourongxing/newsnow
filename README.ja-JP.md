@@ -1,7 +1,6 @@
 # NewsNow
 
-![](screenshots/preview-1.png)
-![](screenshots/preview-2.png)
+![](/public/og-image.png)
 
 [English](./README.md) | [简体中文](README.zh-CN.md) | 日本語
 
@@ -16,6 +15,24 @@
 - GitHub OAuthログインとデータ同期
 - デフォルトのキャッシュ期間は30分（ログインユーザーは強制更新可能）
 - リソース使用を最適化し、IPブロックを防ぐためのソース更新頻度に基づく適応型スクレイピング間隔（最短2分）
+- MCPサーバーをサポート
+
+```json
+{
+  "mcpServers": {
+    "newsnow": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "newsnow-mcp-server"
+      ],
+      "env": {
+        "BASE_URL": "https://newsnow.busiyi.world"
+      }
+    }
+  }
+}
+```
 
 ## デプロイ
 

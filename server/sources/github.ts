@@ -85,20 +85,20 @@ export default defineSource({
   "github-trending": () => trending(), 
   // Note: GitHub's default for /trending is daily.
   // Explicitly "today" for all languages
-  "github-trending-today": () => trending({ since: "daily" }),
+  "github-trending-today-sub": () => trending({ since: "daily" }),
 
   // Python
-  "github-trending-python-daily": () => trending({ language: "python", since: "daily" }),
-  "github-trending-python-weekly": () => trending({ language: "python", since: "weekly" }),
-  "github-trending-python-monthly": () => trending({ language: "python", since: "monthly" }),
+  "github-trending-python-daily-sub": () => trending({ language: "python", since: "daily" }),
+  "github-trending-python-weekly-sub": () => trending({ language: "python", since: "weekly" }),
+  "github-trending-python-monthly-sub": () => trending({ language: "python", since: "monthly" }),
 
   // Java
-  "github-trending-java-daily": () => trending({ language: "java", since: "daily" }),
-  "github-trending-java-weekly": () => trending({ language: "java", since: "weekly" }),
-  "github-trending-java-monthly": () => trending({ language: "java", since: "monthly" }),
+  "github-trending-java-daily-sub": () => trending({ language: "java", since: "daily" }),
+  "github-trending-java-weekly-sub": () => trending({ language: "java", since: "weekly" }),
+  "github-trending-java-monthly-sub": () => trending({ language: "java", since: "monthly" }),
 
   // You can add more languages or combinations as needed
   // Example: All languages for weekly/monthly
-  "github-trending-weekly": () => trending({ since: "weekly" }),
-  "github-trending-monthly": () => trending({ since: "monthly" }),
+  "github-trending-weekly-sub": () => trending({ since: "weekly" }),
+  "github-trending-monthly-sub": () => trending({ since: "monthly" }),
 });

@@ -316,7 +316,7 @@
     "interval": 600000
   },
   "github": {
-    "redirect": "github-trending-today",
+    "redirect": "github-trending-today-sub",
     "name": "Github",
     "type": "hottest",
     "column": "tech",
@@ -325,7 +325,7 @@
     "interval": 600000,
     "title": "Today"
   },
-  "github-trending-today": {
+  "github-trending-today-sub": {
     "name": "Github",
     "type": "hottest",
     "column": "tech",
@@ -335,7 +335,17 @@
     "title": "Today"
   },
   "github-trending": {
+    "redirect": "github-trending-sub",
     "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "All"
+  },
+  "github-trending-sub": {
+    "name": "Github Trending",
     "type": "hottest",
     "column": "tech",
     "home": "https://github.com/",
@@ -343,25 +353,19 @@
     "interval": 600000,
     "title": "Today"
   },
+  
   "github-trending-python-daily": {
+    "redirect": "github-trending-python-daily-sub",
     "name": "Github",
     "type": "hottest",
     "column": "tech",
     "home": "https://github.com/",
     "color": "gray",
     "interval": 600000,
-    "title": "Today"
+    "title": "python-daily"
   },
-  "github-trending-python-weekly": {
-    "name": "Github",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://github.com/",
-    "color": "gray",
-    "interval": 600000,
-    "title": "Today"
-  },
-  "github-trending-python-monthly": {
+
+  "github-trending-python-daily-sub": {
     "name": "Github",
     "type": "hottest",
     "column": "tech",
@@ -371,7 +375,64 @@
     "title": "Today"
   },
 
+  "github-trending-python-weekly": {
+    "redirect": "github-trending-python-weekly-sub",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "python-weekly"
+  },
+
+
+  "github-trending-python-weekly-sub": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+
+  "github-trending-python-monthly": {
+    "redirect": "github-trending-python-monthly-sub",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "python-monthly"
+  },
+
+
+
+  "github-trending-python-monthly-sub": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+
+
   "github-trending-java-daily": {
+    "redirect": "github-trending-java-daily-sub",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "java-daily"
+  },
+
+  "github-trending-java-daily-sub": {
     "name": "Github",
     "type": "hottest",
     "column": "tech",
@@ -380,7 +441,20 @@
     "interval": 600000,
     "title": "Today"
   },
+
   "github-trending-java-monthly": {
+    "redirect": "github-trending-java-monthly-sub",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "java-monthly"
+  },
+
+
+  "github-trending-java-monthly-sub": {
     "name": "Github",
     "type": "hottest",
     "column": "tech",
@@ -389,7 +463,19 @@
     "interval": 600000,
     "title": "Today"
   },
+
   "github-trending-weekly": {
+    "redirect": "github-trending-weekly-sub",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "trending-weekly"
+  },
+
+  "github-trending-weekly-sub": {
     "name": "Github",
     "type": "hottest",
     "column": "tech",
@@ -399,6 +485,17 @@
     "title": "Today"
   },
   "github-trending-monthly": {
+    "redirect": "github-trending-monthly-sub",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "trending-monthly"
+  },
+
+  "github-trending-monthly-sub": {
     "name": "Github",
     "type": "hottest",
     "column": "tech",

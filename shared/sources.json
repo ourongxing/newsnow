@@ -334,6 +334,79 @@
     "interval": 600000,
     "title": "Today"
   },
+  "github-trending": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-python-daily": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-python-weekly": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-python-monthly": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+
+  "github-trending-java-daily": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-java-monthly": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-weekly": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-monthly": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
   "bilibili": {
     "redirect": "bilibili-hot-search",
     "name": "哔哩哔哩",

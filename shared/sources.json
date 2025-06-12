@@ -87,6 +87,39 @@
     "interval": 1800000,
     "title": "最热文章"
   },
+  "mktnews": {
+    "redirect": "mktnews-policy",
+    "name": "MKTNews",
+    "column": "world",
+    "home": "https://mktnews.net",
+    "color": "red",
+    "interval": 6000000,
+    "title": "最热文章"
+  },
+  "mktnews-policy": {
+    "name": "MKTNews",
+    "column": "world",
+    "home": "https://mktnews.net",
+    "color": "red",
+    "interval": 6000000,
+    "title": "最热文章"
+  },
+  "mktnews-AI": {
+    "name": "MKTNews",
+    "column": "world",
+    "home": "https://mktnews.net",
+    "color": "red",
+    "interval": 6000000,
+    "title": "AI热点"
+  },
+  "mktnews-financial": {
+    "name": "MKTNews",
+    "column": "world",
+    "home": "https://mktnews.net",
+    "color": "red",
+    "interval": 6000000,
+    "title": "金融热点"
+  },
   "36kr": {
     "redirect": "36kr-quick",
     "name": "36氪",

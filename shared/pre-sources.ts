@@ -57,6 +57,22 @@ export const originSources = {
     title: "今日最热",
     home: "https://coolapk.com",
   },
+  "mktnews": {
+    name: "MKTNews.com",
+    column: "world",
+    home: "https://mktnews.net",
+    sub: {
+      policy: {
+        title: "政策快讯",
+      },
+      AI: {
+        title: "AI快讯",
+      },
+      financial: {
+        title: "金融快讯",
+      },
+    },
+  },
   "wallstreetcn": {
     name: "华尔街见闻",
     color: "blue",
@@ -417,29 +433,40 @@ export function genSources() {
     if (source.sub && Object.keys(source.sub).length) {
       Object.entries(source.sub).forEach(([subId, subSource], i) => {
         if (i === 0) {
-          _.push([id, {
-            redirect: `${id}-${subId}`,
-            ...parent,
-            ...subSource,
-          }] as [any, Source])
+          _.push([
+            id,
+            {
+              redirect: `${id}-${subId}`,
+              ...parent,
+              ...subSource,
+            },
+          ] as [any, Source])
         }
-        _.push([`${id}-${subId}`, { ...parent, ...subSource }] as [any, Source])
+        _.push([`${id}-${subId}`, { ...parent, ...subSource }] as [
+          any,
+          Source,
+        ])
       })
     } else {
-      _.push([id, {
-        title: source.title,
-        ...parent,
-      }])
+      _.push([
+        id,
+        {
+          title: source.title,
+          ...parent,
+        },
+      ])
     }
   })
 
-  return typeSafeObjectFromEntries(_.filter(([_, v]) => {
-    if (v.disable === "cf" && process.env.CF_PAGES) {
-      return false
-    } else if (v.disable === true) {
-      return false
-    } else {
-      return true
-    }
-  }))
+  return typeSafeObjectFromEntries(
+    _.filter(([_, v]) => {
+      if (v.disable === "cf" && process.env.CF_PAGES) {
+        return false
+      } else if (v.disable === true) {
+        return false
+      } else {
+        return true
+      }
+    }),
+  )
 }

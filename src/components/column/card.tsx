@@ -236,11 +236,11 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           key={item.id}
           title={item.extra?.hover}
           className={$(
-            "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
+            "flex gap-2 items-start items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
             "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
           )}
         >
-          <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm")}>
+          <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm h-6 flex-shrink-0")}>
             {i + 1}
           </span>
           {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}

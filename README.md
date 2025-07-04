@@ -1,3 +1,5 @@
+new bug fix
+
 # NewsNow
 
 ![](/public/og-image.png)

@@ -1,6 +1,8 @@
 FROM node:20.12.2-alpine AS builder
 WORKDIR /usr/src
 COPY . .
+# Install build dependencies for native modules like better-sqlite3
+RUN apk add --no-cache python3 make g++
 RUN corepack enable
 RUN pnpm install
 RUN pnpm run build

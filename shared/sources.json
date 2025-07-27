@@ -122,19 +122,5 @@
     "color": "red",
     "interval": 600000,
     "title": "热门"
-  },
-  "washingtonpost": {
-    "name": "华盛顿邮报",
-    "column": "world",
-    "home": "https://www.washingtonpost.com",
-    "color": "gray",
-    "interval": 1800000
-  },
-  "economist": {
-    "name": "经济学人",
-    "column": "world",
-    "home": "https://www.economist.com",
-    "color": "red",
-    "interval": 1800000
   }
 }

@@ -12,19 +12,12 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as CColumnImport } from './routes/c.$column'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const CColumnRoute = CColumnImport.update({
-  id: '/c/$column',
-  path: '/c/$column',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,13 +32,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/c/$column': {
-      id: '/c/$column'
-      path: '/c/$column'
-      fullPath: '/c/$column'
-      preLoaderRoute: typeof CColumnImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -53,37 +39,32 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/c/$column': typeof CColumnRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/c/$column': typeof CColumnRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/c/$column': typeof CColumnRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/c/$column'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/c/$column'
-  id: '__root__' | '/' | '/c/$column'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CColumnRoute: typeof CColumnRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CColumnRoute: CColumnRoute,
 }
 
 export const routeTree = rootRoute
@@ -96,15 +77,11 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/c/$column"
+        "/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/c/$column": {
-      "filePath": "c.$column.tsx"
     }
   }
 }

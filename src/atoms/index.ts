@@ -1,4 +1,6 @@
 import type { FixedColumnID, SourceID } from "@shared/types"
+import { sources } from "@shared/sources"
+import { typeSafeObjectEntries } from "@shared/type.util"
 import type { Update } from "./types"
 
 export const focusSourcesAtom = atom((get) => {
@@ -15,21 +17,11 @@ export const focusSourcesAtom = atom((get) => {
   })
 })
 
-export const currentColumnIDAtom = atom<FixedColumnID>("focus")
+export const currentColumnIDAtom = atom<FixedColumnID>("hottest")
 
-export const currentSourcesAtom = atom((get) => {
-  const id = get(currentColumnIDAtom)
-  return get(primitiveMetadataAtom).data[id]
-}, (get, set, update: Update<SourceID[]>) => {
-  const _ = update instanceof Function ? update(get(currentSourcesAtom)) : update
-  set(primitiveMetadataAtom, {
-    updatedTime: Date.now(),
-    action: "manual",
-    data: {
-      ...get(primitiveMetadataAtom).data,
-      [get(currentColumnIDAtom)]: _,
-    },
-  })
+export const currentSourcesAtom = atom(() => {
+  // 返回所有非重定向的源
+  return typeSafeObjectEntries(sources).filter(([, v]) => !v.redirect).map(([k]) => k)
 })
 
 export const goToTopAtom = atom({

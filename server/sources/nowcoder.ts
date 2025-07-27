@@ -24,9 +24,9 @@ export default defineSource(async () => {
         id = k.id
       }
       return {
-        id,
+        id: id || k.id,
         title: k.title,
-        url,
+        url: url || `https://www.nowcoder.com/discuss/${k.id}`,
       }
     })
 })

@@ -6,58 +6,58 @@ export default defineSource(async () => {
     // Since RSS feeds are blocked, try scraping the main page
     const html: string = await myFetch("https://www.economist.com")
     const $ = cheerio.load(html)
-    
+
     const news: NewsItem[] = []
-    
+
     // Try different selectors for articles
     const selectors = [
-      'article[data-component="ArticleTeaser"]',
-      '.css-1wjnrbv', 
-      '[data-component="ArticleTeaser"]',
-      'article h3 a',
-      '.headline a'
+      "article[data-component=\"ArticleTeaser\"]",
+      ".css-1wjnrbv",
+      "[data-component=\"ArticleTeaser\"]",
+      "article h3 a",
+      ".headline a",
     ]
-    
+
     for (const selector of selectors) {
       const $articles = $(selector)
       if ($articles.length > 0) {
-        $articles.slice(0, 15).each((i, el) => {
+        $articles.slice(0, 15).each((_, el) => {
           const $el = $(el)
           let title = ""
           let url = ""
-          
-          if ($el.is('a')) {
+
+          if ($el.is("a")) {
             title = $el.text().trim()
-            url = $el.attr('href') || ""
+            url = $el.attr("href") || ""
           } else {
-            const $link = $el.find('a').first()
-            title = $link.text().trim() || $el.find('h3').text().trim() || $el.find('.headline').text().trim()
-            url = $link.attr('href') || ""
+            const $link = $el.find("a").first()
+            title = $link.text().trim() || $el.find("h3").text().trim() || $el.find(".headline").text().trim()
+            url = $link.attr("href") || ""
           }
-          
+
           if (title && url && title.length > 10) {
             // Ensure URL is absolute
-            if (url.startsWith('/')) {
+            if (url.startsWith("/")) {
               url = `https://www.economist.com${url}`
             }
-            
+
             news.push({
               id: url,
               title: title.substring(0, 200), // Limit title length
-              url: url,
+              url,
               pubDate: Date.now(),
               extra: {
                 info: "Latest",
-                hover: title.length > 100 ? title.substring(0, 150) + '...' : title,
+                hover: title.length > 100 ? `${title.substring(0, 150)}...` : title,
               },
             })
           }
         })
-        
+
         if (news.length > 0) break // If we found articles, stop trying other selectors
       }
     }
-    
+
     // If scraping failed, return fallback content
     if (news.length === 0) {
       return [
@@ -72,7 +72,7 @@ export default defineSource(async () => {
           },
         },
         {
-          id: "economist-fallback-2", 
+          id: "economist-fallback-2",
           title: "The Economist - Business & Finance",
           url: "https://www.economist.com/business",
           pubDate: Date.now(),
@@ -90,10 +90,10 @@ export default defineSource(async () => {
             info: "World Brief",
             hover: "Daily briefing on global events from The Economist",
           },
-        }
+        },
       ]
     }
-    
+
     return news
   } catch (error) {
     console.error("Economist scraper error:", error)
@@ -107,7 +107,7 @@ export default defineSource(async () => {
           info: "Error",
           hover: "Unable to fetch latest news. Click to visit The Economist website.",
         },
-      }
+      },
     ]
   }
 })

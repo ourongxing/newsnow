@@ -1,4 +1,5 @@
 import type { SourceID, SourceResponse } from "@shared/types"
+import { sources } from "@shared/sources"
 import { getCacheTable } from "#/database/cache"
 
 export default defineEventHandler(async (event) => {

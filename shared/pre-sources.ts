@@ -96,20 +96,20 @@ export const originSources = {
       },
     },
   },
-  "washingtonpost": {
-    name: "华盛顿邮报",
-    column: "world",
-    color: "gray",
-    interval: Time.Common,
-    home: "https://www.washingtonpost.com",
-  },
-  "economist": {
-    name: "经济学人",
-    column: "world",
-    color: "red",
-    interval: Time.Common,
-    home: "https://www.economist.com",
-  },
+  // "washingtonpost": {
+  //   name: "华盛顿邮报",
+  //   column: "world",
+  //   color: "gray",
+  //   interval: Time.Common,
+  //   home: "https://www.washingtonpost.com",
+  // },
+  // "economist": {
+  //   name: "经济学人",
+  //   column: "world",
+  //   color: "red",
+  //   interval: Time.Common,
+  //   home: "https://www.economist.com",
+  // },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

@@ -26,7 +26,6 @@ function NotFoundComponent() {
 
 function RootComponent() {
   useOnReload()
-  useSync()
   usePWA()
   return (
     <>

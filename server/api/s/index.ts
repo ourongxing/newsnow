@@ -38,12 +38,7 @@ export default defineEventHandler(async (event): Promise<SourceResponse> => {
         // 而 TTL 缓存失效时间，在时间范围内，就算内容更新了也要用这个缓存。
         // 复用缓存是不会更新时间的。
         if (now - cache.updated < TTL) {
-          // 有 latest
-          // 没有 latest，但服务器禁止登录
-
-          // 没有 latest
-          // 有 latest，服务器可以登录但没有登录
-          if (!latest || (!event.context.disabledLogin && !event.context.user)) {
+          if (!latest) {
             return {
               status: "cache",
               id,

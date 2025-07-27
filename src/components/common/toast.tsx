@@ -3,6 +3,7 @@ import { useMount, useWindowSize } from "react-use"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import type { ToastItem } from "~/atoms/types"
 import { Timer } from "~/utils"
+import { toastAtom } from "~/hooks/useToast"
 
 const WIDTH = 320
 export function Toast() {
@@ -45,7 +46,7 @@ function Item({ info }: { info: ToastItem }) {
       info.onDismiss?.()
     }
   }, [info, setToastItems])
-  const timer = useRef<Timer>()
+  const timer = useRef<Timer | undefined>(undefined)
 
   useMount(() => {
     timer.current = new Timer(() => {

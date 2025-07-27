@@ -42,15 +42,6 @@ export interface RSSHubItem {
   date_published: string
 }
 
-export interface UserInfo {
-  id: string
-  email: string
-  type: "github"
-  data: string
-  created: number
-  updated: number
-}
-
 export interface RSSHubOption {
   // default: true
   sorted?: boolean

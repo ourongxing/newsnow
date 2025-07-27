@@ -1,94 +1,111 @@
+import * as cheerio from "cheerio"
 import type { NewsItem } from "@shared/types"
 
 export default defineSource(async () => {
   try {
-    // Try multiple RSS feeds for The Economist
-    const feeds = [
-      "https://www.economist.com/sections/international/rss.xml",
-      "https://www.economist.com/sections/business/rss.xml",
-      "https://www.economist.com/sections/finance-and-economics/rss.xml",
-      "https://www.economist.com/the-world-in-brief/rss.xml"
+    // Since RSS feeds are blocked, try scraping the main page
+    const html: string = await myFetch("https://www.economist.com")
+    const $ = cheerio.load(html)
+    
+    const news: NewsItem[] = []
+    
+    // Try different selectors for articles
+    const selectors = [
+      'article[data-component="ArticleTeaser"]',
+      '.css-1wjnrbv', 
+      '[data-component="ArticleTeaser"]',
+      'article h3 a',
+      '.headline a'
     ]
     
-    let text: string = ""
-    for (const url of feeds) {
-      try {
-        text = await myFetch(url)
-        if (text && text.includes("<item>")) break
-      } catch {
-        continue
+    for (const selector of selectors) {
+      const $articles = $(selector)
+      if ($articles.length > 0) {
+        $articles.slice(0, 15).each((i, el) => {
+          const $el = $(el)
+          let title = ""
+          let url = ""
+          
+          if ($el.is('a')) {
+            title = $el.text().trim()
+            url = $el.attr('href') || ""
+          } else {
+            const $link = $el.find('a').first()
+            title = $link.text().trim() || $el.find('h3').text().trim() || $el.find('.headline').text().trim()
+            url = $link.attr('href') || ""
+          }
+          
+          if (title && url && title.length > 10) {
+            // Ensure URL is absolute
+            if (url.startsWith('/')) {
+              url = `https://www.economist.com${url}`
+            }
+            
+            news.push({
+              id: url,
+              title: title.substring(0, 200), // Limit title length
+              url: url,
+              pubDate: Date.now(),
+              extra: {
+                info: "Latest",
+                hover: title.length > 100 ? title.substring(0, 150) + '...' : title,
+              },
+            })
+          }
+        })
+        
+        if (news.length > 0) break // If we found articles, stop trying other selectors
       }
     }
     
-    if (!text) {
-      // Fallback: return sample data if no feeds work
+    // If scraping failed, return fallback content
+    if (news.length === 0) {
       return [
         {
-          id: "economist-sample",
-          title: "The Economist - Latest News",
-          url: "https://www.economist.com",
+          id: "economist-fallback-1",
+          title: "The Economist - International News & Analysis",
+          url: "https://www.economist.com/international",
           pubDate: Date.now(),
           extra: {
-            info: "Latest",
-            hover: "Visit The Economist for the latest international news and analysis",
+            info: "International",
+            hover: "Global news and analysis from The Economist",
+          },
+        },
+        {
+          id: "economist-fallback-2", 
+          title: "The Economist - Business & Finance",
+          url: "https://www.economist.com/business",
+          pubDate: Date.now(),
+          extra: {
+            info: "Business",
+            hover: "Business and finance coverage from The Economist",
+          },
+        },
+        {
+          id: "economist-fallback-3",
+          title: "The Economist - The World in Brief",
+          url: "https://www.economist.com/the-world-in-brief",
+          pubDate: Date.now(),
+          extra: {
+            info: "World Brief",
+            hover: "Daily briefing on global events from The Economist",
           },
         }
       ]
     }
     
-    // Parse RSS XML
-    const items = text.match(/<item>(.*?)<\/item>/gs) || []
-    
-    const news: NewsItem[] = []
-    
-    for (let i = 0; i < Math.min(items.length, 15); i++) {
-      const item = items[i]
-      const title = item.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1] || 
-                   item.match(/<title>(.*?)<\/title>/)?.[1]
-      const link = item.match(/<link>(.*?)<\/link>/)?.[1]
-      const pubDate = item.match(/<pubDate>(.*?)<\/pubDate>/)?.[1]
-      const description = item.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/)?.[1] || 
-                         item.match(/<description>(.*?)<\/description>/)?.[1]
-      const category = item.match(/<category><!\[CDATA\[(.*?)\]\]><\/category>/)?.[1] || 
-                      item.match(/<category>(.*?)<\/category>/)?.[1]
-      
-      if (title && link) {
-        news.push({
-          id: link,
-          title: title.trim(),
-          url: link,
-          pubDate: pubDate ? new Date(pubDate).valueOf() : Date.now(),
-          extra: {
-            info: category || (pubDate ? new Date(pubDate).toLocaleDateString() : ""),
-            hover: description ? description.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : "",
-          },
-        })
-      }
-    }
-    
-    return news.length > 0 ? news : [
-      {
-        id: "economist-fallback",
-        title: "The Economist - International News",
-        url: "https://www.economist.com",
-        pubDate: Date.now(),
-        extra: {
-          info: "Latest",
-          hover: "Visit The Economist for international news and analysis",
-        },
-      }
-    ]
+    return news
   } catch (error) {
     console.error("Economist scraper error:", error)
     return [
       {
         id: "economist-error",
-        title: "The Economist - News Feed Unavailable",
+        title: "The Economist - Visit Website",
         url: "https://www.economist.com",
         pubDate: Date.now(),
         extra: {
           info: "Error",
-          hover: "Unable to fetch latest news. Please visit the website directly.",
+          hover: "Unable to fetch latest news. Click to visit The Economist website.",
         },
       }
     ]

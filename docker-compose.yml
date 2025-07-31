@@ -17,6 +17,9 @@ services:
       - JWT_SECRET=
       - INIT_TABLE=true
       - ENABLE_CACHE=true
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+      - PROXY_LINKS=
       # MySQL Database Configuration (uncomment to use MySQL instead of SQLite)
       # - MYSQL_HOST=mysql
       # - MYSQL_PORT=3306

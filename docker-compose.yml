@@ -16,6 +16,9 @@ services:
       - INIT_TABLE=true
       - ENABLE_CACHE=true
       - PRODUCTHUNT_API_TOKEN=
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+      - PROXY_LINKS=
 
 volumes:
   newsnow_data:

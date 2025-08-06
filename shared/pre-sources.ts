@@ -57,6 +57,18 @@ export const originSources = {
     title: "今日最热",
     home: "https://coolapk.com",
   },
+  "mktnews": {
+    name: "MKTNews",
+    column: "finance",
+    home: "https://mktnews.net",
+    color: "indigo",
+    interval: Time.Realtime,
+    sub: {
+      flash: {
+        title: "快讯",
+      },
+    },
+  },
   "wallstreetcn": {
     name: "华尔街见闻",
     color: "blue",
@@ -167,6 +179,7 @@ export const originSources = {
         title: "Windows 资源",
         type: "realtime",
         interval: Time.Fast,
+        disable: true,
       },
     },
   },
@@ -323,7 +336,7 @@ export const originSources = {
     column: "tech",
     color: "slate",
     home: "https://linux.do/",
-    disable: "cf",
+    disable: true,
     sub: {
       latest: {
         title: "最新",
@@ -342,6 +355,7 @@ export const originSources = {
     column: "china",
     color: "yellow",
     home: "https://www.ghxi.com/",
+    disable: true,
   },
   "smzdm": {
     name: "什么值得买",
@@ -349,6 +363,7 @@ export const originSources = {
     color: "red",
     type: "hottest",
     home: "https://www.smzdm.com",
+    disable: true,
   },
   "nowcoder": {
     name: "牛客",
@@ -417,29 +432,40 @@ export function genSources() {
     if (source.sub && Object.keys(source.sub).length) {
       Object.entries(source.sub).forEach(([subId, subSource], i) => {
         if (i === 0) {
-          _.push([id, {
-            redirect: `${id}-${subId}`,
-            ...parent,
-            ...subSource,
-          }] as [any, Source])
+          _.push([
+            id,
+            {
+              redirect: `${id}-${subId}`,
+              ...parent,
+              ...subSource,
+            },
+          ] as [any, Source])
         }
-        _.push([`${id}-${subId}`, { ...parent, ...subSource }] as [any, Source])
+        _.push([`${id}-${subId}`, { ...parent, ...subSource }] as [
+          any,
+          Source,
+        ])
       })
     } else {
-      _.push([id, {
-        title: source.title,
-        ...parent,
-      }])
+      _.push([
+        id,
+        {
+          title: source.title,
+          ...parent,
+        },
+      ])
     }
   })
 
-  return typeSafeObjectFromEntries(_.filter(([_, v]) => {
-    if (v.disable === "cf" && process.env.CF_PAGES) {
-      return false
-    } else if (v.disable === true) {
-      return false
-    } else {
-      return true
-    }
-  }))
+  return typeSafeObjectFromEntries(
+    _.filter(([_, v]) => {
+      if (v.disable === "cf" && process.env.CF_PAGES) {
+        return false
+      } else if (v.disable === true) {
+        return false
+      } else {
+        return true
+      }
+    }),
+  )
 }

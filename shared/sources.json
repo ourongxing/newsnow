@@ -51,6 +51,23 @@
     "color": "green",
     "interval": 600000
   },
+  "mktnews": {
+    "redirect": "mktnews-flash",
+    "name": "MKTNews",
+    "column": "finance",
+    "home": "https://mktnews.net",
+    "color": "indigo",
+    "interval": 120000,
+    "title": "快讯"
+  },
+  "mktnews-flash": {
+    "name": "MKTNews",
+    "column": "finance",
+    "home": "https://mktnews.net",
+    "color": "indigo",
+    "interval": 120000,
+    "title": "快讯"
+  },
   "wallstreetcn": {
     "redirect": "wallstreetcn-quick",
     "name": "华尔街见闻",
@@ -191,15 +208,6 @@
     "color": "blue",
     "interval": 300000,
     "title": "Windows 11"
-  },
-  "pcbeta-windows": {
-    "name": "远景论坛",
-    "type": "realtime",
-    "column": "tech",
-    "home": "https://bbs.pcbeta.com",
-    "color": "blue",
-    "interval": 300000,
-    "title": "Windows 资源"
   },
   "cls": {
     "redirect": "cls-telegraph",
@@ -404,50 +412,6 @@
     "column": "china",
     "home": "https://www.baidu.com",
     "color": "blue",
-    "interval": 600000
-  },
-  "linuxdo": {
-    "redirect": "linuxdo-latest",
-    "name": "LINUX DO",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "linuxdo-latest": {
-    "name": "LINUX DO",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "linuxdo-hot": {
-    "name": "LINUX DO",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/hot",
-    "color": "slate",
-    "interval": 1800000,
-    "title": "今日最热"
-  },
-  "ghxi": {
-    "name": "果核剥壳",
-    "column": "china",
-    "home": "https://www.ghxi.com/",
-    "color": "yellow",
-    "interval": 600000
-  },
-  "smzdm": {
-    "name": "什么值得买",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.smzdm.com",
-    "color": "red",
     "interval": 600000
   },
   "nowcoder": {

@@ -3,28 +3,68 @@ import type { NewsItem } from "@shared/types"
 import type { Database } from "db0"
 import type { CacheInfo, CacheRow } from "../types"
 
+// 改进的数据库类型检测函数
+function isMySQLDatabase(): boolean {
+  const hasMySQLConfig = process.env.MYSQL_HOST && 
+                        process.env.MYSQL_USER && 
+                        process.env.MYSQL_PASSWORD && 
+                        process.env.MYSQL_DATABASE
+  
+  if (hasMySQLConfig) {
+    console.log('🔍 检测到 MySQL 配置，使用 MySQL 数据库')
+    return true
+  } else {
+    console.log('🔍 未检测到 MySQL 配置，使用 SQLite 数据库')
+    return false
+  }
+}
+
 export class Cache {
   private db
+  private isMySQL: boolean
+  
   constructor(db: Database) {
     this.db = db
+    this.isMySQL = isMySQLDatabase()
   }
 
   async init() {
-    await this.db.prepare(`
-      CREATE TABLE IF NOT EXISTS cache (
-        id TEXT PRIMARY KEY,
-        updated INTEGER,
-        data TEXT
-      );
-    `).run()
+    if (this.isMySQL) {
+      // MySQL syntax
+      await this.db.prepare(`
+        CREATE TABLE IF NOT EXISTS cache (
+          id VARCHAR(255) PRIMARY KEY,
+          updated BIGINT,
+          data TEXT
+        );
+      `).run()
+    } else {
+      // SQLite syntax
+      await this.db.prepare(`
+        CREATE TABLE IF NOT EXISTS cache (
+          id TEXT PRIMARY KEY,
+          updated INTEGER,
+          data TEXT
+        );
+      `).run()
+    }
     logger.success(`init cache table`)
   }
 
   async set(key: string, value: NewsItem[]) {
     const now = Date.now()
-    await this.db.prepare(
-      `INSERT OR REPLACE INTO cache (id, data, updated) VALUES (?, ?, ?)`,
-    ).run(key, JSON.stringify(value), now)
+    
+    if (this.isMySQL) {
+      // MySQL syntax - use ON DUPLICATE KEY UPDATE
+      await this.db.prepare(
+        `INSERT INTO cache (id, data, updated) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data), updated = VALUES(updated)`,
+      ).run(key, JSON.stringify(value), now)
+    } else {
+      // SQLite syntax - use INSERT OR REPLACE
+      await this.db.prepare(
+        `INSERT OR REPLACE INTO cache (id, data, updated) VALUES (?, ?, ?)`,
+      ).run(key, JSON.stringify(value), now)
+    }
     logger.success(`set ${key} cache`)
   }
 

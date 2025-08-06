@@ -1,7 +1,7 @@
 {
   "name": "newsnow",
   "type": "module",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "private": true,
   "packageManager": "pnpm@10.5.2",
   "author": {

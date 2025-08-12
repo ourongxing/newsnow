@@ -13,7 +13,7 @@ services:
       - G_CLIENT_ID=
       - G_CLIENT_SECRET=
       - JWT_SECRET=
-      - INIT_TABLE=false
+      - INIT_TABLE=true
       - ENABLE_CACHE=true
       # MySQL Database Configuration (uncomment to use MySQL instead of SQLite)
       - MYSQL_HOST=newsnow_mysql

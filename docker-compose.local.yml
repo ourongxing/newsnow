@@ -14,7 +14,7 @@ services:
       - INIT_TABLE=true
       - ENABLE_CACHE=true
       # MySQL Database Configuration (uncomment to use MySQL instead of SQLite)
-      # - MYSQL_HOST=mysql
+      # - MYSQL_HOST=newsnow_mysql
       # - MYSQL_PORT=3306
       # - MYSQL_USER=newsnow
       # - MYSQL_PASSWORD=your_password

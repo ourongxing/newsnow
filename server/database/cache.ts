@@ -11,10 +11,10 @@ function isMySQLDatabase(): boolean {
                         process.env.MYSQL_DATABASE
   
   if (hasMySQLConfig) {
-    console.log('🔍 检测到 MySQL 配置，使用 MySQL 数据库')
+    console.log('🔗 Using MySQL database')
     return true
   } else {
-    console.log('🔍 未检测到 MySQL 配置，使用 SQLite 数据库')
+    console.log('🗃️ Using SQLite database')
     return false
   }
 }

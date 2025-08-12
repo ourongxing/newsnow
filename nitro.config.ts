@@ -15,7 +15,7 @@ function isMySQLConfigured(): boolean {
 // 根据环境变量动态配置数据库
 function getDatabaseConfig() {
   if (isMySQLConfigured()) {
-    console.log('🔍 检测到 MySQL 配置，使用 MySQL 连接器')
+    console.log('🔗 Using MySQL connector')
     return {
       default: {
         connector: "mysql2",
@@ -30,7 +30,7 @@ function getDatabaseConfig() {
       },
     }
   } else {
-    console.log('🔍 未检测到 MySQL 配置，使用 SQLite 连接器')
+    console.log('🗃️ Using SQLite connector')
     return {
       default: {
         connector: "better-sqlite3",

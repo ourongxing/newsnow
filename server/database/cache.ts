@@ -2,29 +2,86 @@ import process from "node:process"
 import type { NewsItem } from "@shared/types"
 import type { Database } from "db0"
 import type { CacheInfo, CacheRow } from "../types"
+import { logger } from "#/utils/logger"
+
+// Improved database type detection function
+function isMySQLDatabase(db: Database): boolean {
+  try {
+    // First check if all required MySQL environment variables are present
+    if (process.env.MYSQL_HOST && process.env.MYSQL_USER && process.env.MYSQL_PASSWORD && process.env.MYSQL_DATABASE) {
+      console.log('🔗 Using MySQL database (based on environment variables)')
+      return true
+    }
+    
+    // Fallback to detecting the actual database type through the db instance
+    const dbInstance = (db as any).getInstance?.()
+    if (dbInstance) {
+      // For db0 database, check the connector name
+      const connectorName = dbInstance.connector?.name?.toLowerCase()
+      if (connectorName && connectorName.includes('mysql')) {
+        console.log('🔗 Using MySQL database (detected from instance)')
+        return true
+      } else if (connectorName && (connectorName.includes('sqlite') || connectorName.includes('sqlite3') || connectorName.includes('bun-sqlite') || connectorName.includes('cloudflare-d1'))) {
+        console.log('🗃️ Using SQLite-compatible database (detected from instance)')
+        return false
+      }
+    }
+  } catch (e) {
+    // If detection fails, default to SQLite
+    logger.warn('Failed to detect database type from instance, defaulting to SQLite')
+  }
+  
+  // Default to SQLite
+  console.log('🗃️ Using SQLite database (default)')
+  return false
+}
 
 export class Cache {
   private db
+  private isMySQL: boolean
+  
   constructor(db: Database) {
     this.db = db
+    this.isMySQL = isMySQLDatabase(db)
   }
 
   async init() {
-    await this.db.prepare(`
-      CREATE TABLE IF NOT EXISTS cache (
-        id TEXT PRIMARY KEY,
-        updated INTEGER,
-        data TEXT
-      );
-    `).run()
+    if (this.isMySQL) {
+      // MySQL syntax
+      await this.db.prepare(`
+        CREATE TABLE IF NOT EXISTS cache (
+          id VARCHAR(255) PRIMARY KEY,
+          updated BIGINT,
+          data LONGTEXT
+        );
+      `).run()
+    } else {
+      // SQLite syntax
+      await this.db.prepare(`
+        CREATE TABLE IF NOT EXISTS cache (
+          id TEXT PRIMARY KEY,
+          updated INTEGER,
+          data TEXT
+        );
+      `).run()
+    }
     logger.success(`init cache table`)
   }
 
   async set(key: string, value: NewsItem[]) {
     const now = Date.now()
-    await this.db.prepare(
-      `INSERT OR REPLACE INTO cache (id, data, updated) VALUES (?, ?, ?)`,
-    ).run(key, JSON.stringify(value), now)
+    
+    if (this.isMySQL) {
+      // MySQL syntax - use ON DUPLICATE KEY UPDATE
+      await this.db.prepare(
+        `INSERT INTO cache (id, data, updated) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data), updated = VALUES(updated)`,
+      ).run(key, JSON.stringify(value), now)
+    } else {
+      // SQLite syntax - use INSERT OR REPLACE
+      await this.db.prepare(
+        `INSERT OR REPLACE INTO cache (id, data, updated) VALUES (?, ?, ?)`,
+      ).run(key, JSON.stringify(value), now)
+    }
     logger.success(`set ${key} cache`)
   }
 
@@ -41,9 +98,20 @@ export class Cache {
   }
 
   async getEntire(keys: string[]): Promise<CacheInfo[]> {
-    const keysStr = keys.map(k => `id = '${k}'`).join(" or ")
-    const res = await this.db.prepare(`SELECT id, data, updated FROM cache WHERE ${keysStr}`).all() as any
-    const rows = (res.results ?? res) as CacheRow[]
+    if (keys.length === 0) return []
+    
+    let rows: CacheRow[] = []
+    if (this.isMySQL) {
+      // For MySQL, use placeholders for better security
+      const placeholders = keys.map(() => '?').join(', ')
+      const res = await this.db.prepare(`SELECT id, data, updated FROM cache WHERE id IN (${placeholders})`).all(...keys) as any
+      rows = (res.results ?? res) as CacheRow[]
+    } else {
+      // Existing SQLite implementation
+      const keysStr = keys.map(k => `id = '${k}'`).join(" or ")
+      const res = await this.db.prepare(`SELECT id, data, updated FROM cache WHERE ${keysStr}`).all() as any
+      rows = (res.results ?? res) as CacheRow[]
+    }
 
     /**
      * https://developers.cloudflare.com/d1/build-with-d1/d1-client-api/#return-object

@@ -10,12 +10,41 @@ services:
       - HOST=0.0.0.0
       - PORT=4444
       - NODE_ENV=production
+      # GitHub OAuth configuration
       - G_CLIENT_ID=
       - G_CLIENT_SECRET=
       - JWT_SECRET=
+      # Database initialization
       - INIT_TABLE=true
+      # Cache configuration
       - ENABLE_CACHE=true
+      # Uncomment the following lines to use MySQL instead of SQLite
+      # - MYSQL_HOST=mysql
+      # - MYSQL_PORT=3306
+      # - MYSQL_USER=newsnow
+      # - MYSQL_PASSWORD=newsnow
+      # - MYSQL_DATABASE=newsnow
+    depends_on:
+      # Uncomment the following line if using MySQL
+      # - mysql
+
+  # Uncomment the following section if you want to use MySQL
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: newsnow_mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=root
+  #     - MYSQL_USER=newsnow
+  #     - MYSQL_PASSWORD=newsnow
+  #     - MYSQL_DATABASE=newsnow
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
 
 volumes:
   newsnow_data:
     name: newsnow_data
+  # Uncomment the following line if using MySQL
+  # mysql_data:
+  #   name: newsnow_mysql_data

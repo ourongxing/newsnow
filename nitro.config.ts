@@ -4,41 +4,6 @@ import viteNitro from "vite-plugin-with-nitro"
 import { RollopGlob } from "./tools/rollup-glob"
 import { projectDir } from "./shared/dir"
 
-// 检测是否配置了 MySQL
-function isMySQLConfigured(): boolean {
-  return !!(process.env.MYSQL_HOST && 
-           process.env.MYSQL_USER && 
-           process.env.MYSQL_PASSWORD && 
-           process.env.MYSQL_DATABASE)
-}
-
-// 根据环境变量动态配置数据库
-function getDatabaseConfig() {
-  if (isMySQLConfigured()) {
-    console.log('🔗 Using MySQL connector')
-    return {
-      default: {
-        connector: "mysql2",
-        options: {
-          host: process.env.MYSQL_HOST,
-          port: parseInt(process.env.MYSQL_PORT || "3306"),
-          user: process.env.MYSQL_USER,
-          password: process.env.MYSQL_PASSWORD,
-          database: process.env.MYSQL_DATABASE,
-          ssl: process.env.MYSQL_SSL === "true" ? {} : false,
-        },
-      },
-    }
-  } else {
-    console.log('🗃️ Using SQLite connector')
-    return {
-      default: {
-        connector: "better-sqlite3",
-      },
-    }
-  }
-}
-
 const nitroOption: Parameters<typeof viteNitro>[0] = {
   experimental: {
     database: true,
@@ -47,8 +12,16 @@ const nitroOption: Parameters<typeof viteNitro>[0] = {
     plugins: [RollopGlob()],
   },
   sourceMap: false,
-  database: getDatabaseConfig(),
-  devDatabase: getDatabaseConfig(),
+  database: {
+    default: {
+      connector: "better-sqlite3",
+    },
+  },
+  devDatabase: {
+    default: {
+      connector: "better-sqlite3",
+    },
+  },
   imports: {
     dirs: ["server/utils", "shared"],
   },

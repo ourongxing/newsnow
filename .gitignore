@@ -17,3 +17,4 @@ package-lock.json
 *.git/
 *.cursor/
 *.claude/
+architecture-diagram.md

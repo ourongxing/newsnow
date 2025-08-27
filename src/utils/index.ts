@@ -40,7 +40,7 @@ export class Timer {
 export const myFetch = $fetch.create({
   timeout: 15000,
   retry: 0,
-  baseURL: "/api",
+  baseURL: `${import.meta.env.BASE_URL.replace(/\/$/, "")}/api`,
 })
 
 export function isiOS() {

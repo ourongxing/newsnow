@@ -1,4 +1,5 @@
 import { join } from "node:path"
+import process from "node:process"
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite"
@@ -14,6 +15,7 @@ dotenv.config({
 })
 
 export default defineConfig({
+  base: process.env.VITE_BASE_URL || "/",
   resolve: {
     alias: {
       "~": join(projectDir, "src"),

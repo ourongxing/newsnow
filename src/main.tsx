@@ -10,6 +10,7 @@ const router = createRouter({
   context: {
     queryClient,
   },
+  basepath: import.meta.env.BASE_URL,
 })
 
 const rootElement = document.getElementById("app")!

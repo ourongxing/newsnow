@@ -103,7 +103,9 @@ const hotVideo = defineSource(async () => {
     url: `https://www.bilibili.com/video/${video.bvid}`,
     pubDate: video.pubdate * 1000,
     extra: {
-      info: `${video.owner.name} · ${formatNumber(video.stat.view)}观看 · ${formatNumber(video.stat.like)}点赞`,
+      info: `${video.owner.name} · ${formatNumber(
+        video.stat.view
+      )}观看 · ${formatNumber(video.stat.like)}点赞`,
       hover: video.desc,
       icon: proxyPicture(video.pic),
     },

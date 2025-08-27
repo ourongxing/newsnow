@@ -15,6 +15,9 @@ imports.app.d.ts
 package-lock.json
 .specstory/
 *.git/
+
+# AI
 *.cursor/
 *.claude/
+CLAUDE.md
 architecture-diagram.md

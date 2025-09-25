@@ -472,5 +472,14 @@
     "color": "green",
     "interval": 1800000,
     "title": "最热"
+  },
+  "douban": {
+    "title": "热门电影",
+    "name": "豆瓣",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.douban.com",
+    "color": "green",
+    "interval": 600000
   }
 }

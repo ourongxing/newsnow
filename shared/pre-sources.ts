@@ -469,10 +469,8 @@ export function genSources() {
     _.filter(([_, v]) => {
       if (v.disable === "cf" && process.env.CF_PAGES) {
         return false
-      } else if (v.disable === true) {
-        return false
       } else {
-        return true
+        return v.disable !== true
       }
     }),
   )

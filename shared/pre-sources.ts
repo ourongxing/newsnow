@@ -413,6 +413,14 @@ export const originSources = {
       },
     },
   },
+  "douban": {
+    name: "豆瓣",
+    column: "china",
+    title: "热门电影",
+    color: "green",
+    type: "hottest",
+    home: "https://www.douban.com",
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

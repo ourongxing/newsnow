@@ -78,14 +78,14 @@ export const originSources = {
       quick: {
         type: "realtime",
         interval: Time.Fast,
-        title: "实时快讯",
+        title: "快讯",
       },
       news: {
-        title: "最新资讯",
+        title: "最新",
         interval: Time.Common,
       },
       hot: {
-        title: "最热文章",
+        title: "最热",
         type: "hottest",
         interval: Time.Common,
       },
@@ -171,7 +171,7 @@ export const originSources = {
     home: "https://bbs.pcbeta.com",
     sub: {
       windows11: {
-        title: "Windows 11",
+        title: "Win11",
         type: "realtime",
         interval: Time.Fast,
       },

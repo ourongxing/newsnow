@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -49,19 +49,6 @@
   </script>
 
   <script>
-    function safeParseString(str) {
-      try {
-        return JSON.parse(str)
-      } catch {
-        return ""
-      }
-    }
-    const theme = safeParseString(localStorage.getItem("color-scheme")) || "dark"
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-    if (theme !== "light") {
-      document.documentElement.classList.add("dark")
-    }
-
     const query = new URLSearchParams(window.location.search)
     if (query.has("login") && query.has("user") && query.has("jwt")) {
       localStorage.setItem("user", query.get("user"))

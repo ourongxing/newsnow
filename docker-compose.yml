@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   newsnow:
     image: ghcr.io/ourongxing/newsnow:latest
@@ -20,35 +18,7 @@ services:
       - HTTP_PROXY=
       - HTTPS_PROXY=
       - PROXY_LINKS=
-      # MySQL Database Configuration (uncomment to use MySQL instead of SQLite)
-      # - MYSQL_HOST=mysql
-      # - MYSQL_PORT=3306
-      # - MYSQL_USER=newsnow
-      # - MYSQL_PASSWORD=your_password
-      # - MYSQL_DATABASE=newsnow
-      # - MYSQL_SSL=false
-    # Uncomment the following lines to use MySQL database
-    # depends_on:
-    #   - mysql
-
-  # Uncomment the following service to use MySQL database
-  # mysql:
-  #   image: mysql:8.0
-  #   container_name: newsnow_mysql
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root_password
-  #     MYSQL_DATABASE: newsnow
-  #     MYSQL_USER: newsnow
-  #     MYSQL_PASSWORD: your_password
-  #   ports:
-  #     - "3306:3306"
-  #   volumes:
-  #     - mysql_data:/var/lib/mysql
-  #   command: --default-authentication-plugin=mysql_native_password
 
 volumes:
   newsnow_data:
     name: newsnow_data
-  # mysql_data:
-  #   name: newsnow_mysql_data

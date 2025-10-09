@@ -1,16 +1,16 @@
 import { motion } from "framer-motion"
 
-function ThemeToggle() {
-  const { isDark, toggleDark } = useDark()
-  return (
-    <li onClick={toggleDark} className="cursor-pointer [&_*]:cursor-pointer transition-all">
-      <span className={$("inline-block", isDark ? "i-ph-moon-stars-duotone" : "i-ph-sun-dim-duotone")} />
-      <span>
-        {isDark ? "浅色模式" : "深色模式"}
-      </span>
-    </li>
-  )
-}
+// function ThemeToggle() {
+//   const { isDark, toggleDark } = useDark()
+//   return (
+//     <li onClick={toggleDark} className="cursor-pointer [&_*]:cursor-pointer transition-all">
+//       <span className={$("inline-block", isDark ? "i-ph-moon-stars-duotone" : "i-ph-sun-dim-duotone")} />
+//       <span>
+//         {isDark ? "浅色模式" : "深色模式"}
+//       </span>
+//     </li>
+//   )
+// }
 
 export function Menu() {
   const { loggedIn, login, logout, userInfo, enableLogin } = useLogin()
@@ -64,7 +64,7 @@ export function Menu() {
                       <span>Github 账号登录</span>
                     </li>
                   ))}
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
               <li onClick={() => window.open(Homepage)} className="cursor-pointer [&_*]:cursor-pointer transition-all">
                 <span className="i-ph:github-logo-duotone inline-block" />
                 <span>Star on Github </span>
@@ -75,7 +75,7 @@ export function Menu() {
                 >
                   <img
                     alt="GitHub stars badge"
-                    src="https://img.shields.io/github/stars/ourongxing/newsnow?logo=github"
+                    src="https://img.shields.io/github/stars/ourongxing/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
                   />
                 </a>
                 <a
@@ -83,7 +83,7 @@ export function Menu() {
                 >
                   <img
                     alt="GitHub forks badge"
-                    src="https://img.shields.io/github/forks/ourongxing/newsnow?logo=github"
+                    src="https://img.shields.io/github/forks/ourongxing/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
                   />
                 </a>
               </li>

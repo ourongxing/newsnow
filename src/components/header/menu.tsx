@@ -71,19 +71,19 @@ export function Menu() {
               </li>
               <li className="flex gap-2 items-center">
                 <a
-                  href="https://github.com/ourongxing/newsnow"
+                  href="https://github.com/MuMu2223/newsnow"
                 >
                   <img
                     alt="GitHub stars badge"
-                    src="https://img.shields.io/github/stars/ourongxing/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
+                    src="https://img.shields.io/github/stars/MuMu2223/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
                   />
                 </a>
                 <a
-                  href="https://github.com/ourongxing/newsnow/fork"
+                  href="https://github.com/MuMu2223/newsnow/fork"
                 >
                   <img
                     alt="GitHub forks badge"
-                    src="https://img.shields.io/github/forks/ourongxing/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
+                    src="https://img.shields.io/github/forks/MuMu2223/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
                   />
                 </a>
               </li>

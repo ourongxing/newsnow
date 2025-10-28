@@ -1,0 +1,44 @@
+name: Fix Lockfile
+
+on:
+  workflow_dispatch: # 支持手动触发
+
+jobs:
+  fix-lockfile:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ 拉取仓库最新代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      # 3️⃣ 安装 pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm@10.14.0
+
+      # 4️⃣ 删除旧锁文件
+      - name: Remove old pnpm-lock.yaml
+        run: rm -f pnpm-lock.yaml
+
+      # 5️⃣ 安装依赖并生成新的锁文件
+      - name: Install dependencies and generate lockfile
+        run: pnpm install
+
+      # 6️⃣ 提交并推送新的锁文件
+      - name: Commit and push updated lockfile
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add pnpm-lock.yaml
+          git commit -m "Regenerate pnpm-lock.yaml" || echo "No changes to commit"
+          git push
+
+      # 7️⃣ 输出日志，确认锁文件生成
+      - name: Show lockfile version
+        run: pnpm list --depth 0

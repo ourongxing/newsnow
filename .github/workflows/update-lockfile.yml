@@ -1,30 +1,36 @@
 name: Update Lockfile
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # 支持手动触发
 
 jobs:
   update-lockfile:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Setup Node
+    steps:
+      # 1️⃣ 拉取仓库最新代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ 设置 Node.js 环境
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
-          cache: 'pnpm'
 
+      # 3️⃣ 安装 pnpm
       - name: Install pnpm
-        run: npm install -g pnpm@10
+        run: npm install -g pnpm@10.14.0
 
-      - name: Install dependencies
-        run: pnpm install
+      # 4️⃣ 安装依赖并更新锁文件
+      - name: Install dependencies and update lockfile
+        run: pnpm install --no-frozen-lockfile
 
-      - name: Commit lockfile
+      # 5️⃣ 提交并推送更新后的 pnpm-lock.yaml
+      - name: Commit and push updated lockfile
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
           git add pnpm-lock.yaml
-          git commit -m "Update pnpm-lock.yaml for MuMu2223 dependencies"
+          git commit -m "Update pnpm-lock.yaml" || echo "No changes to commit"
           git push

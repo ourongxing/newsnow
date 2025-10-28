@@ -101,14 +101,3 @@ pnpm dev
 
 ## 贡献指南
 欢迎贡献代码！您可以提交 pull request 或创建 issue 来提出功能请求和报告 bug
-
-## License
-
-[MIT](./LICENSE) © ourongxing
-
-## 赞赏
-如果本项目对你有所帮助，可以给小猫买点零食。如果需要定制或者其他帮助，请通过下列方式联系备注。
-
-![](./screenshots/reward.gif)
-
-<a href="https://hellogithub.com/repository/c2978695e74a423189e9ca2543ab3b36" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=c2978695e74a423189e9ca2543ab3b36&claim_uid=SMJiFwlsKCkWf89&theme=small" alt="Featured｜HelloGitHub" /></a>

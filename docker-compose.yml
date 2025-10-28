@@ -15,6 +15,7 @@ services:
       - JWT_SECRET=
       - INIT_TABLE=true
       - ENABLE_CACHE=true
+      - PRODUCTHUNT_API_TOKEN=
 
 volumes:
   newsnow_data:

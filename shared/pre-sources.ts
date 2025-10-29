@@ -256,13 +256,6 @@ export const originSources = {
     type: "hottest",
     home: "https://news.ycombinator.com/",
   },
-  "producthunt": {
-    name: "Product Hunt",
-    color: "red",
-    column: "tech",
-    type: "hottest",
-    home: "https://www.producthunt.com/",
-  },
   "github": {
     name: "Github",
     color: "gray",

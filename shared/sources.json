@@ -315,14 +315,6 @@
     "color": "orange",
     "interval": 600000
   },
-  "producthunt": {
-    "name": "Product Hunt",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://www.producthunt.com/",
-    "color": "red",
-    "interval": 600000
-  },
   "github": {
     "redirect": "github-trending-today",
     "name": "Github",

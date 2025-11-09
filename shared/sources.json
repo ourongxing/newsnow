@@ -490,5 +490,49 @@
     "home": "https://store.steampowered.com",
     "color": "blue",
     "interval": 600000
+  },
+  "bestblogs": {
+    "name": "BestBlogs",
+    "column": "tech",
+    "home": "https://www.bestblogs.dev",
+    "color": "blue",
+    "interval": 1800000
+  },
+  "coindesk": {
+    "name": "CoinDesk",
+    "column": "crypto",
+    "home": "https://www.coindesk.com",
+    "color": "orange",
+    "interval": 300000
+  },
+  "cointelegraph": {
+    "name": "Cointelegraph",
+    "column": "crypto",
+    "home": "https://cointelegraph.com",
+    "color": "teal",
+    "interval": 300000
+  },
+  "decrypt": {
+    "name": "Decrypt",
+    "column": "crypto",
+    "home": "https://decrypt.co",
+    "color": "indigo",
+    "interval": 1800000
+  },
+  "jinse": {
+    "title": "快讯",
+    "name": "金色财经",
+    "type": "realtime",
+    "column": "crypto",
+    "home": "https://www.jinse.cn",
+    "color": "yellow",
+    "interval": 600000
+  },
+  "blockbeats": {
+    "name": "BlockBeats",
+    "column": "crypto",
+    "home": "https://www.theblockbeats.info",
+    "color": "blue",
+    "interval": 300000
   }
 }

@@ -43,5 +43,11 @@
   "chongbuluo-latest": "chongbuluo-zuixin",
   "chongbuluo-hot": "chongbuluo-zuire",
   "douban": "douban-remendianying",
-  "steam": "Steam-zaixianrenshu"
+  "steam": "Steam-zaixianrenshu",
+  "bestblogs": "BestBlogs",
+  "coindesk": "CoinDesk",
+  "cointelegraph": "Cointelegraph",
+  "decrypt": "Decrypt",
+  "jinse": "jinsecaijing-kuaixun",
+  "blockbeats": "BlockBeats"
 }

@@ -429,6 +429,50 @@ export const originSources = {
     type: "hottest",
     home: "https://store.steampowered.com",
   },
+  "bestblogs": {
+    name: "BestBlogs",
+    column: "tech",
+    color: "blue",
+    home: "https://www.bestblogs.dev",
+    interval: Time.Common, // 30分钟
+  },
+  "coindesk": {
+    name: "CoinDesk",
+    column: "crypto",
+    color: "orange",
+    home: "https://www.coindesk.com",
+    interval: Time.Fast, // 15分钟
+  },
+  "cointelegraph": {
+    name: "Cointelegraph",
+    column: "crypto",
+    color: "teal",
+    home: "https://cointelegraph.com",
+    interval: Time.Fast, // 15分钟
+  },
+  "decrypt": {
+    name: "Decrypt",
+    column: "crypto",
+    color: "indigo",
+    home: "https://decrypt.co",
+    interval: Time.Common, // 30分钟
+  },
+  "jinse": {
+    name: "金色财经",
+    column: "crypto",
+    color: "yellow",
+    home: "https://www.jinse.cn",
+    interval: Time.Default, // 10分钟
+    title: "快讯",
+    type: "realtime",
+  },
+  "blockbeats": {
+    name: "BlockBeats",
+    column: "crypto",
+    color: "blue",
+    home: "https://www.theblockbeats.info",
+    interval: Time.Fast, // 15分钟
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

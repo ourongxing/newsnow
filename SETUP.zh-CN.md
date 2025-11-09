@@ -255,39 +255,41 @@ docker run -d \
 
 ## ☁️ 多平台部署
 
-### Cloudflare Pages
+**📖 详细部署指南**: 查看 [DEPLOYMENT.zh-CN.md](./DEPLOYMENT.zh-CN.md)
+
+### 快速部署方案
+
+| 平台 | 推荐度 | 说明 |
+|------|--------|------|
+| **Cloudflare Pages** | ⭐⭐⭐⭐⭐ | 免费 + 完整功能 + D1 数据库 |
+| **GitHub Pages** | ⭐⭐ | 免费，但仅静态页面（功能受限）|
+| **Vercel** | ⭐⭐⭐⭐ | 免费额度，需自建数据库 |
+| **Docker** | ⭐⭐⭐⭐ | 自建服务器，完全控制 |
+
+### GitHub Pages (已配置)
+
+项目已包含自动部署工作流:
+- 推送到 `main` 分支自动部署
+- 访问地址: `https://你的用户名.github.io/newsnow/`
+- ⚠️ 仅支持静态展示，无法获取实时新闻
+
+### Cloudflare Pages (推荐)
+
+1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com)
+2. **Workers & Pages** → **Create** → **Connect to Git**
+3. 选择仓库并配置:
+   - Build command: `npm run build`
+   - Build output: `dist/output/public`
+   - Environment variable: `CF_PAGES=1`
+4. 部署
+
+### Docker 快速部署
 
 ```bash
-# 设置环境变量
-export CF_PAGES=1
+# 使用本地 SQLite
+docker compose -f docker-compose.local.yml up -d
 
-# 构建
-npm run build
-
-# 部署
-npm run deploy
-```
-
-### Vercel
-
-```bash
-# 设置环境变量
-export VERCEL=1
-
-# 构建 (Vercel 会自动检测 Nitro)
-npm run build
-```
-
-### 普通 Node.js 服务器
-
-```bash
-# 构建
-npm run build
-
-# 启动
-npm run start
-# 或直接运行
-node dist/output/server/index.mjs
+# 访问 http://localhost:4444
 ```
 
 ---

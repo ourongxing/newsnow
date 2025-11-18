@@ -490,5 +490,24 @@
     "home": "https://store.steampowered.com",
     "color": "blue",
     "interval": 600000
+  },
+  "tencent": {
+    "redirect": "tencent-hot",
+    "name": "腾讯新闻",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://news.qq.com/tag/aEWqxLtdgmQ=",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "综合早报"
+  },
+  "tencent-hot": {
+    "name": "腾讯新闻",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://news.qq.com/tag/aEWqxLtdgmQ=",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "综合早报"
   }
 }

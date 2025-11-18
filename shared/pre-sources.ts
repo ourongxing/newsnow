@@ -429,6 +429,20 @@ export const originSources = {
     type: "hottest",
     home: "https://store.steampowered.com",
   },
+  "tencent": {
+    name: "腾讯新闻",
+    column: "china",
+    color: "blue",
+    home: "https://news.qq.com",
+    sub: {
+      hot: {
+        title: "综合早报",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://news.qq.com/tag/aEWqxLtdgmQ=",
+      },
+    },
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

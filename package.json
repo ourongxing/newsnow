@@ -11,8 +11,8 @@
   },
   "homepage": "https://github.com/ourongxing/newsnow",
   "scripts": {
-    "dev": "npm run presource && vite dev",
-    "build": "npm run presource && vite build",
+    "dev": "npm run presource && PUBLIC_URL=/news VITE_PUBLIC_URL=/news vite dev",
+    "build": "npm run presource && PUBLIC_URL=/news VITE_PUBLIC_URL=/news vite build",
     "lint": "eslint",
     "presource": "tsx ./scripts/favicon.ts && tsx ./scripts/source.ts",
     "start": "node --env-file .env.server dist/output/server/index.mjs",
@@ -122,10 +122,10 @@
   "resolutions": {
     "cross-spawn": ">=7.0.6",
     "dayjs": "1.11.13",
+    "db0": "^0.3.1",
     "nitropack": "npm:nitro-go@0.0.3",
     "picomatch": "^4.0.2",
     "react": "^19",
-    "db0": "^0.3.1",
     "vite": "^6"
   },
   "simple-git-hooks": {

@@ -7,6 +7,7 @@ const queryClient = new QueryClient()
 
 const router = createRouter({
   routeTree,
+  basepath: import.meta.env.VITE_PUBLIC_URL || "/",
   context: {
     queryClient,
   },

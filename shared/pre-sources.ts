@@ -443,6 +443,14 @@ export const originSources = {
       },
     },
   },
+  "freebuf": {
+    name: "Freebuf",
+    column: "china",
+    title: "网络安全",
+    color: "green",
+    type: "hottest",
+    home: "https://www.freebuf.com/",
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

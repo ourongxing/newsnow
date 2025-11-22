@@ -509,5 +509,14 @@
     "color": "blue",
     "interval": 1800000,
     "title": "综合早报"
+  },
+  "freebuf": {
+    "title": "网络安全",
+    "name": "Freebuf",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.freebuf.com/",
+    "color": "green",
+    "interval": 600000
   }
 }

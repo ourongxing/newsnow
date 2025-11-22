@@ -11,6 +11,7 @@ declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const douban: typeof import('./sources/douban')
   export const douyin: typeof import('./sources/douyin')
   export const fastbull: typeof import('./sources/fastbull')
+  export const freebuf: typeof import('./sources/freebuf')
   export const gelonghui: typeof import('./sources/gelonghui')
   export const ghxi: typeof import('./sources/ghxi')
   export const github: typeof import('./sources/github')

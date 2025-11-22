@@ -1,0 +1,33 @@
+# config/config.yaml
+proxy: ""  # GitHub Actions 运行时不需要填代理
+mode: "standard"
+
+platforms:
+  - id: "weibo"
+    name: "微博热搜"
+    enabled: true
+  - id: "zhihu"
+    name: "知乎热榜"
+    enabled: true
+  - id: "toutiao"
+    name: "今日头条"
+    enabled: true
+  - id: "baidu"
+    name: "百度风云榜"
+    enabled: true
+  - id: "bilibili"
+    name: "B站热搜"
+    enabled: true
+  - id: "douyin"
+    name: "抖音热搜"
+    enabled: true
+  # 你之前添加的推特（如果你改了代码的话）
+  - id: "twitter"
+    name: "Twitter全球热搜"
+    enabled: true
+
+push:
+  merge_message: true
+  only_focus_keywords: false # 如果你想看所有新闻，设为 false；只想看关键词，设为 true
+
+debug: false

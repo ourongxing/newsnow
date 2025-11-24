@@ -40,6 +40,15 @@ export const originSources = {
     interval: Time.Realtime,
     home: "https://weibo.com",
   },
+  "dongchedi": {
+    name: "懂车帝",
+    title: "懂车帝热搜",
+    type: "hottest",
+    column: "china",
+    color: "blue",
+    interval: Time.Default,
+    home: "https://www.dongchedi.com",
+  },
   "zaobao": {
     name: "联合早报",
     interval: Time.Common,

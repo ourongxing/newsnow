@@ -33,6 +33,15 @@
     "color": "red",
     "interval": 120000
   },
+  "dongchedi": {
+    "title": "懂车帝热搜",
+    "name": "懂车帝",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.dongchedi.com",
+    "color": "blue",
+    "interval": 600000
+  },
   "zaobao": {
     "name": "联合早报",
     "type": "realtime",

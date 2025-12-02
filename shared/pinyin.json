@@ -44,5 +44,12 @@
   "chongbuluo-hot": "chongbuluo-zuire",
   "douban": "douban-remendianying",
   "steam": "Steam-zaixianrenshu",
-  "tencent-hot": "tengxunxinwen-zonghezaobao"
+  "tencent-hot": "tengxunxinwen-zonghezaobao",
+  "techcrunch": "TechCrunch-Latest",
+  "theverge": "The Verge-Latest",
+  "wired": "Wired-Latest",
+  "cnn": "CNN-Top Stories",
+  "bbc": "BBC News-Top Stories",
+  "reuters": "Reuters-World",
+  "nytimes": "New York Times-Top Stories"
 }

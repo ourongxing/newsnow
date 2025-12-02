@@ -443,6 +443,55 @@ export const originSources = {
       },
     },
   },
+  "techcrunch": {
+    name: "TechCrunch",
+    column: "tech",
+    home: "https://techcrunch.com",
+    color: "green",
+    title: "Latest",
+  },
+  "theverge": {
+    name: "The Verge",
+    column: "tech",
+    home: "https://www.theverge.com",
+    color: "purple",
+    title: "Latest",
+  },
+  "wired": {
+    name: "Wired",
+    column: "tech",
+    home: "https://www.wired.com",
+    color: "gray",
+    title: "Latest",
+  },
+  "cnn": {
+    name: "CNN",
+    column: "world",
+    home: "https://edition.cnn.com",
+    color: "red",
+    title: "Top Stories",
+  },
+  "bbc": {
+    name: "BBC News",
+    column: "world",
+    home: "https://www.bbc.com/news",
+    color: "red",
+    title: "Top Stories",
+  },
+  "reuters": {
+    name: "Reuters",
+    column: "world",
+    home: "https://www.reuters.com",
+    color: "orange",
+    title: "World",
+  },
+  "nytimes": {
+    name: "New York Times",
+    column: "world",
+    home: "https://www.nytimes.com",
+    color: "gray",
+    title: "Top Stories",
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

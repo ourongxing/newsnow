@@ -511,59 +511,59 @@
     "title": "综合早报"
   },
   "techcrunch": {
+    "title": "Latest",
     "name": "TechCrunch",
     "column": "tech",
     "home": "https://techcrunch.com",
     "color": "green",
-    "interval": 600000,
-    "title": "Latest"
+    "interval": 600000
   },
   "theverge": {
+    "title": "Latest",
     "name": "The Verge",
     "column": "tech",
     "home": "https://www.theverge.com",
     "color": "purple",
-    "interval": 600000,
-    "title": "Latest"
+    "interval": 600000
   },
   "wired": {
+    "title": "Latest",
     "name": "Wired",
     "column": "tech",
     "home": "https://www.wired.com",
     "color": "gray",
-    "interval": 600000,
-    "title": "Latest"
+    "interval": 600000
   },
   "cnn": {
+    "title": "Top Stories",
     "name": "CNN",
     "column": "world",
     "home": "https://edition.cnn.com",
     "color": "red",
-    "interval": 600000,
-    "title": "Top Stories"
+    "interval": 600000
   },
   "bbc": {
+    "title": "Top Stories",
     "name": "BBC News",
     "column": "world",
     "home": "https://www.bbc.com/news",
     "color": "red",
-    "interval": 600000,
-    "title": "Top Stories"
+    "interval": 600000
   },
   "reuters": {
+    "title": "World",
     "name": "Reuters",
     "column": "world",
     "home": "https://www.reuters.com",
     "color": "orange",
-    "interval": 600000,
-    "title": "World"
+    "interval": 600000
   },
   "nytimes": {
+    "title": "Top Stories",
     "name": "New York Times",
     "column": "world",
     "home": "https://www.nytimes.com",
     "color": "gray",
-    "interval": 600000,
-    "title": "Top Stories"
+    "interval": 600000
   }
 }

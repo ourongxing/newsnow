@@ -37,8 +37,8 @@ interface Res {
 const flash = defineSource(async () => {
   const res: Res = await myFetch("https://api.mktnews.net/api/flash/host")
 
-  const categories = ["policy", "AI", "financial"] as const
-  const typeMap = { policy: "Policy", AI: "AI", financial: "Financial" } as const
+  const categories = ["Policy", "AI", "financial"] as const
+  const typeMap = { Policy: "Policy", AI: "AI", financial: "Financial" } as const
 
   const allReports = categories.flatMap((category) => {
     const categoryData = res.data.find(item => item.name === category)

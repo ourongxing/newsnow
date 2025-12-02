@@ -1,5 +1,6 @@
 import { XMLParser } from "fast-xml-parser"
 import type { RSSInfo } from "../types"
+import { myFetch } from "./fetch"
 
 export async function rss2json(url: string): Promise<RSSInfo | undefined> {
   if (!/^https?:\/\/[^\s$.?#].\S*/i.test(url)) return
@@ -10,12 +11,34 @@ export async function rss2json(url: string): Promise<RSSInfo | undefined> {
     attributeNamePrefix: "",
     textNodeName: "$text",
     ignoreAttributes: false,
+    removeNSPrefix: true,
   })
 
   const result = xml.parse(data as string)
+  // console.log("Parsed RSS structure keys:", Object.keys(result))
+  // if (result.rss) console.log("RSS keys:", Object.keys(result.rss))
 
   let channel = result.rss && result.rss.channel ? result.rss.channel : result.feed
+
+  // Handle various XML structures returned by fast-xml-parser
+  if (!channel) {
+    if (result.channel) {
+      channel = result.channel
+    } else if (result["?xml"] && result.rss && result.rss.channel) {
+      channel = result.rss.channel
+    } else if (result["?xml"] && result["?xml"].rss && result["?xml"].rss.channel) {
+        // TechCrunch seems to hit this case sometimes
+        channel = result["?xml"].rss.channel
+    } else if (result["?xml"] && result["?xml"].channel) {
+        // Case when removeNSPrefix: true affects structure?
+        channel = result["?xml"].channel
+    }
+  }
   if (Array.isArray(channel)) channel = channel[0]
+
+  if (!channel) {
+    throw new Error("Invalid RSS feed")
+  }
 
   const rss = {
     title: channel.title ?? "",

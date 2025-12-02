@@ -2,6 +2,8 @@ import process from "node:process"
 import type { AllSourceID } from "@shared/types"
 import defu from "defu"
 import type { RSSHubOption, RSSHubInfo as RSSHubResponse, SourceGetter, SourceOption } from "#/types"
+import { rss2json } from "./rss2json"
+import { myFetch } from "./fetch"
 
 type R = Partial<Record<AllSourceID, SourceGetter>>
 export function defineSource(source: SourceGetter): SourceGetter

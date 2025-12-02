@@ -509,5 +509,61 @@
     "color": "blue",
     "interval": 1800000,
     "title": "综合早报"
+  },
+  "techcrunch": {
+    "name": "TechCrunch",
+    "column": "tech",
+    "home": "https://techcrunch.com",
+    "color": "green",
+    "interval": 600000,
+    "title": "Latest"
+  },
+  "theverge": {
+    "name": "The Verge",
+    "column": "tech",
+    "home": "https://www.theverge.com",
+    "color": "purple",
+    "interval": 600000,
+    "title": "Latest"
+  },
+  "wired": {
+    "name": "Wired",
+    "column": "tech",
+    "home": "https://www.wired.com",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Latest"
+  },
+  "cnn": {
+    "name": "CNN",
+    "column": "world",
+    "home": "https://edition.cnn.com",
+    "color": "red",
+    "interval": 600000,
+    "title": "Top Stories"
+  },
+  "bbc": {
+    "name": "BBC News",
+    "column": "world",
+    "home": "https://www.bbc.com/news",
+    "color": "red",
+    "interval": 600000,
+    "title": "Top Stories"
+  },
+  "reuters": {
+    "name": "Reuters",
+    "column": "world",
+    "home": "https://www.reuters.com",
+    "color": "orange",
+    "interval": 600000,
+    "title": "World"
+  },
+  "nytimes": {
+    "name": "New York Times",
+    "column": "world",
+    "home": "https://www.nytimes.com",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Top Stories"
   }
 }

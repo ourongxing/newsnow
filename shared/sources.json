@@ -108,7 +108,6 @@
     "redirect": "36kr-quick",
     "name": "36氪",
     "type": "realtime",
-    "disable": "cf",
     "column": "tech",
     "home": "https://36kr.com",
     "color": "blue",
@@ -118,12 +117,20 @@
   "36kr-quick": {
     "name": "36氪",
     "type": "realtime",
-    "disable": "cf",
     "column": "tech",
     "home": "https://36kr.com",
     "color": "blue",
     "interval": 600000,
     "title": "快讯"
+  },
+  "36kr-renqi": {
+    "name": "36氪",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "人气榜"
   },
   "douyin": {
     "name": "抖音",

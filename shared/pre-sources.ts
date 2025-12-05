@@ -95,13 +95,15 @@ export const originSources = {
     name: "36氪",
     type: "realtime",
     color: "blue",
-    // cloudflare pages cannot access
-    disable: "cf",
     home: "https://36kr.com",
     column: "tech",
     sub: {
       quick: {
         title: "快讯",
+      },
+      renqi: {
+        type: "hottest",
+        title: "人气榜",
       },
     },
   },

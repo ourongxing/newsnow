@@ -1,6 +1,7 @@
 import type { NewsItem } from "@shared/types"
 import { load } from "cheerio"
 import dayjs from "dayjs/esm"
+import { generateUrlHashId } from "#/utils/source.ts"
 
 const quick = defineSource(async () => {
   const baseURL = "https://www.36kr.com"
@@ -39,7 +40,7 @@ const renqi = defineSource(async () => {
     headers: {
       "User-Agent":
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-      "Referer": "https://www.freebuf.com/",
+      "Referer": "https://36kr.com",
       "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
     },
   })
@@ -50,7 +51,8 @@ const renqi = defineSource(async () => {
   // 单条新闻选择器
   const $items = $(".article-item-info")
 
-  $items.each((_, el) => {
+  // 使用 for...of 循环替代 .each()，以便支持 await
+  for (const el of $items) {
     const $el = $(el)
 
     // 标题和链接
@@ -67,18 +69,23 @@ const renqi = defineSource(async () => {
     const hot = $el.find(".kr-flow-bar-hot span").text().trim()
 
     if (href && title) {
+      // 构建完整URL
+      const fullUrl = href.startsWith("http") ? href : `${baseURL}${href}`
+
+      // 核心修改：调用异步函数生成哈希ID
+      const hashId = await generateUrlHashId(fullUrl)
+
       articles.push({
-        url: href.startsWith("http") ? href : `${baseURL}${href}`,
+        id: hashId, // 使用生成的哈希ID
         title,
-        id: href.slice(3), // 简化处理
-        // url.slice(url.lastIndexOf("/") + 1)
+        url: fullUrl,
         extra: {
           info: `${author}  |  ${hot}`,
           hover: description,
         },
       })
     }
-  })
+  }
   return articles
 })
 

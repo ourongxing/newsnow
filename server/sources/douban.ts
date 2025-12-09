@@ -1,3 +1,5 @@
+import { generateUrlHashId } from "#/utils/source.ts"
+
 interface HotMoviesRes {
   category: string
   tags: []
@@ -35,13 +37,18 @@ export default defineSource(async () => {
       Accept: "application/json, text/plain, */*",
     },
   })
-  return res.items.map(movie => ({
-    id: movie.id,
-    title: movie.title,
-    url: `https://movie.douban.com/subject/${movie.id}`,
-    extra: {
-      info: movie.card_subtitle.split(" / ").slice(0, 3).join(" / "),
-      hover: movie.card_subtitle,
-    },
+  return await Promise.all(res.items.map(async (movie) => {
+    const fullUrl = `https://movie.douban.com/subject/${movie.id}`
+
+    const hashId = await generateUrlHashId(fullUrl)
+    return {
+      id: hashId,
+      title: movie.title,
+      url: fullUrl,
+      extra: {
+        info: movie.card_subtitle.split(" / ").slice(0, 3).join(" / "),
+        hover: movie.card_subtitle,
+      },
+    }
   }))
 })

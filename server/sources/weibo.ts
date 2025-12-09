@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio"
+import { generateUrlHashId } from "#/utils/source.ts"
 
 export default defineSource(async () => {
   const baseurl = "https://s.weibo.com"
@@ -19,7 +20,7 @@ export default defineSource(async () => {
 
   const hotNews: NewsItem[] = []
 
-  rows.each((_, row) => {
+  for (const row of rows) {
     const $row = $(row)
     const $link = $row.find("td.td-02 a").filter((_, el) => {
       const href = $(el).attr("href")
@@ -36,17 +37,21 @@ export default defineSource(async () => {
           新: "https://simg.s.weibo.com/moter/flags/1_0.png",
           热: "https://simg.s.weibo.com/moter/flags/2_0.png",
         }[$flag]
+
+        const fullUrl = href.startsWith("http") ? href : `${baseurl}${href}`
+        const hashId = await generateUrlHashId(fullUrl)
+
         hotNews.push({
-          id: title,
+          id: hashId,
           title,
-          url: `${baseurl}${href}`,
-          mobileUrl: `${baseurl}${href}`,
+          url: fullUrl,
+          mobileUrl: fullUrl,
           extra: {
             icon: flagUrl ? { url: proxyPicture(flagUrl), scale: 1.5 } : undefined,
           },
         })
       }
     }
-  })
+  }
   return hotNews
 })

@@ -18,7 +18,7 @@ export default defineSource(async () => {
 
   const rows = $("#pl_top_realtimehot table tbody tr").slice(1)
 
-  const hotNews: NewsItem[] = []
+  const hotNews = []
 
   for (const row of rows) {
     const $row = $(row)
@@ -27,31 +27,32 @@ export default defineSource(async () => {
       return !!(href && !href.includes("javascript:void(0);"))
     }).first()
 
-    if ($link.length) {
-      const title = $link.text().trim()
-      const href = $link.attr("href")
+    if (!$link.length) continue
+    const title = $link.text().trim()
+    const href = $link.attr("href")
 
-      if (title && href) {
-        const $flag = $row.find("td.td-03").text().trim()
-        const flagUrl = {
-          新: "https://simg.s.weibo.com/moter/flags/1_0.png",
-          热: "https://simg.s.weibo.com/moter/flags/2_0.png",
-        }[$flag]
+    if (!title || !href) continue
+    const $flag = $row.find("td.td-03").text().trim()
+    const flagUrl = {
+      新: "https://simg.s.weibo.com/moter/flags/1_0.png",
+      热: "https://simg.s.weibo.com/moter/flags/2_0.png",
+    }[$flag]
 
-        const fullUrl = href.startsWith("http") ? href : `${baseurl}${href}`
-        const hashId = await generateUrlHashId(fullUrl)
-
-        hotNews.push({
-          id: hashId,
-          title,
-          url: fullUrl,
-          mobileUrl: fullUrl,
-          extra: {
-            icon: flagUrl ? { url: proxyPicture(flagUrl), scale: 1.5 } : undefined,
-          },
-        })
-      }
-    }
+    const fullUrl = href.startsWith("http") ? href : `${baseurl}${href}`
+    hotNews.push({ title, fullUrl, flagUrl })
   }
-  return hotNews
+
+  return await Promise.all(
+    hotNews.map(async (item) => {
+      const hashId = await generateUrlHashId(item.fullUrl)
+
+      return {
+        id: hashId,
+        title: item.title,
+        url: item.fullUrl,
+        mobileUrl: item.fullUrl,
+        extra: item.flagUrl ? { icon: { url: proxyPicture(item.flagUrl), scale: 1.5 } } : {},
+      } as NewsItem
+    }),
+  )
 })

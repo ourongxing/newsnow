@@ -1,6 +1,16 @@
 import { XMLParser } from "fast-xml-parser"
 import type { RSSInfo } from "../types"
 
+function getLink(link: any): string {
+  if (!link) return ""
+  if (typeof link === "string") return link
+  if (Array.isArray(link)) {
+    const alternate = link.find((l: any) => l.rel === "alternate" || !l.rel)
+    return alternate?.href ?? link[0]?.href ?? ""
+  }
+  return link.href ?? ""
+}
+
 export async function rss2json(url: string): Promise<RSSInfo | undefined> {
   if (!/^https?:\/\/[^\s$.?#].\S*/i.test(url)) return
 
@@ -20,7 +30,7 @@ export async function rss2json(url: string): Promise<RSSInfo | undefined> {
   const rss = {
     title: channel.title ?? "",
     description: channel.description ?? "",
-    link: channel.link && channel.link.href ? channel.link.href : channel.link,
+    link: getLink(channel.link),
     image: channel.image ? channel.image.url : channel["itunes:image"] ? channel["itunes:image"].href : "",
     category: channel.category || [],
     updatedTime: channel.lastBuildDate ?? channel.updated,
@@ -38,7 +48,7 @@ export async function rss2json(url: string): Promise<RSSInfo | undefined> {
       id: val.guid && val.guid.$text ? val.guid.$text : val.id,
       title: val.title && val.title.$text ? val.title.$text : val.title,
       description: val.summary && val.summary.$text ? val.summary.$text : val.description,
-      link: val.link && val.link.href ? val.link.href : val.link,
+      link: getLink(val.link),
       author: val.author && val.author.name ? val.author.name : val["dc:creator"],
       created: val.updated ?? val.pubDate ?? val.created,
       category: val.category || [],

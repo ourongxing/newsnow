@@ -1,5 +1,5 @@
 import { myFetch } from "#/utils/fetch"
-import { defineSource } from "#/utils/source"
+import { defineSource, generateUrlHashId } from "#/utils/source"
 
 interface WapRes {
   ret: number
@@ -48,14 +48,20 @@ const comprehensiveNews = defineSource(async () => {
       Referer: "https://news.qq.com/",
     },
   })
-  return res.data.tabs[0].articleList.map(news => ({
-    id: news.id,
-    title: news.title,
-    url: news.link_info.url,
-    extra: {
-      hover: news.desc,
-    },
-  }))
+  return await Promise.all(
+    res?.data?.tabs?.[0]?.articleList.map(async (news) => {
+      // 构建完整URL
+      const fullUrl = news.link_info.url
+
+      const hashId = await generateUrlHashId(fullUrl)
+      return {
+        id: hashId,
+        title: news.title,
+        url: news.link_info.url,
+        extra: { hover: news.desc },
+      }
+    }),
+  )
 })
 
 export default defineSource({

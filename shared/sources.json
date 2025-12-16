@@ -525,5 +525,24 @@
     "home": "https://www.freebuf.com/",
     "color": "green",
     "interval": 600000
+  },
+  "qqVideo": {
+    "redirect": "qqVideo-cartoon",
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/cartoon",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-今日更新"
+  },
+  "qqVideo-cartoon": {
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/cartoon",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-今日更新"
   }
 }

@@ -525,5 +525,24 @@
     "home": "https://www.freebuf.com/",
     "color": "green",
     "interval": 600000
+  },
+  "qqVideo": {
+    "redirect": "qqVideo-tv-hotSearch",
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/tv",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "电视剧-热搜榜"
+  },
+  "qqVideo-tv-hotSearch": {
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/tv",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "电视剧-热搜榜"
   }
 }

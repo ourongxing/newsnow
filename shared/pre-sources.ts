@@ -453,6 +453,20 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
+  "qqVideo": {
+    name: "腾讯视频",
+    column: "china",
+    color: "blue",
+    home: "https://v.qq.com/",
+    sub: {
+      "tv-hotSearch": {
+        title: "电视剧-热搜榜",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://v.qq.com/channel/tv",
+      },
+    },
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

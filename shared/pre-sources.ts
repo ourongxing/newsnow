@@ -453,6 +453,20 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
+  "youku": {
+    name: "优酷",
+    column: "china",
+    color: "blue",
+    home: "https://www.youku.com/ku/webhome",
+    sub: {
+      "webcomic-today": {
+        title: "动漫-追番表",
+        type: "hottest",
+        interval: Time.Slow,
+        home: "https://www.youku.com/ku/webcomic",
+      },
+    },
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

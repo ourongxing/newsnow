@@ -527,22 +527,22 @@
     "interval": 600000
   },
   "qqVideo": {
-    "redirect": "qqVideo-cartoon",
+    "redirect": "qqVideo-cartoon-today",
     "name": "腾讯视频",
     "type": "hottest",
     "column": "china",
     "home": "https://v.qq.com/channel/cartoon",
     "color": "blue",
     "interval": 3600000,
-    "title": "动漫-今日更新"
+    "title": "动漫-追番表"
   },
-  "qqVideo-cartoon": {
+  "qqVideo-cartoon-today": {
     "name": "腾讯视频",
     "type": "hottest",
     "column": "china",
     "home": "https://v.qq.com/channel/cartoon",
     "color": "blue",
     "interval": 3600000,
-    "title": "动漫-今日更新"
+    "title": "动漫-追番表"
   }
 }

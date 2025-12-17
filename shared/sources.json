@@ -525,5 +525,33 @@
     "home": "https://www.freebuf.com/",
     "color": "green",
     "interval": 600000
+  },
+  "iqiyi": {
+    "redirect": "iqiyi-hot-rankList",
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com",
+    "color": "green",
+    "interval": 1800000,
+    "title": "热播榜"
+  },
+  "iqiyi-hot-rankList": {
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com",
+    "color": "green",
+    "interval": 1800000,
+    "title": "热播榜"
+  },
+  "iqiyi-cartoon-today": {
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com/comic",
+    "color": "green",
+    "interval": 3600000,
+    "title": "动漫-追番表"
   }
 }

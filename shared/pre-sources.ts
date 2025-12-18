@@ -303,7 +303,7 @@ export const originSources = {
       "anime-today": {
         title: "动漫-追番表",
         column: "china",
-        type: "hottest",
+        type: "realtime",
         disable: "cf",
         interval: Time.Slow,
       },

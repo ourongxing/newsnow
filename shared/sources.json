@@ -390,7 +390,7 @@
   },
   "bilibili-anime-today": {
     "name": "哔哩哔哩",
-    "type": "hottest",
+    "type": "realtime",
     "disable": "cf",
     "column": "china",
     "home": "https://www.bilibili.com",

@@ -453,13 +453,13 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
-  "qqVideo": {
+  "qqvideo": {
     name: "腾讯视频",
     column: "china",
     color: "blue",
     home: "https://v.qq.com/",
     sub: {
-      "tv-hotSearch": {
+      "tv-hotsearch": {
         title: "电视剧-热搜榜",
         type: "hottest",
         interval: Time.Common,

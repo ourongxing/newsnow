@@ -526,8 +526,8 @@
     "color": "green",
     "interval": 600000
   },
-  "qqVideo": {
-    "redirect": "qqVideo-tv-hotSearch",
+  "qqvideo": {
+    "redirect": "qqvideo-tv-hotsearch",
     "name": "腾讯视频",
     "type": "hottest",
     "column": "china",
@@ -536,7 +536,7 @@
     "interval": 1800000,
     "title": "电视剧-热搜榜"
   },
-  "qqVideo-tv-hotSearch": {
+  "qqvideo-tv-hotsearch": {
     "name": "腾讯视频",
     "type": "hottest",
     "column": "china",

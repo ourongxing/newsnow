@@ -170,5 +170,5 @@ function getTodaySlash(): string {
 }
 
 export default defineSource({
-  "qqVideo-tv-hotSearch": hotSearch,
+  "qqvideo-tv-hotsearch": hotSearch,
 })

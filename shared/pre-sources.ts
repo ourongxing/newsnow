@@ -464,6 +464,7 @@ export const originSources = {
         type: "hottest",
         interval: Time.Slow,
         home: "https://v.qq.com/channel/cartoon",
+        disable: "cf",
       },
     },
   },

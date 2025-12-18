@@ -530,6 +530,7 @@
     "redirect": "qqvideo-cartoon-today",
     "name": "腾讯视频",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://v.qq.com/channel/cartoon",
     "color": "blue",
@@ -539,6 +540,7 @@
   "qqvideo-cartoon-today": {
     "name": "腾讯视频",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://v.qq.com/channel/cartoon",
     "color": "blue",

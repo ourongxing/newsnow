@@ -193,5 +193,5 @@ function getTodaySlash(): string {
 }
 
 export default defineSource({
-  "qqVideo-cartoon-today": qqCartoon,
+  "qqvideo-cartoon-today": qqCartoon,
 })

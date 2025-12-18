@@ -526,8 +526,8 @@
     "color": "green",
     "interval": 600000
   },
-  "qqVideo": {
-    "redirect": "qqVideo-cartoon-today",
+  "qqvideo": {
+    "redirect": "qqvideo-cartoon-today",
     "name": "腾讯视频",
     "type": "hottest",
     "column": "china",
@@ -536,7 +536,7 @@
     "interval": 3600000,
     "title": "动漫-追番表"
   },
-  "qqVideo-cartoon-today": {
+  "qqvideo-cartoon-today": {
     "name": "腾讯视频",
     "type": "hottest",
     "column": "china",

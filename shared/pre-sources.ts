@@ -453,7 +453,7 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
-  "qqVideo": {
+  "qqvideo": {
     name: "腾讯视频",
     column: "china",
     color: "blue",

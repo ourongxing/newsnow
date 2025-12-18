@@ -527,7 +527,7 @@
     "interval": 600000
   },
   "iqiyi": {
-    "redirect": "iqiyi-hot-rankList",
+    "redirect": "iqiyi-hot-ranklist",
     "name": "爱奇艺",
     "type": "hottest",
     "column": "china",
@@ -536,7 +536,7 @@
     "interval": 1800000,
     "title": "热播榜"
   },
-  "iqiyi-hot-rankList": {
+  "iqiyi-hot-ranklist": {
     "name": "爱奇艺",
     "type": "hottest",
     "column": "china",

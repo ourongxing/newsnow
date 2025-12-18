@@ -116,6 +116,6 @@ const cartoonToday = defineSource(async () => {
 })
 
 export default defineSource({
-  "iqiyi-hot-rankList": hotRankList,
+  "iqiyi-hot-ranklist": hotRankList,
   "iqiyi-cartoon-today": cartoonToday,
 })

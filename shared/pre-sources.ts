@@ -459,7 +459,7 @@ export const originSources = {
     color: "green",
     home: "https://www.iqiyi.com",
     sub: {
-      "hot-rankList": {
+      "hot-ranklist": {
         title: "热播榜",
         type: "hottest",
         interval: Time.Common,

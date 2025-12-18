@@ -388,6 +388,16 @@
     "interval": 1800000,
     "title": "排行榜"
   },
+  "bilibili-anime-today": {
+    "name": "哔哩哔哩",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "china",
+    "home": "https://www.bilibili.com",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-追番表"
+  },
   "kuaishou": {
     "name": "快手",
     "type": "hottest",

@@ -1,3 +1,5 @@
+import dayjs from "dayjs/esm"
+
 interface WapRes {
   code: number
   exp_str: string
@@ -136,6 +138,79 @@ const ranking = defineSource(async () => {
   }))
 })
 
+interface AnimeItem {
+  date: string
+  date_ts: number
+  day_of_week: number
+  episodes: any[]
+  is_today: number
+}
+
+interface AnimeRes {
+  code: number
+  message: string
+  result: AnimeItem[]
+}
+
+const animeToday = defineSource(async () => {
+  // bilibili番剧的API
+  const animeUrl = "https://api.bilibili.com/pgc/web/timeline?types=1&before=6&after=6"
+  // bilibili国创的API
+  const guochuangUrl = "https://api.bilibili.com/pgc/web/timeline?types=4&before=6&after=6"
+  // 并发请求
+  const [animeRes, guochuangRes] = await Promise.all([
+    myFetch<AnimeRes>(animeUrl, {
+      headers: {
+        "User-Agent":
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+        "Referer": "https://www.bilibili.com/",
+      },
+    }),
+    myFetch<AnimeRes>(guochuangUrl, {
+      headers: {
+        "User-Agent":
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+        "Referer": "https://www.bilibili.com/",
+      },
+    }),
+  ])
+
+  // 合并返回的数据
+  const combined = [...animeRes?.result, ...guochuangRes?.result]
+
+  // 找到今天更新的的番剧
+  const todayUpdateEpisodes = combined?.filter(val => val?.is_today === 1)
+
+  // 合并国创和番剧的数据
+  const mergedTodayEpisodesWithDate = todayUpdateEpisodes.flatMap(item =>
+    item.episodes.map(ep => ({ ...ep, date: item.date })),
+  )
+  const now = dayjs() // 当前时间
+
+  return mergedTodayEpisodesWithDate
+    .filter((video) => {
+      // 如果 pub_ts 不存在也过滤掉
+      if (!video?.pub_ts) return false
+      // 过滤掉未来的时间
+      return dayjs(video.pub_ts * 1000).isBefore(now) || dayjs(video.pub_ts * 1000).isSame(now)
+    })
+    .map((video) => {
+      const fullUrl = `https://www.bilibili.com/bangumi/play/ep${video?.episode_id}`
+      const readable = dayjs(video?.pub_ts * 1000).format("YYYY-MM-DD HH:mm:ss")
+      return {
+        id: `ep${video?.episode_id}`,
+        title: video?.title,
+        url: fullUrl,
+        pubDate: readable,
+        extra: {
+          info: `${video?.date} ${video?.pub_time}更新 更新至${video?.pub_index}`,
+          hover: video?.desc,
+          icon: proxyPicture(video?.square_cover ?? video?.cover),
+        },
+      }
+    })
+})
+
 function formatNumber(num: number): string {
   if (num >= 10000) {
     return `${Math.floor(num / 10000)}w+`
@@ -148,4 +223,5 @@ export default defineSource({
   "bilibili-hot-search": hotSearch,
   "bilibili-hot-video": hotVideo,
   "bilibili-ranking": ranking,
+  "bilibili-anime-today": animeToday,
 })

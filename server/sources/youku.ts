@@ -80,8 +80,8 @@ function buildAniItem(item: any): NewsItem {
     url: getYoukuVideoUrl(item),
     pubDate: getTodaySlash(),
     extra: {
-      info: [item?.desc, item?.lbTexts].filter(Boolean).join(" "),
-      hover: item?.subtitle ?? "",
+      info: [item?.mark?.text, item?.subtitle, item?.lbTexts].filter(Boolean).join(" "),
+      hover: [item?.desc].filter(Boolean).join(" "),
       coverImg: (item?.img ?? "").trim(),
     },
   } as NewsItem

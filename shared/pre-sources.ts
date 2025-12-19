@@ -460,6 +460,27 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
+
+  "iqiyi": {
+    name: "爱奇艺",
+    column: "china",
+    color: "green",
+    home: "https://www.iqiyi.com",
+    sub: {
+      "hot-ranklist": {
+        title: "热播榜",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://www.iqiyi.com",
+      },
+      "cartoon-today": {
+        title: "动漫-追番表",
+        type: "hottest",
+        interval: Time.Slow,
+        home: "https://www.iqiyi.com/comic",
+      }
+    }
+  },
   "youku": {
     name: "优酷",
     column: "china",

@@ -300,13 +300,6 @@ export const originSources = {
         type: "hottest",
         interval: Time.Common,
       },
-      "anime-today": {
-        title: "动漫-追番表",
-        column: "china",
-        type: "realtime",
-        disable: "cf",
-        interval: Time.Slow,
-      },
     },
   },
   "kuaishou": {

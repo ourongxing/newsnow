@@ -472,9 +472,14 @@ export const originSources = {
         type: "hottest",
         interval: Time.Common,
         home: "https://v.qq.com/channel/tv",
-
-      }
-    }
+      },
+      "cartoon-today": {
+        title: "动漫-今日更新",
+        type: "hottest",
+        interval: Time.Slow,
+        home: "https://v.qq.com/channel/cartoon",
+      },
+    },
   },
   "iqiyi": {
     name: "爱奇艺",
@@ -493,8 +498,8 @@ export const originSources = {
         type: "hottest",
         interval: Time.Slow,
         home: "https://www.iqiyi.com/comic",
-      }
-    }
+      },
+    },
   },
   "youku": {
     name: "优酷",

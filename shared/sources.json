@@ -536,5 +536,79 @@
     "color": "green",
     "interval": 600000
   },
-
+  "qqvideo": {
+    "redirect": "qqvideo-tv-hotsearch",
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/tv",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "电视剧-热搜榜"
+  },
+  "qqvideo-tv-hotsearch": {
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/tv",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "电视剧-热搜榜"
+  },
+  "qqvideo-cartoon-today": {
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/cartoon",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-今日更新"
+  },
+  "iqiyi": {
+    "redirect": "iqiyi-hot-ranklist",
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com",
+    "color": "green",
+    "interval": 1800000,
+    "title": "热播榜"
+  },
+  "iqiyi-hot-ranklist": {
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com",
+    "color": "green",
+    "interval": 1800000,
+    "title": "热播榜"
+  },
+  "iqiyi-cartoon-today": {
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com/comic",
+    "color": "green",
+    "interval": 3600000,
+    "title": "动漫-追番表"
+  },
+  "youku": {
+    "redirect": "youku-webcomic-today",
+    "name": "优酷",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.youku.com/ku/webcomic",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-追番表"
+  },
+  "youku-webcomic-today": {
+    "name": "优酷",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.youku.com/ku/webcomic",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-追番表"
+  }
 }

@@ -532,5 +532,43 @@
     "home": "https://www.gamerpower.com",
     "color": "green",
     "interval": 600000
+  },
+  "qqvideo": {
+    "redirect": "qqvideo-tv-hotsearch",
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/tv",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "热搜榜"
+  },
+  "qqvideo-tv-hotsearch": {
+    "name": "腾讯视频",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://v.qq.com/channel/tv",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "热搜榜"
+  },
+  "iqiyi": {
+    "redirect": "iqiyi-hot-ranklist",
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com",
+    "color": "green",
+    "interval": 1800000,
+    "title": "热播榜"
+  },
+  "iqiyi-hot-ranklist": {
+    "name": "爱奇艺",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.iqiyi.com",
+    "color": "green",
+    "interval": 1800000,
+    "title": "热播榜"
   }
 }

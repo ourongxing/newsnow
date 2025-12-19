@@ -535,5 +535,24 @@
     "home": "https://www.freebuf.com/",
     "color": "green",
     "interval": 600000
+  },
+  "youku": {
+    "redirect": "youku-webcomic-today",
+    "name": "优酷",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.youku.com/ku/webcomic",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-追番表"
+  },
+  "youku-webcomic-today": {
+    "name": "优酷",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.youku.com/ku/webcomic",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-追番表"
   }
 }

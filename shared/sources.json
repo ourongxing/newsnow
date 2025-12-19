@@ -388,6 +388,16 @@
     "interval": 1800000,
     "title": "排行榜"
   },
+  "bilibili-anime-today": {
+    "name": "哔哩哔哩",
+    "type": "realtime",
+    "disable": "cf",
+    "column": "china",
+    "home": "https://www.bilibili.com",
+    "color": "blue",
+    "interval": 3600000,
+    "title": "动漫-追番表"
+  },
   "kuaishou": {
     "name": "快手",
     "type": "hottest",
@@ -526,32 +536,4 @@
     "color": "green",
     "interval": 600000
   },
-  "iqiyi": {
-    "redirect": "iqiyi-hot-ranklist",
-    "name": "爱奇艺",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.iqiyi.com",
-    "color": "green",
-    "interval": 1800000,
-    "title": "热播榜"
-  },
-  "iqiyi-hot-ranklist": {
-    "name": "爱奇艺",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.iqiyi.com",
-    "color": "green",
-    "interval": 1800000,
-    "title": "热播榜"
-  },
-  "iqiyi-cartoon-today": {
-    "name": "爱奇艺",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.iqiyi.com/comic",
-    "color": "green",
-    "interval": 3600000,
-    "title": "动漫-追番表"
-  }
 }

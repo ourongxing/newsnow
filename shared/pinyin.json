@@ -33,6 +33,7 @@
   "bilibili-hot-search": "bilibili-resou",
   "bilibili-hot-video": "bilibili-remenshipin",
   "bilibili-ranking": "bilibili-paixingbang",
+  "bilibili-anime-today": "bilibili-dongman-zhuifanbiao",
   "kuaishou": "kuaishou",
   "kaopu": "kaopuxinwen",
   "jin10": "jinshishuju",
@@ -47,5 +48,12 @@
   "steam": "Steam-zaixianrenshu",
   "tencent-hot": "tengxunxinwen-zonghezaobao",
   "freebuf": "Freebuf-wangluoanquan",
+
   "qqvideo-tv-hotsearch": "tengxunshipin-dianshiju-resoubang"
+
+  "iqiyi-hot-ranklist": "aiqiyi-rebobang",
+  "iqiyi-cartoon-today": "aiqiyi-dongman-zhuifanbiao"
+
+  "youku-webcomic-today": "youku-dongman-zhuifanbiao"
+
 }

@@ -300,6 +300,13 @@ export const originSources = {
         type: "hottest",
         interval: Time.Common,
       },
+      "anime-today": {
+        title: "动漫-追番表",
+        column: "china",
+        type: "realtime",
+        disable: "cf",
+        interval: Time.Slow,
+      },
     },
   },
   "kuaishou": {
@@ -453,6 +460,7 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
+
   "qqvideo": {
     name: "腾讯视频",
     column: "china",
@@ -464,6 +472,41 @@ export const originSources = {
         type: "hottest",
         interval: Time.Common,
         home: "https://v.qq.com/channel/tv",
+
+      }
+    }
+  },
+  "iqiyi": {
+    name: "爱奇艺",
+    column: "china",
+    color: "green",
+    home: "https://www.iqiyi.com",
+    sub: {
+      "hot-ranklist": {
+        title: "热播榜",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://www.iqiyi.com",
+      },
+      "cartoon-today": {
+        title: "动漫-追番表",
+        type: "hottest",
+        interval: Time.Slow,
+        home: "https://www.iqiyi.com/comic",
+      }
+    }
+  },
+  "youku": {
+    name: "优酷",
+    column: "china",
+    color: "blue",
+    home: "https://www.youku.com/ku/webhome",
+    sub: {
+      "webcomic-today": {
+        title: "动漫-追番表",
+        type: "hottest",
+        interval: Time.Slow,
+        home: "https://www.youku.com/ku/webcomic",
       },
     },
   },

@@ -461,6 +461,21 @@ export const originSources = {
     home: "https://www.freebuf.com/",
   },
 
+  "qqvideo": {
+    name: "腾讯视频",
+    column: "china",
+    color: "blue",
+    home: "https://v.qq.com/",
+    sub: {
+      "tv-hotsearch": {
+        title: "电视剧-热搜榜",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://v.qq.com/channel/tv",
+
+      }
+    }
+  },
   "iqiyi": {
     name: "爱奇艺",
     column: "china",

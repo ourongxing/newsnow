@@ -544,7 +544,7 @@
     "home": "https://v.qq.com/channel/tv",
     "color": "blue",
     "interval": 1800000,
-    "title": "电视剧-热搜榜"
+    "title": "热搜榜"
   },
   "qqvideo-tv-hotsearch": {
     "name": "腾讯视频",
@@ -553,11 +553,12 @@
     "home": "https://v.qq.com/channel/tv",
     "color": "blue",
     "interval": 1800000,
-    "title": "电视剧-热搜榜"
+    "title": "热搜榜"
   },
   "qqvideo-cartoon-today": {
     "name": "腾讯视频",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://v.qq.com/channel/cartoon",
     "color": "blue",
@@ -586,6 +587,7 @@
   "iqiyi-cartoon-today": {
     "name": "爱奇艺",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://www.iqiyi.com/comic",
     "color": "green",
@@ -596,6 +598,7 @@
     "redirect": "youku-webcomic-today",
     "name": "优酷",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://www.youku.com/ku/webcomic",
     "color": "blue",
@@ -605,6 +608,7 @@
   "youku-webcomic-today": {
     "name": "优酷",
     "type": "hottest",
+    "disable": "cf",
     "column": "china",
     "home": "https://www.youku.com/ku/webcomic",
     "color": "blue",

@@ -468,7 +468,7 @@ export const originSources = {
     home: "https://v.qq.com/",
     sub: {
       "tv-hotsearch": {
-        title: "电视剧-热搜榜",
+        title: "热搜榜",
         type: "hottest",
         interval: Time.Common,
         home: "https://v.qq.com/channel/tv",
@@ -477,6 +477,7 @@ export const originSources = {
         title: "动漫-今日更新",
         type: "hottest",
         interval: Time.Slow,
+        disable: "cf",
         home: "https://v.qq.com/channel/cartoon",
       },
     },
@@ -496,6 +497,7 @@ export const originSources = {
       "cartoon-today": {
         title: "动漫-追番表",
         type: "hottest",
+        disable: "cf",
         interval: Time.Slow,
         home: "https://www.iqiyi.com/comic",
       },
@@ -510,6 +512,7 @@ export const originSources = {
       "webcomic-today": {
         title: "动漫-追番表",
         type: "hottest",
+        disable: "cf",
         interval: Time.Slow,
         home: "https://www.youku.com/ku/webcomic",
       },

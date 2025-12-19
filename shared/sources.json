@@ -525,5 +525,12 @@
     "home": "https://www.freebuf.com/",
     "color": "green",
     "interval": 600000
+  },
+  "gamerpower": {
+    "name": "GamerPower (喜加一)",
+    "column": "world",
+    "home": "https://www.gamerpower.com",
+    "color": "green",
+    "interval": 600000
   }
 }

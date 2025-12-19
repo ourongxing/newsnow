@@ -453,7 +453,12 @@ export const originSources = {
     type: "hottest",
     home: "https://www.freebuf.com/",
   },
-
+  "gamerpower": {
+    name: "GamerPower (喜加一)",
+    column: "world",
+    color: "green",
+    home: "https://www.gamerpower.com",
+  },
   "qqvideo": {
     name: "腾讯视频",
     column: "china",

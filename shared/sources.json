@@ -526,6 +526,13 @@
     "color": "green",
     "interval": 600000
   },
+  "gamerpower": {
+    "name": "GamerPower (喜加一)",
+    "column": "world",
+    "home": "https://www.gamerpower.com",
+    "color": "green",
+    "interval": 600000
+  },
   "qqvideo": {
     "redirect": "qqvideo-tv-hotsearch",
     "name": "腾讯视频",
@@ -534,7 +541,7 @@
     "home": "https://v.qq.com/channel/tv",
     "color": "blue",
     "interval": 1800000,
-    "title": "电视剧-热搜榜"
+    "title": "热搜榜"
   },
   "qqvideo-tv-hotsearch": {
     "name": "腾讯视频",
@@ -543,7 +550,7 @@
     "home": "https://v.qq.com/channel/tv",
     "color": "blue",
     "interval": 1800000,
-    "title": "电视剧-热搜榜"
+    "title": "热搜榜"
   },
   "iqiyi": {
     "redirect": "iqiyi-hot-ranklist",

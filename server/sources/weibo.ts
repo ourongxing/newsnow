@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio"
+import { generateUrlHashId } from "#/utils/source.ts"
 
 export default defineSource(async () => {
   const baseurl = "https://s.weibo.com"
@@ -17,36 +18,41 @@ export default defineSource(async () => {
 
   const rows = $("#pl_top_realtimehot table tbody tr").slice(1)
 
-  const hotNews: NewsItem[] = []
+  const hotNews = []
 
-  rows.each((_, row) => {
+  for (const row of rows) {
     const $row = $(row)
     const $link = $row.find("td.td-02 a").filter((_, el) => {
       const href = $(el).attr("href")
       return !!(href && !href.includes("javascript:void(0);"))
     }).first()
 
-    if ($link.length) {
-      const title = $link.text().trim()
-      const href = $link.attr("href")
+    if (!$link.length) continue
+    const title = $link.text().trim()
+    const href = $link.attr("href")
 
-      if (title && href) {
-        const $flag = $row.find("td.td-03").text().trim()
-        const flagUrl = {
-          新: "https://simg.s.weibo.com/moter/flags/1_0.png",
-          热: "https://simg.s.weibo.com/moter/flags/2_0.png",
-        }[$flag]
-        hotNews.push({
-          id: title,
-          title,
-          url: `${baseurl}${href}`,
-          mobileUrl: `${baseurl}${href}`,
-          extra: {
-            icon: flagUrl ? { url: proxyPicture(flagUrl), scale: 1.5 } : undefined,
-          },
-        })
-      }
-    }
-  })
-  return hotNews
+    if (!title || !href) continue
+    const $flag = $row.find("td.td-03").text().trim()
+    const flagUrl = {
+      新: "https://simg.s.weibo.com/moter/flags/1_0.png",
+      热: "https://simg.s.weibo.com/moter/flags/2_0.png",
+    }[$flag]
+
+    const fullUrl = href.startsWith("http") ? href : `${baseurl}${href}`
+    hotNews.push({ title, fullUrl, flagUrl })
+  }
+
+  return await Promise.all(
+    hotNews.map(async (item) => {
+      const hashId = await generateUrlHashId(item.fullUrl)
+
+      return {
+        id: hashId,
+        title: item.title,
+        url: item.fullUrl,
+        mobileUrl: item.fullUrl,
+        extra: item.flagUrl ? { icon: { url: proxyPicture(item.flagUrl), scale: 1.5 } } : {},
+      } as NewsItem
+    }),
+  )
 })

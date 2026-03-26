@@ -60,12 +60,13 @@ export async function queryScores(db: any, params: {
   const countResult = await db.prepare(
     `SELECT COUNT(*) as total FROM intel_scores ${where}`,
   ).bind(...bindValues).all()
-  const total = (countResult.results[0] as { total: number }).total
+  const countRows = countResult?.results ?? countResult?.rows ?? countResult ?? []
+  const total = (countRows[0] as { total: number })?.total ?? 0
 
   const result = await db.prepare(
     `SELECT * FROM intel_scores ${where} ORDER BY ${orderBy} LIMIT ? OFFSET ?`,
   ).bind(...bindValues, limit, offset).all()
-  const items = result.results as unknown as IntelItem[]
+  const items = (result?.results ?? result?.rows ?? result ?? []) as unknown as IntelItem[]
 
   return {
     items,
@@ -81,7 +82,8 @@ export async function getExistingIds(db: any, ids: string[]): Promise<Set<string
   const result = await db.prepare(
     `SELECT id FROM intel_scores WHERE id IN (${placeholders})`,
   ).bind(...ids).all()
-  return new Set((result.results as { id: string }[]).map(r => r.id))
+  const rows = result?.results ?? result?.rows ?? result ?? []
+  return new Set((rows as { id: string }[]).map(r => r.id))
 }
 
 export async function cleanExpiredScores(db: any, retentionDays: number) {

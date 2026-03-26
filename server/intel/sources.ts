@@ -1,18 +1,18 @@
 import type { NewsItem } from "@shared/types"
-import { sourcesGetters } from "../getters"
+import { getters } from "#/getters"
 
 export async function fetchConfiguredSources(
   sourceIds: string[],
 ): Promise<(NewsItem & { _sourceId: string })[]> {
   const results = await Promise.allSettled(
     sourceIds.map(async (id) => {
-      const getter = sourcesGetters[id as keyof typeof sourcesGetters]
+      const getter = (getters as any)[id]
       if (!getter) {
         console.warn(`[intel] Source getter not found: ${id}`)
         return []
       }
       const items = await getter()
-      return items.map(item => ({ ...item, _sourceId: id }))
+      return items.map((item: NewsItem) => ({ ...item, _sourceId: id }))
     }),
   )
 

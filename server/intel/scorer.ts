@@ -78,16 +78,24 @@ export function createOpenAICaller(
   baseUrl = "https://api.openai.com",
 ): CallAIFn {
   return async (prompt: string) => {
-    const response = await $fetch<{ choices: { message: { content: string } }[] }>(
-      `${baseUrl}/v1/chat/completions`,
-      {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 120000)
+    try {
+      const res = await fetch(`${baseUrl}/v1/chat/completions`, {
         method: "POST",
-        headers: { "Authorization": `Bearer ${apiKey}`, "content-type": "application/json" },
-        body: { model, max_tokens: maxTokens, messages: [{ role: "user", content: prompt }] },
-        timeout: 30000,
-      },
-    )
-    return response.choices[0].message.content
+        headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model, max_tokens: maxTokens, messages: [{ role: "user", content: prompt }] }),
+        signal: controller.signal,
+      })
+      if (!res.ok) {
+        const text = await res.text()
+        throw new Error(`AI API error ${res.status}: ${text}`)
+      }
+      const data = await res.json() as { choices: { message: { content: string } }[] }
+      return data.choices[0].message.content
+    } finally {
+      clearTimeout(timer)
+    }
   }
 }
 

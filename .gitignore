@@ -14,3 +14,4 @@ wrangler.toml
 imports.app.d.ts
 package-lock.json
 .specstory/
+.ace-tool/

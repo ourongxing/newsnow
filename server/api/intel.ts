@@ -1,5 +1,5 @@
 import { queryScores } from "../intel/db"
-import { config, ensureTable } from "../intel/cycle"
+import { config, ensureTable, isCacheExpired, runScoringCycle } from "../intel/cycle"
 
 export default defineEventHandler(async (event) => {
   const db = useDatabase()
@@ -12,6 +12,14 @@ export default defineEventHandler(async (event) => {
   const sourceFilter = query.source && query.source !== "all"
     ? (query.source as string).split(",")
     : undefined
+
+  // On CF Pages there's no scheduler, so trigger scoring on cache expiry
+  if (isCacheExpired()) {
+    const runtimeConfig = useRuntimeConfig()
+    runScoringCycle(db, runtimeConfig).catch(err =>
+      console.error("[intel] Background scoring failed:", err),
+    )
+  }
 
   return queryScores(db, {
     sort,

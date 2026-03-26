@@ -8,104 +8,88 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IntelRouteImport } from './routes/intel'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as CColumnRouteImport } from './routes/c.$column'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as CColumnImport } from './routes/c.$column'
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const IntelRoute = IntelRouteImport.update({
+  id: '/intel',
+  path: '/intel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const CColumnRoute = CColumnImport.update({
+const CColumnRoute = CColumnRouteImport.update({
   id: '/c/$column',
   path: '/c/$column',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/intel': typeof IntelRoute
+  '/c/$column': typeof CColumnRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/intel': typeof IntelRoute
+  '/c/$column': typeof CColumnRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/intel': typeof IntelRoute
+  '/c/$column': typeof CColumnRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/intel' | '/c/$column'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/intel' | '/c/$column'
+  id: '__root__' | '/' | '/intel' | '/c/$column'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  IntelRoute: typeof IntelRoute
+  CColumnRoute: typeof CColumnRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/intel': {
+      id: '/intel'
+      path: '/intel'
+      fullPath: '/intel'
+      preLoaderRoute: typeof IntelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/c/$column': {
       id: '/c/$column'
       path: '/c/$column'
       fullPath: '/c/$column'
-      preLoaderRoute: typeof CColumnImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof CColumnRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
-}
-
-// Create and export the route tree
-
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/c/$column': typeof CColumnRoute
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/c/$column': typeof CColumnRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/c/$column': typeof CColumnRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/c/$column'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/c/$column'
-  id: '__root__' | '/' | '/c/$column'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CColumnRoute: typeof CColumnRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IntelRoute: IntelRoute,
   CColumnRoute: CColumnRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/c/$column"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/c/$column": {
-      "filePath": "c.$column.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

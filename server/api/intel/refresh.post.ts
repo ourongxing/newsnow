@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const runtimeConfig = useRuntimeConfig()
-  if (!runtimeConfig.AI_API_KEY) {
+  const apiKey = runtimeConfig.AI_API_KEY || process.env.AI_API_KEY
+  if (!apiKey) {
     setResponseStatus(event, 500)
     return { error: "ai_api_unavailable", message: "AI_API_KEY not configured" }
   }
@@ -16,7 +17,7 @@ export default defineEventHandler(async (event) => {
   await ensureTable(db)
 
   // Fire and forget — return immediately
-  runScoringCycle(db, runtimeConfig).catch(err =>
+  runScoringCycle(db, { ...runtimeConfig, AI_API_KEY: apiKey }).catch(err =>
     console.error("[intel] Refresh scoring failed:", err),
   )
 

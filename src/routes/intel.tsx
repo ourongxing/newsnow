@@ -3,6 +3,7 @@ import { useState, useCallback } from "react"
 import { useIntel } from "~/hooks/useIntel"
 import { IntelFilterBar } from "~/components/intel/intel-filter-bar"
 import { IntelList } from "~/components/intel/intel-list"
+import { NavBar } from "~/components/navbar"
 import type { IntelItem } from "@shared/intel-types"
 
 export const Route = createFileRoute("/intel")({
@@ -50,10 +51,11 @@ function IntelPage() {
   }, [data, items])
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">AI 情报站</h1>
+    <>
+      <div className="flex justify-center md:hidden mb-6">
+        <NavBar />
       </div>
+      <div className="max-w-2xl mx-auto px-4 py-6">
 
       {scoring && (
         <div className="mb-3 p-2 rounded bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs">
@@ -80,6 +82,7 @@ function IntelPage() {
           最后更新: {new Date(data.last_refreshed_at * 1000).toLocaleString("zh-CN")}
         </div>
       )}
-    </div>
+      </div>
+    </>
   )
 }

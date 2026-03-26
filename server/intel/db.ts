@@ -20,8 +20,8 @@ export async function saveScores(db: any, items: IntelItem[]) {
   const sql = `INSERT OR REPLACE INTO intel_scores
     (id, source_id, title, url, pub_date, score, summary, reason, scored_at, created_at)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-  const stmts = items.map(item =>
-    db.prepare(sql).bind(
+  for (const item of items) {
+    await db.prepare(sql).bind(
       item.id,
       item.source_id,
       item.title,
@@ -32,9 +32,8 @@ export async function saveScores(db: any, items: IntelItem[]) {
       item.reason,
       item.scored_at,
       item.created_at,
-    ),
-  )
-  await db.batch(stmts)
+    ).run()
+  }
 }
 
 export async function queryScores(db: any, params: {

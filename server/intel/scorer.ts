@@ -99,6 +99,60 @@ export function createOpenAICaller(
   }
 }
 
+const CONCURRENCY = 3 // Number of parallel API calls
+
+async function scoreBatch(
+  batch: (NewsItem & { _sourceId: string })[],
+  weights: IntelScoringWeights,
+  callAI: CallAIFn,
+  now: number,
+): Promise<IntelItem[]> {
+  const prompt = buildScoringPrompt(batch, weights)
+  let retries = 0
+
+  while (retries < 3) {
+    try {
+      let raw = await callAI(prompt)
+      let scores: ScoredResult[]
+      try {
+        scores = parseScoringResponse(raw)
+      } catch {
+        raw = await callAI(`${prompt}\n\nYou MUST return valid JSON only. No markdown, no explanation.`)
+        scores = parseScoringResponse(raw)
+      }
+
+      const scored: IntelItem[] = []
+      for (const score of scores) {
+        const match = score.id.match(/item_(\d+)/)
+        const idx = match ? Number.parseInt(match[1]) - 1 : -1
+        if (idx >= 0 && idx < batch.length) {
+          const item = batch[idx]
+          scored.push({
+            id: hashUrl(item.url),
+            source_id: item._sourceId,
+            title: item.title,
+            url: item.url,
+            pub_date: typeof item.pubDate === "number" ? item.pubDate : null,
+            score: score.score,
+            summary: score.summary,
+            reason: score.reason,
+            scored_at: now,
+            created_at: now,
+          })
+        }
+      }
+      return scored
+    } catch (error: any) {
+      retries++
+      if (retries >= 3) {
+        console.error(`[intel] Scoring batch failed after 3 retries:`, error)
+        return []
+      }
+    }
+  }
+  return []
+}
+
 export async function scoreItems(
   items: (NewsItem & { _sourceId: string })[],
   config: {
@@ -110,53 +164,26 @@ export async function scoreItems(
 ): Promise<IntelItem[]> {
   const { weights, batchSize, callAI } = config
   const now = Math.floor(Date.now() / 1000)
-  const allScored: IntelItem[] = []
 
+  // Split into batches
+  const batches: (NewsItem & { _sourceId: string })[][] = []
   for (let i = 0; i < items.length; i += batchSize) {
-    const batch = items.slice(i, i + batchSize)
-    const prompt = buildScoringPrompt(batch, weights)
+    batches.push(items.slice(i, i + batchSize))
+  }
 
-    let retries = 0
+  console.log(`[intel] Processing ${batches.length} batches with concurrency ${CONCURRENCY}`)
 
-    while (retries < 3) {
-      try {
-        let raw = await callAI(prompt)
-        let scores: ScoredResult[]
-        try {
-          scores = parseScoringResponse(raw)
-        } catch {
-          // Retry with stricter prompt on malformed JSON
-          raw = await callAI(`${prompt}\n\nYou MUST return valid JSON only. No markdown, no explanation.`)
-          scores = parseScoringResponse(raw)
-        }
-
-        for (const score of scores) {
-          const match = score.id.match(/item_(\d+)/)
-          const idx = match ? Number.parseInt(match[1]) - 1 : -1
-          if (idx >= 0 && idx < batch.length) {
-            const item = batch[idx]
-            allScored.push({
-              id: hashUrl(item.url),
-              source_id: item._sourceId,
-              title: item.title,
-              url: item.url,
-              pub_date: typeof item.pubDate === "number" ? item.pubDate : null,
-              score: score.score,
-              summary: score.summary,
-              reason: score.reason,
-              scored_at: now,
-              created_at: now,
-            })
-          }
-        }
-        break
-      } catch (error: any) {
-        retries++
-        if (retries >= 3) {
-          console.error(`[intel] Scoring batch failed after 3 retries:`, error)
-        }
-      }
+  // Process batches with limited concurrency
+  const allScored: IntelItem[] = []
+  for (let i = 0; i < batches.length; i += CONCURRENCY) {
+    const chunk = batches.slice(i, i + CONCURRENCY)
+    const results = await Promise.all(
+      chunk.map(batch => scoreBatch(batch, weights, callAI, now)),
+    )
+    for (const scored of results) {
+      allScored.push(...scored)
     }
+    console.log(`[intel] Completed batches ${i + 1}-${Math.min(i + CONCURRENCY, batches.length)} of ${batches.length} (${allScored.length} items scored)`)
   }
   return allScored
 }

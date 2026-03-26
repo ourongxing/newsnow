@@ -11,7 +11,7 @@ export async function fetchConfiguredSources(
         console.warn(`[intel] Source getter not found: ${id}`)
         return []
       }
-      const items = await getter()
+      const items = (await getter()).slice(0, 15)
       return items.map((item: NewsItem) => ({ ...item, _sourceId: id }))
     }),
   )

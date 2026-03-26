@@ -13,3 +13,5 @@ export const getters = (function () {
   })
   return getters
 })()
+
+export const sourcesGetters = getters

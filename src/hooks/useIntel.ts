@@ -15,16 +15,16 @@ export function useIntel(params: UseIntelParams = {}) {
   return useQuery<IntelResponse>({
     queryKey: ["intel", sort, page, limit, sourceParam],
     queryFn: async () => {
-      const res = await fetch(`/api/intel?sort=${sort}&page=${page}&limit=${limit}&source=${sourceParam}&refresh=true`)
+      const res = await fetch(`/api/intel?sort=${sort}&page=${page}&limit=${limit}&source=${sourceParam}`)
       if (!res.ok) throw new Error("Failed to fetch intel")
       return res.json()
     },
-    staleTime: 30 * 60 * 1000,
-    // If no data yet (total=0), poll every 5s to pick up scoring results
+    // No data yet: poll every 5s to catch first scoring result
+    // Has data: poll every 30s to pick up new scores
     refetchInterval: (query) => {
       const data = query.state.data
       if (!data || data.total === 0) return 5000
-      return false
+      return 30000
     },
   })
 }

@@ -32,8 +32,9 @@ const nitroOption: Parameters<typeof viteNitro>[0] = {
   },
   runtimeConfig: {
     AI_API_KEY: "",
-    AI_PROVIDER: "claude",
+    AI_PROVIDER: "openai",
     AI_MODEL: "",
+    AI_BASE_URL: "",
   },
 }
 

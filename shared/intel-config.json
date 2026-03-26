@@ -13,8 +13,8 @@
     "threshold": 6
   },
   "ai": {
-    "provider": "claude",
-    "model": "claude-sonnet-4-6",
+    "provider": "openai",
+    "model": "gpt-5.4",
     "batch_size": 20,
     "max_tokens": 3000
   },

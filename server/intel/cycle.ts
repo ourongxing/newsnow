@@ -20,11 +20,13 @@ export function isCacheExpired(): boolean {
   return Date.now() / 1000 - lastRefreshTime > config.cache.ttl_minutes * 60
 }
 
-function createCaller(apiKey: string, provider: string, model: string): CallAIFn {
+function createCaller(apiKey: string, provider: string, model: string, customBaseUrl?: string): CallAIFn {
   if (provider === "claude" || provider === "anthropic") {
     return createAnthropicCaller(apiKey, model, config.ai.max_tokens)
   }
-  const baseUrl = provider === "deepseek" ? "https://api.deepseek.com" : "https://api.openai.com"
+  let baseUrl = "https://api.openai.com"
+  if (customBaseUrl) baseUrl = customBaseUrl
+  else if (provider === "deepseek") baseUrl = "https://api.deepseek.com"
   return createOpenAICaller(apiKey, model, config.ai.max_tokens, baseUrl)
 }
 
@@ -32,6 +34,7 @@ export async function runScoringCycle(db: any, runtimeConfig: {
   AI_API_KEY: string
   AI_PROVIDER?: string
   AI_MODEL?: string
+  AI_BASE_URL?: string
 }): Promise<void> {
   if (refreshInProgress) return
   refreshInProgress = true
@@ -47,7 +50,7 @@ export async function runScoringCycle(db: any, runtimeConfig: {
 
     const provider = runtimeConfig.AI_PROVIDER || config.ai.provider
     const model = runtimeConfig.AI_MODEL || config.ai.model
-    const callAI = createCaller(apiKey, provider, model)
+    const callAI = createCaller(apiKey, provider, model, runtimeConfig.AI_BASE_URL)
 
     const rawItems = await fetchConfiguredSources(config.sources)
     const urlHashes = rawItems.map(item => hashUrl(item.url))

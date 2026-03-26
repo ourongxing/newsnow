@@ -1,0 +1,25 @@
+{
+  "sources": [
+    "hackernews",
+    "github-trending-today",
+    "v2ex",
+    "juejin",
+    "producthunt",
+    "36kr",
+    "sspai"
+  ],
+  "scoring": {
+    "weights": { "depth": 40, "trend": 35, "practical": 25 },
+    "threshold": 6
+  },
+  "ai": {
+    "provider": "claude",
+    "model": "claude-sonnet-4-6",
+    "batch_size": 20,
+    "max_tokens": 3000
+  },
+  "cache": {
+    "ttl_minutes": 30,
+    "retention_days": 7
+  }
+}

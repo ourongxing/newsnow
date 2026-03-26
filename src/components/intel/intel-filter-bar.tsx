@@ -3,7 +3,6 @@ const SOURCES = [
   { id: "github-trending-today", label: "GitHub" },
   { id: "v2ex", label: "V2EX" },
   { id: "juejin", label: "掘金" },
-  { id: "producthunt", label: "PH" },
   { id: "36kr", label: "36氪" },
   { id: "sspai", label: "少数派" },
 ]

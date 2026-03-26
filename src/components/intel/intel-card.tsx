@@ -15,8 +15,8 @@ function relativeTime(timestamp: number): string {
 }
 
 const SOURCE_LABELS: Record<string, string> = {
-  hackernews: "HN", "github-trending-today": "GitHub", v2ex: "V2EX",
-  juejin: "掘金", producthunt: "PH", "36kr": "36氪", sspai: "少数派",
+  "hackernews": "HN", "github-trending-today": "GitHub", "v2ex": "V2EX",
+  "juejin": "掘金", "36kr": "36氪", "sspai": "少数派",
 }
 
 export function IntelCard({ item }: { item: IntelItem }) {

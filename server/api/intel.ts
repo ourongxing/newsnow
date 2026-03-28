@@ -16,9 +16,11 @@ export default defineEventHandler(async (event) => {
   // On CF Pages there's no scheduler, so trigger scoring on cache expiry
   if (isCacheExpired()) {
     const runtimeConfig = useRuntimeConfig()
-    runScoringCycle(db, runtimeConfig).catch(err =>
-      console.error("[intel] Background scoring failed:", err),
-    )
+    try {
+      await runScoringCycle(db, runtimeConfig)
+    } catch (err) {
+      console.error("[intel] Background scoring failed:", err)
+    }
   }
 
   return queryScores(db, {

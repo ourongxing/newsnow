@@ -1,24 +1,22 @@
-type Res = {
-  description: string
-  link: string
-  // Date
-  pub_date: string
-  publisher: string
-  title: string
-}[]
+import { load } from "cheerio"
+
 export default defineSource(async () => {
-  const res: Res = await $fetch("https://kaopustorage.blob.core.windows.net/news-prod/news_list_hans_0.json")
-  return res.filter(k => ["财新", "公视"].every(h => k.publisher !== h)).map((k) => {
+  const baseURL = "https://kaopu.news"
+  const html: any = await myFetch(baseURL)
+  const $ = load(html)
+  return $("article").map((_, el) => {
+    const title = $(el).find("h2").text().trim()
+    const summary = $(el).find("p").text().trim()
+    const time = $(el).find(".story-meta span").first().text().trim()
+    if (!title) return null
     return {
-      id: k.link,
-      title: k.title,
-      pubDate: k.pub_date,
+      id: title,
+      title,
+      url: baseURL,
       extra: {
-        hover: k.description,
-        info: k.publisher,
+        hover: summary,
+        info: time,
       },
-      url: k.link,
     }
-  })
-},
-)
+  }).get().filter(Boolean)
+})

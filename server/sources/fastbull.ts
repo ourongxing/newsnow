@@ -8,11 +8,10 @@ const express = defineSource(async () => {
   const $main = $(".news-list")
   const news: NewsItem[] = []
   $main.each((_, el) => {
-    const a = $(el).find(".title_name")
-    const url = a.attr("href")
-    const titleText = a.text()
+    const titleText = $(el).find(".title_name").text()
     const title = titleText.match(/【(.+)】/)?.[1] ?? titleText
-    const date = $(el).attr("data-date")
+    const url = $(el).find("[data-href]").attr("data-href")
+    const date = $(el).attr("data-date") || $(el).find("[data-time]").attr("data-time")
     if (url && title && date) {
       news.push({
         url: baseURL + url,

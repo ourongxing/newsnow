@@ -1,6 +1,5 @@
 import type { NewsItem } from "@shared/types"
 import { load } from "cheerio"
-import dayjs from "dayjs/esm"
 
 const quick = defineSource(async () => {
   const baseURL = "https://www.36kr.com"
@@ -30,56 +29,39 @@ const quick = defineSource(async () => {
   return news
 })
 
+interface HotRankItem {
+  itemId: number
+  templateMaterial: {
+    widgetTitle: string
+    authorName: string
+    statRead: number
+    statFormat: string
+    publishTime: number
+  }
+}
+
 const renqi = defineSource(async () => {
-  const baseURL = "https://36kr.com"
-  const formatted = dayjs().format("YYYY-MM-DD")
-  const url = `${baseURL}/hot-list/renqi/${formatted}/1`
-
-  const response = await myFetch<any>(url, {
+  const url = "https://gateway.36kr.com/api/mis/nav/home/nav/rank/hot"
+  const response = await myFetch<{ code: number, data: { hotRankList: HotRankItem[] } }>(url, {
+    method: "POST",
     headers: {
-      "User-Agent":
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-      "Referer": "https://www.freebuf.com/",
-      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      partner_id: "web",
+      param: { siteId: 1, platformId: 2 },
+    }),
   })
 
-  const $ = load(response)
-  const articles: NewsItem[] = []
-
-  // 单条新闻选择器
-  const $items = $(".article-item-info")
-
-  $items.each((_, el) => {
-    const $el = $(el)
-
-    // 标题和链接
-    const $a = $el.find("a.article-item-title.weight-bold")
-    const href = $a.attr("href") || ""
-    const title = $a.text().trim()
-
-    const description = $el.find("a.article-item-description.ellipsis-2").text().trim()
-
-    // 作者
-    const author = $el.find(".kr-flow-bar-author").text().trim()
-
-    // 热度
-    const hot = $el.find(".kr-flow-bar-hot span").text().trim()
-
-    if (href && title) {
-      articles.push({
-        url: href.startsWith("http") ? href : `${baseURL}${href}`,
-        title,
-        id: href.slice(3), // 简化处理
-        // url.slice(url.lastIndexOf("/") + 1)
-        extra: {
-          info: `${author}  |  ${hot}`,
-          hover: description,
-        },
-      })
-    }
-  })
-  return articles
+  return response.data.hotRankList.map(item => ({
+    url: `https://36kr.com/p/${item.itemId}`,
+    title: item.templateMaterial.widgetTitle,
+    id: item.itemId,
+    extra: {
+      info: `${item.templateMaterial.authorName}  |  ${item.templateMaterial.statFormat}`,
+      date: item.templateMaterial.publishTime,
+    },
+  }))
 })
 
 export default defineSource({

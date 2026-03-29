@@ -132,7 +132,7 @@ async function scoreBatch(
             source_id: item._sourceId,
             title: item.title,
             url: item.url,
-            pub_date: typeof item.pubDate === "number" ? item.pubDate : null,
+            pub_date: item.pubDate ? (typeof item.pubDate === "number" ? item.pubDate : new Date(item.pubDate).getTime()) : null,
             score: score.score,
             summary: score.summary,
             reason: score.reason,

@@ -15,8 +15,12 @@ function relativeTime(timestamp: number): string {
 }
 
 const SOURCE_LABELS: Record<string, string> = {
-  "hackernews": "HN", "github-trending-today": "GitHub", "v2ex": "V2EX",
-  "juejin": "掘金", "36kr": "36氪", "sspai": "少数派",
+  "hackernews": "HN",
+  "github-trending-today": "GitHub",
+  "v2ex": "V2EX",
+  "juejin": "掘金",
+  "36kr": "36氪",
+  "sspai": "少数派",
 }
 
 export function IntelCard({ item }: { item: IntelItem }) {
@@ -35,7 +39,7 @@ export function IntelCard({ item }: { item: IntelItem }) {
           <span className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
             {SOURCE_LABELS[item.source_id] || item.source_id}
           </span>
-          <span>{relativeTime(item.scored_at)}</span>
+          <span>{relativeTime(item.pub_date ? Math.floor(item.pub_date / 1000) : item.scored_at)}</span>
         </div>
       </div>
       <p className="text-sm text-gray-800 dark:text-gray-200 mb-1.5 leading-relaxed">

@@ -3,6 +3,19 @@ import type { IntelItem, IntelScoringWeights } from "@shared/intel-types"
 import { $fetch } from "ofetch"
 import { hashUrl } from "./dedup"
 
+function parsePubDate(item: NewsItem & { _sourceId: string }): number | null {
+  // Try pubDate first
+  if (item.pubDate) {
+    return typeof item.pubDate === "number" ? item.pubDate : new Date(item.pubDate).getTime()
+  }
+  // Fallback to extra.date (used by many sources like 36kr, juejin, etc.)
+  const extraDate = item.extra?.date
+  if (extraDate) {
+    return typeof extraDate === "number" ? extraDate : new Date(extraDate).getTime()
+  }
+  return null
+}
+
 interface ScoredResult {
   id: string // "item_1", "item_2", etc.
   score: number
@@ -132,7 +145,7 @@ async function scoreBatch(
             source_id: item._sourceId,
             title: item.title,
             url: item.url,
-            pub_date: item.pubDate ? (typeof item.pubDate === "number" ? item.pubDate : new Date(item.pubDate).getTime()) : null,
+            pub_date: parsePubDate(item),
             score: score.score,
             summary: score.summary,
             reason: score.reason,

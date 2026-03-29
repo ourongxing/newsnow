@@ -30,12 +30,6 @@ const nitroOption: Parameters<typeof viteNitro>[0] = {
     "@shared": join(projectDir, "shared"),
     "#": join(projectDir, "server"),
   },
-  runtimeConfig: {
-    AI_API_KEY: "",
-    AI_PROVIDER: "openai",
-    AI_MODEL: "",
-    AI_BASE_URL: "",
-  },
 }
 
 if (process.env.VERCEL) {

@@ -1,11 +1,9 @@
 import { fixedColumnIds, metadata } from "@shared/metadata"
-import { Link, useMatchRoute } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router"
 import { currentColumnIDAtom } from "~/atoms"
 
 export function NavBar() {
   const currentId = useAtomValue(currentColumnIDAtom)
-  const matchRoute = useMatchRoute()
-  const isIntel = matchRoute({ to: "/intel" })
   const { toggle } = useSearchBar()
   return (
     <span className={$([
@@ -30,21 +28,12 @@ export function NavBar() {
           params={{ column: columnId }}
           className={$(
             "px-2 hover:(bg-primary/10 rounded-md) cursor-pointer transition-all",
-            !isIntel && currentId === columnId ? "color-primary font-bold" : "op-70 dark:op-90",
+            currentId === columnId ? "color-primary font-bold" : "op-70 dark:op-90",
           )}
         >
           {metadata[columnId].name}
         </Link>
       ))}
-      <Link
-        to="/intel"
-        className={$(
-          "px-2 hover:(bg-primary/10 rounded-md) cursor-pointer transition-all",
-          isIntel ? "color-primary font-bold" : "op-70 dark:op-90",
-        )}
-      >
-        情报
-      </Link>
     </span>
   )
 }

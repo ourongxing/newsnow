@@ -10,7 +10,7 @@ export function getServer() {
       name: "NewsNow",
       version: packageJSON.version,
     },
-    { capabilities: { logging: {} } },
+    { capabilities: { completions: {}, logging: {} } },
   )
 
   server.tool(

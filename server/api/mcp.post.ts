@@ -11,9 +11,11 @@ export default defineEventHandler(async (event) => {
     await server.connect(transport)
     await transport.handleRequest(req, res, await readBody(event))
     res.on("close", () => {
-      // console.log("Request closed")
+      // Only close the per-request transport, not the shared server.
+      // The server is a singleton that outlives individual requests;
+      // closing it here would tear down tool registrations for all
+      // subsequent requests.
       transport.close()
-      server.close()
     })
     return res
   } catch (e) {

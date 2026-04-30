@@ -11,8 +11,8 @@
   --text: #1a1a2e;
   --text-secondary: #555570;
   --text-muted: #8888a0;
-  --accent: #dc1b21;
-  --accent-dim: rgba(220, 27, 33, 0.1);
+  --accent: #6366f1;
+  --accent-dim: rgba(99, 102, 241, 0.1);
   --nav-bg: rgba(255, 255, 255, 0.8);
 }
 
@@ -26,8 +26,8 @@ html.dark {
   --text: #e2e8f0;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --accent: #dc1b21;
-  --accent-dim: rgba(220, 27, 33, 0.12);
+  --accent: #6366f1;
+  --accent-dim: rgba(99, 102, 241, 0.12);
   --nav-bg: rgba(17, 19, 30, 0.85);
 }
 
@@ -74,7 +74,7 @@ button:disabled {
   --os-handle-bg-active: rgba(255, 255, 255, 0.35);
 }
 
-*, a, button {
+*, button {
   cursor: default;
   user-select: none;
 }

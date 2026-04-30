@@ -79,6 +79,11 @@ button:disabled {
   user-select: none;
 }
 
+/* Card news feed items — pointer cursor on entire link */
+.feed-item-link {
+  cursor: pointer !important;
+}
+
 #dropdown-menu li {
   --at-apply: hover:bg-neutral-400/10 rounded-md flex items-center p-1 gap-1;
 }

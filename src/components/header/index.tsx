@@ -63,7 +63,7 @@ export function Header() {
       <span className="flex justify-self-start items-center shrink-0">
         <Link to="/" className="flex items-center no-underline">
           <span className="text-3xl font-brand line-height-none! font-bold tracking-tight whitespace-nowrap">
-            <span className="text-[#6366f1]">N</span>
+            <span className="text-[#dc1b21]">N</span>
             <span className="text-[#1a1a2e] dark:text-[#e8eaed]">ews</span>
           </span>
         </Link>

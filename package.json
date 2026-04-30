@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/ourongxing/newsnow",
   "scripts": {
-    "dev": "npm run presource && vite dev",
+    "dev": "npm run presource && tsx --experimental-loader ./fix-path-loader.mjs ./node_modules/vite/bin/vite.js dev",
     "build": "npm run presource && vite build",
     "lint": "eslint",
     "presource": "tsx ./scripts/favicon.ts && tsx ./scripts/source.ts",

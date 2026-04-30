@@ -45,30 +45,36 @@ function Refresh() {
   )
 }
 
+function ThemeToggleBtn() {
+  const { isDark, toggleDark } = useDark()
+  return (
+    <button
+      type="button"
+      title={isDark ? "切换亮色" : "切换暗色"}
+      className={$("btn", isDark ? "i-ph:moon-stars-duotone" : "i-ph:sun-dim-duotone")}
+      onClick={toggleDark}
+    />
+  )
+}
+
 export function Header() {
   return (
     <>
-      <span className="flex justify-self-start">
-        <Link to="/" className="flex gap-2 items-center">
-          <div className="h-10 w-10 bg-cover" title="logo" style={{ backgroundImage: "url(/icon.svg)" }} />
-          <span className="text-2xl font-brand line-height-none!">
-            <p>News</p>
-            <p className="mt--1">
-              <span className="color-primary-6">N</span>
-              <span>ow</span>
-            </p>
+      <span className="flex justify-self-start items-center shrink-0">
+        <Link to="/" className="flex items-center no-underline">
+          <span className="text-3xl font-brand line-height-none! font-bold tracking-tight whitespace-nowrap">
+            <span className="text-[#dc1b21]">N</span>
+            <span className="text-[#1a1a2e] dark:text-[#e8eaed]">ews</span>
           </span>
         </Link>
-        <a target="_blank" href={`${Homepage}/releases/tag/v${Version}`} className="btn text-sm ml-1 font-mono">
-          {`v${Version}`}
-        </a>
       </span>
       <span className="justify-self-center">
-        <span className="hidden md:(inline-block)">
+        <span className="hidden md:inline-block">
           <NavBar />
         </span>
       </span>
-      <span className="justify-self-end flex gap-2 items-center text-xl text-primary-600 dark:text-primary">
+      <span className="justify-self-end flex items-center text-base shrink-0 gap-0.5">
+        <ThemeToggleBtn />
         <GoTop />
         <Refresh />
         <Github />

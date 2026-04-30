@@ -72,7 +72,7 @@ function Item({ info }: { info: ToastItem }) {
       onMouseLeave={() => setHoverd(false)}
     >
       <div className={$(
-        `bg-${color}-500 dark:bg-${color} bg-op-40! p2 backdrop-blur-5 rounded-lg w-full`,
+        `bg-${color}-500/10 dark:bg-${color}-500/20 p2 backdrop-blur-md rounded-lg w-full`,
         "flex items-center gap-2",
       )}
       >
@@ -82,7 +82,7 @@ function Item({ info }: { info: ToastItem }) {
             : <span className={`i-ph:info color-${color}-500 `} />
         }
         <div className="flex justify-between w-full">
-          <span className="op-90 dark:op-100">
+          <span className="op-90">
             {info.msg}
           </span>
           {info.action && (

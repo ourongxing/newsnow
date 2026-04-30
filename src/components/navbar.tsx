@@ -7,16 +7,16 @@ export function NavBar() {
   const { toggle } = useSearchBar()
   return (
     <span className={$([
-      "flex p-3 rounded-2xl bg-primary/1 text-sm",
-      "shadow shadow-primary/20 hover:shadow-primary/50 transition-shadow-500",
+      "flex items-center gap-2 p-1.5 rounded-2xl",
+      "bg-[rgba(255,255,255,0.7)] dark:bg-[rgba(17,19,30,0.8)] border border-[rgba(0,0,0,0.06)] dark:border-[rgba(255,255,255,0.06)]",
+      "backdrop-blur-md",
     ])}
     >
       <button
         type="button"
         onClick={() => toggle(true)}
         className={$(
-          "px-2 hover:(bg-primary/10 rounded-md) op-70 dark:op-90",
-          "cursor-pointer transition-all",
+          "nav-link op-70 hover:op-100",
         )}
       >
         更多
@@ -27,8 +27,8 @@ export function NavBar() {
           to="/c/$column"
           params={{ column: columnId }}
           className={$(
-            "px-2 hover:(bg-primary/10 rounded-md) cursor-pointer transition-all",
-            currentId === columnId ? "color-primary font-bold" : "op-70 dark:op-90",
+            "nav-link",
+            currentId === columnId ? "nav-link-active" : "op-70 hover:op-100",
           )}
         >
           {metadata[columnId].name}

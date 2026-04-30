@@ -1,17 +1,5 @@
 import { motion } from "framer-motion"
 
-// function ThemeToggle() {
-//   const { isDark, toggleDark } = useDark()
-//   return (
-//     <li onClick={toggleDark} className="cursor-pointer [&_*]:cursor-pointer transition-all">
-//       <span className={$("inline-block", isDark ? "i-ph-moon-stars-duotone" : "i-ph-sun-dim-duotone")} />
-//       <span>
-//         {isDark ? "浅色模式" : "深色模式"}
-//       </span>
-//     </li>
-//   )
-// }
-
 export function Menu() {
   const { loggedIn, login, logout, userInfo, enableLogin } = useLogin()
   const [shown, show] = useState(false)
@@ -26,7 +14,7 @@ export function Menu() {
                   className="h-6 w-6 rounded-full bg-cover"
                   style={
                     {
-                      backgroundImage: `url(${userInfo.avatar}&s=24)`,
+                      backgroundImage: `url(${userInfo.avatar})`,
                     }
                   }
                 >
@@ -41,16 +29,19 @@ export function Menu() {
             id="dropdown-menu"
             className={$([
               "w-200px",
-              "bg-primary backdrop-blur-5 bg-op-70! rounded-lg shadow-xl",
+              "bg-white dark:bg-[rgba(17,19,30,0.95)] backdrop-blur-xl rounded-xl shadow-2xl",
+              "border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.06)]",
             ])}
             initial={{
               scale: 0.9,
+              opacity: 0,
             }}
             animate={{
               scale: 1,
+              opacity: 1,
             }}
           >
-            <ol className="bg-base bg-op-70! backdrop-blur-md p-2 rounded-lg color-base text-base">
+            <ol className="p-2 rounded-xl text-[#1a1a2e] dark:text-[#e8eaed] text-sm">
               {enableLogin && (loggedIn
                 ? (
                     <li onClick={logout}>
@@ -64,8 +55,7 @@ export function Menu() {
                       <span>Github 账号登录</span>
                     </li>
                   ))}
-              {/* <ThemeToggle /> */}
-              <li onClick={() => window.open(Homepage)} className="cursor-pointer [&_*]:cursor-pointer transition-all">
+              <li onClick={() => window.open(Homepage)}>
                 <span className="i-ph:github-logo-duotone inline-block" />
                 <span>Star on Github </span>
               </li>
@@ -75,7 +65,7 @@ export function Menu() {
                 >
                   <img
                     alt="GitHub stars badge"
-                    src="https://img.shields.io/github/stars/ourongxing/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
+                    src="https://img.shields.io/github/stars/ourongxing/newsnow?logo=github"
                   />
                 </a>
                 <a
@@ -83,7 +73,7 @@ export function Menu() {
                 >
                   <img
                     alt="GitHub forks badge"
-                    src="https://img.shields.io/github/forks/ourongxing/newsnow?logo=github&style=flat&labelColor=%235e3c40&color=%23614447"
+                    src="https://img.shields.io/github/forks/ourongxing/newsnow?logo=github"
                   />
                 </a>
               </li>

@@ -12,5 +12,8 @@ dev-dist
 *.tsbuildinfo
 wrangler.toml
 imports.app.d.ts
-package-lock.json
-.specstory/
+.omc
+.omx
+demo.html
+fix-path-loader.mjs
+screenshots/e2e-*.png

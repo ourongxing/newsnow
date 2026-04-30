@@ -1,4 +1,4 @@
-import { defineConfig, presetIcons, presetWind3, transformerDirectives, transformerVariantGroup } from "unocss"
+import { defineConfig, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from "unocss"
 import { hex2rgba } from "@unocss/rule-utils"
 import { sources } from "./shared/sources"
 
@@ -6,7 +6,7 @@ export default defineConfig({
   mergeSelectors: false,
   transformers: [transformerDirectives(), transformerVariantGroup()],
   presets: [
-    presetWind3(),
+    presetUno(),
     presetIcons({
       scale: 1.2,
     }),
@@ -31,9 +31,14 @@ export default defineConfig({
     ],
   ],
   shortcuts: {
-    "color-base": "color-neutral-800 dark:color-neutral-300",
-    "bg-base": "bg-zinc-200 dark:bg-dark-600",
-    "btn": "op50 hover:op85 cursor-pointer transition-all",
+    "color-base": "color-[#1a1a2e] dark:color-[#e2e8f0]",
+    "bg-base": "bg-[#f5f5f0] dark:bg-[#0f1117]",
+    "bg-elevated": "bg-[#ecece5] dark:bg-[#151822]",
+    "btn": "op60 hover:op100 transition-opacity-200",
+    "btn-primary": "bg-[#dc1b21] hover:bg-[#b8151a] text-white rounded-lg px-3 py-1.5 text-sm font-medium transition-all-200 active:scale-95",
+    "btn-ghost": "op60 hover:op100 hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.06)] rounded-lg px-2 py-1.5 transition-all-200",
+    "nav-link": "px-5 py-1.5 rounded-lg text-sm font-medium transition-all-200 hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.06)]",
+    "nav-link-active": "bg-[rgba(99,102,241,0.1)] dark:bg-[rgba(99,102,241,0.15)] text-[#6366f1] font-bold",
   },
   safelist: [
     ...["orange", ...new Set(Object.values(sources).map(k => k.color))].map(k =>
@@ -43,7 +48,8 @@ export default defineConfig({
   ],
   extendTheme: (theme) => {
     // @ts-expect-error >_<
-    theme.colors.primary = theme.colors.red
+    // @ts-expect-error >_<
+    theme.colors.primary = theme.colors.indigo
     return theme
   },
 })

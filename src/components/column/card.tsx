@@ -1,6 +1,6 @@
 import type { NewsItem, SourceID, SourceResponse } from "@shared/types"
 import { useQuery } from "@tanstack/react-query"
-import { AnimatePresence, motion, useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useWindowSize } from "react-use"
 import { forwardRef, useImperativeHandle } from "react"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
@@ -33,11 +33,10 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
     <div
       ref={ref}
       className={$(
-        "flex flex-col h-500px rounded-2xl p-4 cursor-default",
-        // "backdrop-blur-5",
-        "transition-opacity-300",
+        "flex flex-col h-500px rounded-xl cursor-default overflow-hidden",
+        "transition-all-300",
         isDragging && "op-50",
-        `bg-${sources[id].color}-500 dark:bg-${sources[id].color} bg-op-40!`,
+        "bg-white dark:bg-[#1a1d27] border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.07)] hover:border-[rgba(99,102,241,0.3)]",
       )}
       style={{
         transformOrigin: "50% 50%",
@@ -106,10 +105,10 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 
   return (
     <>
-      <div className={$("flex justify-between mx-2 mt-0 mb-2 items-center")}>
-        <div className="flex gap-2 items-center">
+      <div className={$("flex justify-between items-center px-4 py-3 border-b border-[rgba(0,0,0,0.06)] dark:border-[rgba(255,255,255,0.07)] rounded-t-xl")}>
+        <div className="flex gap-2.5 items-center min-w-0">
           <a
-            className={$("w-8 h-8 rounded-full bg-cover")}
+            className={$("w-7 h-7 rounded-lg bg-cover flex-shrink-0 ring-1 ring-[rgba(0,0,0,0.08)] dark:ring-[rgba(255,255,255,0.08)]")}
             target="_blank"
             href={sources[id].home}
             title={sources[id].desc}
@@ -117,23 +116,23 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
               backgroundImage: `url(/icons/${id.split("-")[0]}.png)`,
             }}
           />
-          <span className="flex flex-col">
+          <span className="flex flex-col min-w-0">
             <span className="flex items-center gap-2">
               <span
-                className="text-xl font-bold"
+                className="text-[13px] font-bold text-[#1a1a2e] dark:text-[#e8eaed] truncate"
                 title={sources[id].desc}
               >
                 {sources[id].name}
               </span>
-              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
+              {sources[id]?.title && <span className={$("text-[11px] font-medium shrink-0", `color-${sources[id].color} px-1.5 py-0.5 rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-[rgba(255,255,255,0.04)]`)}>{sources[id].title}</span>}
             </span>
-            <span className="text-xs op-70"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
+            <span className="text-[11px] text-[#8888a0] dark:text-[#5c6378]"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
           </span>
         </div>
-        <div className={$("flex gap-2 text-lg", `color-${sources[id].color}`)}>
+        <div className={$("flex gap-1.5 text-base shrink-0", `color-${sources[id].color}`)}>
           <button
             type="button"
-            className={$("btn i-ph:arrow-counter-clockwise-duotone", isFetching && "animate-spin i-ph:circle-dashed-duotone")}
+            className={$("btn", isFetching ? "animate-spin i-ph:circle-dashed-duotone" : "i-ph:arrow-counter-clockwise-duotone")}
             onClick={() => refresh(id)}
           />
           <button
@@ -141,11 +140,10 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
             className={$("btn", isFocused ? "i-ph:star-fill" : "i-ph:star-duotone")}
             onClick={toggleFocus}
           />
-          {/* firefox cannot drag a button */}
           {setHandleRef && (
             <div
               ref={setHandleRef}
-              className={$("btn", "i-ph:dots-six-vertical-duotone", "cursor-grab")}
+              className={$("btn cursor-grab i-ph:dots-six-vertical-duotone")}
             />
           )}
         </div>
@@ -153,9 +151,8 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 
       <OverlayScrollbar
         className={$([
-          "h-full p-2 overflow-y-auto rounded-2xl bg-base bg-op-70!",
+          "h-full overflow-y-auto rounded-xl",
           isFetching && `animate-pulse`,
-          `sprinkle-${sources[id].color}`,
         ])}
         options={{
           overflow: { x: "hidden" },
@@ -177,31 +174,6 @@ function UpdatedTime({ isError, updatedTime }: { updatedTime: any, isError: bool
   return "加载中..."
 }
 
-function DiffNumber({ diff }: { diff: number }) {
-  const [shown, setShown] = useState(true)
-  useEffect(() => {
-    setShown(true)
-    const timer = setTimeout(() => {
-      setShown(false)
-    }, 5000)
-    return () => clearTimeout(timer)
-  }, [setShown, diff])
-
-  return (
-    <AnimatePresence>
-      { shown && (
-        <motion.span
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 0.5, y: -7 }}
-          exit={{ opacity: 0, y: -15 }}
-          className={$("absolute left-0 text-xs", diff < 0 ? "text-green" : "text-red")}
-        >
-          {diff > 0 ? `+${diff}` : diff}
-        </motion.span>
-      )}
-    </AnimatePresence>
-  )
-}
 function ExtraInfo({ item }: { item: NewsItem }) {
   if (item?.extra?.info) {
     return <>{item.extra.info}</>
@@ -215,7 +187,6 @@ function ExtraInfo({ item }: { item: NewsItem }) {
           transform: `scale(${scale ?? 1})`,
         }}
         className="h-4 inline mt--1"
-        referrerPolicy="no-referrer"
         onError={e => e.currentTarget.style.display = "none"}
       />
     )
@@ -229,7 +200,7 @@ function NewsUpdatedTime({ date }: { date: string | number }) {
 function NewsListHot({ items }: { items: NewsItem[] }) {
   const { width } = useWindowSize()
   return (
-    <ol className="flex flex-col gap-2">
+    <ol className="flex flex-col">
       {items?.map((item, i) => (
         <a
           href={width < 768 ? item.mobileUrl || item.url : item.url}
@@ -237,22 +208,32 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           key={item.id}
           title={item.extra?.hover}
           className={$(
-            "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
-            "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
+            "flex gap-3 items-start py-2 px-3.5 relative group cursor-pointer feed-item-link",
+            "hover:bg-[rgba(0,0,0,0.03)] dark:hover:bg-[rgba(255,255,255,0.03)]",
+            "hover:before:content-empty hover:before:absolute hover:before:left-0 hover:before:top-0 hover:before:bottom-0 hover:before:w-[2.5px] hover:before:bg-[#6366f1]",
+            "border-b border-[rgba(0,0,0,0.04)] dark:border-[rgba(255,255,255,0.04)] last:border-b-0",
           )}
         >
-          <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm")}>
+          <span
+            className={$(
+              "min-w-[25px] h-[25px] flex justify-center items-center rounded-md text-[11.5px] font-bold shrink-0",
+              i === 0 ? "bg-[rgba(251,191,36,0.18)] text-[#fbbf24] border border-[rgba(251,191,36,0.3)]" :
+              i === 1 ? "bg-[rgba(156,163,175,0.15)] text-[#9ca3af] border border-[rgba(156,163,175,0.28)]" :
+              i === 2 ? "bg-[rgba(205,124,74,0.15)] text-[#cd7c4a] border border-[rgba(205,124,74,0.28)]" :
+              "bg-[rgba(0,0,0,0.04)] dark:bg-[rgba(255,255,255,0.04)] text-[#8888a0] dark:text-[#5c6378]",
+            )}
+          >
             {i + 1}
           </span>
-          {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
-          <span className="self-start line-height-none">
-            <span className="mr-2 text-base">
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-medium text-[#1a1a2e] dark:text-[#e2e8f0] leading-[1.5] line-clamp-2 group-hover:text-[#000] dark:group-hover:text-white transition-colors-200">
               {item.title}
-            </span>
-            <span className="text-xs text-neutral-400/80 truncate align-middle">
+            </div>
+            <div className="text-[11px] text-[#8888a0] dark:text-[#5c6378] mt-[3px] truncate">
               <ExtraInfo item={item} />
-            </span>
-          </span>
+            </div>
+          </div>
+          <span className="shrink-0 text-[#8888a0] dark:text-[#5c6378] text-[11px] ml-1 mt-1 op-0 group-hover:op-100 transition-opacity-200">→</span>
         </a>
       ))}
     </ol>
@@ -262,32 +243,54 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
 function NewsListTimeLine({ items }: { items: NewsItem[] }) {
   const { width } = useWindowSize()
   return (
-    <ol className="border-s border-neutral-400/50 flex flex-col ml-1">
-      {items?.map(item => (
-        <li key={`${item.id}-${item.pubDate || item?.extra?.date || ""}`} className="flex flex-col">
-          <span className="flex items-center gap-1 text-neutral-400/50 ml--1px">
-            <span className="">-</span>
-            <span className="text-xs text-neutral-400/80">
-              {(item.pubDate || item?.extra?.date) && <NewsUpdatedTime date={(item.pubDate || item?.extra?.date)!} />}
-            </span>
-            <span className="text-xs text-neutral-400/80">
-              <ExtraInfo item={item} />
-            </span>
-          </span>
+    <>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": items.map((item, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "NewsArticle",
+              "headline": item.title,
+              "url": width < 768 ? item.mobileUrl || item.url : item.url,
+              "datePublished": item.pubDate || item?.extra?.date,
+              "publisher": {
+                "@type": "Organization",
+                "name": item.source || "NewsNow",
+                "url": item.sourceUrl || "https://shishixinwen.news",
+              },
+            },
+          })),
+        })}
+      </script>
+      <ol className="flex flex-col">
+        {items?.map((item, i) => (
           <a
-            className={$(
-              "ml-2 px-1 hover:bg-neutral-400/10 rounded-md visited:(text-neutral-400/80)",
-              "cursor-pointer [&_*]:cursor-pointer transition-all",
-            )}
             href={width < 768 ? item.mobileUrl || item.url : item.url}
-            title={item.extra?.hover}
             target="_blank"
-            rel="noopener noreferrer"
+            key={`${item.id}-${item.pubDate || item?.extra?.date || ""}`}
+            className={$(
+              "flex gap-3 items-start py-2 px-3.5 relative group cursor-pointer feed-item-link",
+              "hover:bg-[rgba(0,0,0,0.03)] dark:hover:bg-[rgba(255,255,255,0.03)]",
+              "hover:before:content-empty hover:before:absolute hover:before:left-0 hover:before:top-0 hover:before:bottom-0 hover:before:w-[2.5px] hover:before:bg-[#6366f1]",
+              "border-b border-[rgba(0,0,0,0.04)] dark:border-[rgba(255,255,255,0.04)] last:border-b-0",
+            )}
           >
-            {item.title}
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] text-[#8888a0] dark:text-[#5c6378] mb-[3px]">
+                {(item.pubDate || item?.extra?.date) && <NewsUpdatedTime date={(item.pubDate || item?.extra?.date)!} />}
+                <span className="ml-2"><ExtraInfo item={item} /></span>
+              </div>
+              <div className="text-[13px] font-medium text-[#1a1a2e] dark:text-[#e2e8f0] leading-[1.5] line-clamp-2 group-hover:text-[#000] dark:group-hover:text-white transition-colors-200">
+                {item.title}
+              </div>
+            </div>
+            <span className="shrink-0 text-[#8888a0] dark:text-[#5c6378] text-[11px] ml-1 mt-1 op-0 group-hover:op-100 transition-opacity-200">→</span>
           </a>
-        </li>
-      ))}
-    </ol>
+        ))}
+      </ol>
+    </>
   )
 }

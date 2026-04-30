@@ -19,7 +19,7 @@
 }
 
 [cmdk-list] {
-    --at-apply: px-3 flex flex-col gap-2 items-stretch max-h-[400px] h-[calc(100vh-100px)];
+    --at-apply: px-3 flex flex-col gap-2 items-stretch h-400px;
 }
 
 [cmdk-group-heading] {
@@ -27,15 +27,19 @@
 }
 
 [cmdk-dialog] {
-    --at-apply: bg-base sprinkle-primary bg-op-97 backdrop-blur-5 shadow pb-4 rounded-2xl shadow-2xl relative outline-none;
+    --at-apply: bg-white dark:bg-[#11131e] bg-op-97 backdrop-blur-xl pb-4 rounded-2xl shadow-2xl relative outline-none;
     position: fixed;
     width: 80vw ;
     max-width: 675px;
     z-index: 999;
     left: 50%;
     top: 50%;
-    /* transform: translateX(-50%) translateY(-50%); */
-    transform: translate(round(-50%, 1px), round(-50%, 1px));
+    transform: translateX(-50%) translateY(-50%);
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+html.dark [cmdk-dialog] {
+    border-color: rgba(255,255,255,0.06);
 }
 
 [cmdk-dialog] {

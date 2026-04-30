@@ -17,12 +17,6 @@ function GoTop() {
   )
 }
 
-function Github() {
-  return (
-    <button type="button" title="Github" className="i-ph:github-logo-duotone btn" onClick={() => window.open(Homepage)} />
-  )
-}
-
 function Refresh() {
   const currentSources = useAtomValue(currentSourcesAtom)
   const { refresh } = useRefetch()
@@ -77,7 +71,6 @@ export function Header() {
         <ThemeToggleBtn />
         <GoTop />
         <Refresh />
-        <Github />
         <Menu />
       </span>
     </>

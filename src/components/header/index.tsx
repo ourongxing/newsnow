@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router"
 import { useIsFetching } from "@tanstack/react-query"
 import type { SourceID } from "@shared/types"
 import { NavBar } from "../navbar"
-import { Menu } from "./menu"
 import { currentSourcesAtom } from "~/atoms"
 
 function Refresh() {
@@ -58,7 +57,6 @@ export function Header() {
       <span className="justify-self-end flex items-center text-base shrink-0 gap-2">
         <ThemeToggleBtn />
         <Refresh />
-        <Menu />
       </span>
     </>
   )

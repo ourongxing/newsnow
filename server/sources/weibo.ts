@@ -41,7 +41,7 @@ export default defineSource(async () => {
               ? `${(Number(heatNum) / 10000).toFixed(1).replace(/\.0$/, "")}万`
               : heatNum)
           : ""
-        const info = [category, heatDisplay].filter(Boolean).join(" ")
+        const info = [category, heatDisplay ? `${heatDisplay}热度` : ""].filter(Boolean).join(" ")
 
         // 标签：新/热/爆
         const $flag = $row.find("td.td-03").text().trim()

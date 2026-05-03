@@ -3,13 +3,15 @@ import type { NewsItem } from "@shared/types"
 
 export default defineSource(async () => {
   const apiToken = process.env.PRODUCTHUNT_API_TOKEN
-  const token = `Bearer ${apiToken}`
   if (!apiToken) {
-    throw new Error("PRODUCTHUNT_API_TOKEN is not set")
+    console.warn("[producthunt] PRODUCTHUNT_API_TOKEN is not set")
+    return []
   }
+  const token = `Bearer ${apiToken}`
+
   const query = `
     query {
-      posts(first: 30, order: VOTES) {
+      posts(first: 30, order: RANKING) {
         edges {
           node {
             id
@@ -30,12 +32,18 @@ export default defineSource(async () => {
       "Authorization": token,
       "Content-Type": "application/json",
       "Accept": "application/json",
+      "Origin": "https://www.producthunt.com",
     },
     body: JSON.stringify({ query }),
   })
 
+  if (!response?.data?.posts?.edges) {
+    console.warn("[producthunt] Unexpected API response:", JSON.stringify(response).slice(0, 200))
+    return []
+  }
+
   const news: NewsItem[] = []
-  const posts = response?.data?.posts?.edges || []
+  const posts = response.data.posts.edges
 
   for (const edge of posts) {
     const post = edge.node

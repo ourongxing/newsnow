@@ -69,8 +69,9 @@ export function GlobalOverlayScrollbar({ children, className, ...props }: PropsW
       timer.current = setTimeout(
         () => {
           const el = e.target as HTMLElement
+          const scrollPercent = el.scrollTop / (el.scrollHeight - el.clientHeight)
           setGoToTop({
-            ok: el.scrollTop > 100,
+            ok: scrollPercent > 0.25,
             el,
             fn: () => el.scrollTo({ top: 0, behavior: "smooth" }),
           })

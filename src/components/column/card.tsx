@@ -149,20 +149,26 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
         </div>
       </div>
 
-      <OverlayScrollbar
-        className={$([
-          "h-full overflow-y-auto rounded-xl",
-          isFetching && `animate-pulse`,
-        ])}
-        options={{
-          overflow: { x: "hidden" },
-        }}
-        defer
-      >
-        <div className={$("transition-opacity-500", isFetching && "op-20")}>
-          {!!data?.items?.length && (sources[id].type === "hottest" ? <NewsListHot items={data.items} /> : <NewsListTimeLine items={data.items} />)}
+      {!!data?.items?.length ? (
+        <OverlayScrollbar
+          className={$([
+            "h-full overflow-y-auto rounded-xl",
+            isFetching && `animate-pulse`,
+          ])}
+          options={{
+            overflow: { x: "hidden" },
+          }}
+          defer
+        >
+          <div className={$("transition-opacity-500", isFetching && "op-20")}>
+            {sources[id].type === "hottest" ? <NewsListHot items={data.items} /> : <NewsListTimeLine items={data.items} />}
+          </div>
+        </OverlayScrollbar>
+      ) : !isFetching ? (
+        <div className="flex-1 flex items-center justify-center min-h-0 select-none">
+          <EmptyPlaceholder />
         </div>
-      </OverlayScrollbar>
+      ) : null}
     </>
   )
 }
@@ -229,6 +235,11 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
             <div className="text-[13px] font-medium text-[#1a1a2e] dark:text-[#e2e8f0] leading-[1.5] line-clamp-2 group-hover:text-[#000] dark:group-hover:text-white transition-colors-200">
               {item.title}
             </div>
+            {item.extra?.hover && (
+              <div className="text-[11px] text-[var(--text-muted)] mt-[3px] line-clamp-1 leading-[1.4]">
+                {item.extra.hover}
+              </div>
+            )}
             <div className="text-[11px] text-[#8888a0] dark:text-[#5c6378] mt-[3px] truncate">
               <ExtraInfo item={item} />
             </div>
@@ -292,5 +303,16 @@ function NewsListTimeLine({ items }: { items: NewsItem[] }) {
         ))}
       </ol>
     </>
+  )
+}
+
+function EmptyPlaceholder() {
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-[rgba(0,0,0,0.03)] dark:bg-[rgba(255,255,255,0.03)] border border-[rgba(0,0,0,0.05)] dark:border-[rgba(255,255,255,0.05)]">
+        <span className="i-ph:newspaper-clipping-duotone text-3xl op-30 text-[var(--text-muted)]" />
+      </div>
+      <span className="text-[13px] op-35 text-[var(--text-muted)]">暂无数据</span>
+    </div>
   )
 }

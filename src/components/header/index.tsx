@@ -2,20 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { useIsFetching } from "@tanstack/react-query"
 import type { SourceID } from "@shared/types"
 import { NavBar } from "../navbar"
-import { Menu } from "./menu"
-import { currentSourcesAtom, goToTopAtom } from "~/atoms"
-
-function GoTop() {
-  const { ok, fn: goToTop } = useAtomValue(goToTopAtom)
-  return (
-    <button
-      type="button"
-      title="Go To Top"
-      className={$("i-ph:arrow-fat-up-duotone", ok ? "op-50 btn" : "op-0")}
-      onClick={goToTop}
-    />
-  )
-}
+import { currentSourcesAtom } from "~/atoms"
 
 function Refresh() {
   const currentSources = useAtomValue(currentSourcesAtom)
@@ -67,11 +54,9 @@ export function Header() {
           <NavBar />
         </span>
       </span>
-      <span className="justify-self-end flex items-center text-base shrink-0 gap-0.5">
+      <span className="justify-self-end flex items-center text-base shrink-0 gap-2">
         <ThemeToggleBtn />
-        <GoTop />
         <Refresh />
-        <Menu />
       </span>
     </>
   )

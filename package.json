@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/ourongxing/newsnow",
   "scripts": {
-    "dev": "npm run presource && tsx --experimental-loader ./fix-path-loader.mjs ./node_modules/vite/bin/vite.js dev",
+    "dev": "npm run presource && tsx --experimental-loader ./fix-path-loader.mjs ./node_modules/vite/bin/vite.js dev --host",
     "build": "npm run presource && vite build",
     "lint": "eslint",
     "presource": "tsx ./scripts/favicon.ts && tsx ./scripts/source.ts",
@@ -116,7 +116,10 @@
       "simple-git-hooks",
       "unrs-resolver",
       "workerd"
-    ]
+    ],
+    "overrides": {
+      "vite-plugin-with-nitro>h3": "npm:h3@1"
+    }
   },
   "resolutions": {
     "cross-spawn": ">=7.0.6",

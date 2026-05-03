@@ -75,8 +75,11 @@ button:disabled {
 }
 
 *, button {
-  cursor: default;
   user-select: none;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 /* Card news feed items — pointer cursor on entire link */

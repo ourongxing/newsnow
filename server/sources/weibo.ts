@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio"
+import type { NewsItem } from "@shared/types"
 
 export default defineSource(async () => {
   const baseurl = "https://s.weibo.com"
@@ -6,17 +7,14 @@ export default defineSource(async () => {
 
   const html = await myFetch(url, {
     headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
-      // https://github.com/v5tech/weibo-trending-hot-search
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
       "Cookie": "SUB=_2AkMWIuNSf8NxqwJRmP8dy2rhaoV2ygrEieKgfhKJJRMxHRl-yT9jqk86tRB6PaLNvQZR6zYUcYVT1zSjoSreQHidcUq7",
       "referer": url,
     },
   })
 
   const $ = cheerio.load(html)
-
   const rows = $("#pl_top_realtimehot table tbody tr").slice(1)
-
   const hotNews: NewsItem[] = []
 
   rows.each((_, row) => {
@@ -31,12 +29,16 @@ export default defineSource(async () => {
       const href = $link.attr("href")
 
       if (title && href) {
+        // 热度值
+        const heat = $row.find("td.td-02 span").text().trim()
+        // 标签：新/热/爆
         const $flag = $row.find("td.td-03").text().trim()
         const flagUrl = {
           新: "https://simg.s.weibo.com/moter/flags/1_0.png",
           热: "https://simg.s.weibo.com/moter/flags/2_0.png",
           爆: "https://simg.s.weibo.com/moter/flags/4_0.png",
         }[$flag]
+
         hotNews.push({
           id: title,
           title,
@@ -44,10 +46,12 @@ export default defineSource(async () => {
           mobileUrl: `${baseurl}${href}`,
           extra: {
             icon: flagUrl ? { url: flagUrl, scale: 1.5 } : undefined,
+            info: heat || undefined,
           },
         })
       }
     }
   })
+
   return hotNews
 })

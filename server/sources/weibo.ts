@@ -29,8 +29,20 @@ export default defineSource(async () => {
       const href = $link.attr("href")
 
       if (title && href) {
-        // 热度值
-        const heat = $row.find("td.td-02 span").text().trim()
+        // 热度值，可能带分类前缀如 "综艺 850468" 或纯数字 "2779657"
+        const raw = $row.find("td.td-02 span").text().trim()
+        // 解析数字和分类
+        const match = raw.match(/^(?:(\D+)\s*)?(\d+)$/)
+        const category = match?.[1]?.trim() || ""
+        const heatNum = match?.[2] || ""
+        // 格式化热度：万单位显示
+        const heatDisplay = heatNum
+          ? (Number(heatNum) >= 10000
+              ? `${(Number(heatNum) / 10000).toFixed(1).replace(/\.0$/, "")}万`
+              : heatNum)
+          : ""
+        const info = [category, heatDisplay].filter(Boolean).join(" ")
+
         // 标签：新/热/爆
         const $flag = $row.find("td.td-03").text().trim()
         const flagUrl = {
@@ -46,7 +58,7 @@ export default defineSource(async () => {
           mobileUrl: `${baseurl}${href}`,
           extra: {
             icon: flagUrl ? { url: flagUrl, scale: 1.5 } : undefined,
-            info: heat || undefined,
+            info: info || undefined,
           },
         })
       }

@@ -5,10 +5,16 @@
   "private": true,
   "packageManager": "pnpm@10.30.3",
   "author": {
-    "url": "https://github.com/ourongxing/",
-    "email": "orongxing@gmail.com",
-    "name": "ourongxing"
+    "name": "imxv",
+    "url": "https://github.com/imxv"
   },
+  "contributors": [
+    {
+      "name": "ourongxing",
+      "url": "https://github.com/ourongxing/",
+      "email": "orongxing@gmail.com"
+    }
+  ],
   "homepage": "https://github.com/imxv/newsnow-plus",
   "scripts": {
     "dev": "npm run presource && vite dev",

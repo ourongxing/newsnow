@@ -21,7 +21,7 @@
 ```json
 {
   "mcpServers": {
-    "newsnow": {
+    "newsnow-plus": {
       "command": "npx",
       "args": [
         "-y",

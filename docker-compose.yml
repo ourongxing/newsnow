@@ -1,11 +1,11 @@
 services:
-  newsnow:
-    image: ghcr.io/ourongxing/newsnow:latest
-    container_name: newsnow
+  newsnow-plus:
+    image: ghcr.io/imxv/newsnow-plus:latest
+    container_name: newsnow-plus
     ports:
       - '4444:4444'
     volumes:
-      - newsnow_data:/usr/app/.data
+      - newsnow_plus_data:/usr/app/.data
     environment:
       - HOST=0.0.0.0
       - PORT=4444
@@ -18,5 +18,5 @@ services:
       - PRODUCTHUNT_API_TOKEN=
 
 volumes:
-  newsnow_data:
-    name: newsnow_data
+  newsnow_plus_data:
+    name: newsnow_plus_data

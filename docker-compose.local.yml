@@ -1,10 +1,10 @@
 services:
-  newsnow:
+  newsnow-plus:
     build: .
     ports:
       - '4444:4444'
     volumes:
-      - newsnow_data:/usr/app/.data
+      - newsnow_plus_data:/usr/app/.data
     environment:
       - G_CLIENT_ID=
       - G_CLIENT_SECRET=
@@ -13,5 +13,5 @@ services:
       - ENABLE_CACHE=true
 
 volumes:
-  newsnow_data:
-    name: newsnow_data
+  newsnow_plus_data:
+    name: newsnow_plus_data

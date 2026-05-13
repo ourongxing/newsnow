@@ -1,5 +1,5 @@
 {
-  "name": "newsnow",
+  "name": "newsnow-plus",
   "type": "module",
   "version": "0.0.39",
   "private": true,
@@ -9,7 +9,7 @@
     "email": "orongxing@gmail.com",
     "name": "ourongxing"
   },
-  "homepage": "https://github.com/imxv/newsnow",
+  "homepage": "https://github.com/imxv/newsnow-plus",
   "scripts": {
     "dev": "npm run presource && vite dev",
     "build": "npm run presource && vite build",
@@ -21,7 +21,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.app.json",
     "release": "bumpp",
     "prepare": "simple-git-hooks",
-    "log": "wrangler pages deployment tail --project-name newsnow",
+    "log": "wrangler pages deployment tail --project-name newsnow-plus",
     "test": "vitest -c vitest.config.ts"
   },
   "dependencies": {

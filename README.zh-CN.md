@@ -3,7 +3,7 @@
 [English](./README.md) | 简体中文 | [日本語](README.ja-JP.md)
 
 > [!IMPORTANT]
-> 本项目 fork 自 [ourongxing/newsnow](https://github.com/ourongxing/newsnow)。由于原项目长期未维护，本仓库在原有基础上修复了已有问题，并补充了更多新闻来源。
+> 这是我个人维护的 [newsnow](https://github.com/ourongxing/newsnow) 版本。原作者似乎已停止维护，我会在业余时间修复一些遗留 bug，并新增一些功能。
 
 ***优雅地阅读实时热门新闻***
 

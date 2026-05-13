@@ -9,7 +9,7 @@
     "email": "orongxing@gmail.com",
     "name": "ourongxing"
   },
-  "homepage": "https://github.com/ourongxing/newsnow",
+  "homepage": "https://github.com/imxv/newsnow",
   "scripts": {
     "dev": "npm run presource && vite dev",
     "build": "npm run presource && vite build",

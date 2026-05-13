@@ -3,7 +3,7 @@
 English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 
 > [!IMPORTANT]
-> This project is forked from [ourongxing/newsnow](https://github.com/ourongxing/newsnow). Since the upstream has not been maintained for a long time, this fork fixes the existing issues and adds more news sources.
+> This is the version of [newsnow](https://github.com/ourongxing/newsnow) that I personally maintain. The original author seems to have stopped maintaining it. I will fix some remaining bugs and add some new features in my spare time.
 
 > [!NOTE]
 > This is a demo version currently supporting Chinese only. A full-featured version with better customization and English content support will be released later.

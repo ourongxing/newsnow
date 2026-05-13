@@ -49,6 +49,16 @@ export const originSources = {
     desc: "来自第三方网站: 早晨报",
     home: "https://www.zaobao.com",
   },
+  "siliconvalley": {
+    name: "硅谷",
+    title: "头条",
+    type: "realtime",
+    column: "tech",
+    color: "blue",
+    interval: Time.Common,
+    desc: "来自 SiliconValley.com 编辑精选头条",
+    home: "https://www.siliconvalley.com",
+  },
   "coolapk": {
     name: "酷安",
     type: "hottest",

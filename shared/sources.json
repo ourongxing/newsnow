@@ -42,6 +42,16 @@
     "color": "red",
     "interval": 1800000
   },
+  "siliconvalley": {
+    "title": "头条",
+    "name": "硅谷",
+    "type": "realtime",
+    "desc": "来自 SiliconValley.com 编辑精选头条",
+    "column": "tech",
+    "home": "https://www.siliconvalley.com",
+    "color": "blue",
+    "interval": 1800000
+  },
   "coolapk": {
     "title": "今日最热",
     "name": "酷安",

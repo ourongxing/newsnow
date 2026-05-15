@@ -52,6 +52,16 @@
     "color": "blue",
     "interval": 1800000
   },
+  "aihot": {
+    "title": "精选",
+    "name": "卡兹克 AI HOT",
+    "type": "realtime",
+    "desc": "AI 行业动态精选：模型 / 产品 / 论文 / 观点",
+    "column": "tech",
+    "home": "https://aihot.virxact.com/",
+    "color": "cyan",
+    "interval": 1800000
+  },
   "coolapk": {
     "title": "今日最热",
     "name": "酷安",

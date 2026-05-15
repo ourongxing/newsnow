@@ -59,6 +59,16 @@ export const originSources = {
     desc: "来自 SiliconValley.com 编辑精选头条",
     home: "https://www.siliconvalley.com",
   },
+  "aihot": {
+    name: "卡兹克 AI HOT",
+    title: "精选",
+    type: "realtime",
+    column: "tech",
+    color: "cyan",
+    interval: Time.Common,
+    desc: "AI 行业动态精选：模型 / 产品 / 论文 / 观点",
+    home: "https://aihot.virxact.com/",
+  },
   "coolapk": {
     name: "酷安",
     type: "hottest",

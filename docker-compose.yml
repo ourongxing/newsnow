@@ -1,6 +1,6 @@
 services:
   newsnow:
-    image: ghcr.io/ourongxing/newsnow:latest
+    image: ghcr.io/wangruofeng/newsnow:main
     container_name: newsnow
     ports:
       - '4444:4444'

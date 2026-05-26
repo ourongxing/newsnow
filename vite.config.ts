@@ -26,6 +26,9 @@ export default defineConfig({
       // autoCodeSplitting: true,
     }),
     unimport.vite({
+      dirsScanOptions: {
+        fileFilter: file => !file.endsWith("dir.ts"),
+      },
       dirs: ["src/hooks", "shared", "src/utils", "src/atoms"],
       presets: ["react", {
         from: "jotai",

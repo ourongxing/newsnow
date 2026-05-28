@@ -122,6 +122,7 @@
     "cross-spawn": ">=7.0.6",
     "dayjs": "1.11.13",
     "db0": "^0.3.4",
+    "h3": "^1.15.3",
     "nitropack": "npm:nitro-go@0.0.3",
     "picomatch": "^4.0.3",
     "react": "^19.0.4",

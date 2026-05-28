@@ -57,7 +57,7 @@ For deployments without login and caching:
 
 ### Environment Variables
 
-Refer to `example.env.server`. For local development, rename it to `.env.server` and configure:
+Refer to [example.env.server](example.env.server). For local development, rename it to `.env.server` and configure:
 
 ```env
 # Github Client ID

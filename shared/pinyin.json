@@ -1,5 +1,11 @@
 {
   "v2ex-share": "V2EX-zuixinfenxiang",
+  "hackernews": "Hacker News",
+  "producthunt": "Product Hunt",
+  "github-trending-today": "Github-Today",
+  "morningbrew-trending-today": "Morning Brew-Newsletter",
+  "techbrew": "Tech Brew",
+  "steam": "Steam-zaixianrenshu",
   "zhihu": "zhihu",
   "weibo": "weibo-shishiresou",
   "zaobao": "lianhezaobao",
@@ -28,9 +34,6 @@
   "fastbull-express": "fabucaijing-kuaixun",
   "fastbull-news": "fabucaijing-toutiao",
   "solidot": "Solidot",
-  "hackernews": "Hacker News",
-  "producthunt": "Product Hunt",
-  "github-trending-today": "Github-Today",
   "bilibili-hot-search": "bilibili-resou",
   "bilibili-hot-video": "bilibili-remenshipin",
   "bilibili-ranking": "bilibili-paixingbang",
@@ -45,11 +48,8 @@
   "chongbuluo-latest": "chongbuluo-zuixin",
   "chongbuluo-hot": "chongbuluo-zuire",
   "douban": "douban-remendianying",
-  "steam": "Steam-zaixianrenshu",
   "tencent-hot": "tengxunxinwen-zonghezaobao",
   "freebuf": "Freebuf-wangluoanquan",
   "qqvideo-tv-hotsearch": "tengxunshipin-resoubang",
-  "iqiyi-hot-ranklist": "aiqiyi-rebobang",
-  "techbrew": "Tech Brew",
-  "morningbrew-trending-today": "Morning Brew-Newsletter"
+  "iqiyi-hot-ranklist": "aiqiyi-rebobang"
 }

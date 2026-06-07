@@ -579,5 +579,23 @@
     "home": "https://www.techbrew.com",
     "color": "red",
     "interval": 600000
+  "morningbrew": {
+    "redirect": "morningbrew-trending-today",
+    "name": "Morning Brew",
+    "type": "realtime",
+    "column": "world",
+    "home": "https://www.morningbrew.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "Newsletter"
+  },
+  "morningbrew-trending-today": {
+    "name": "Morning Brew",
+    "type": "realtime",
+    "column": "world",
+    "home": "https://www.morningbrew.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "Newsletter"
   }
 }

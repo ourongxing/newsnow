@@ -5,11 +5,11 @@
   "private": true,
   "packageManager": "pnpm@10.30.3",
   "author": {
-    "url": "https://github.com/ourongxing/",
-    "email": "orongxing@gmail.com",
-    "name": "ourongxing"
+    "url": "https://github.com/iam-weijie/",
+    "email": "wang.weijie0110@gmail.com",
+    "name": "Weijie Wang"
   },
-  "homepage": "https://github.com/ourongxing/newsnow",
+  "homepage": "https://github.com/iam-weijie/newsnow",
   "scripts": {
     "dev": "npm run presource && cross-env NODE_OPTIONS=--use-env-proxy vite dev",
     "build": "npm run presource && vite build",
@@ -60,7 +60,7 @@
     "uncrypto": "^0.1.3"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "^2.13.0",
+    "@eslint-react/eslint-plugin": "^1.53.1",
     "@iconify-json/ph": "^1.2.2",
     "@napi-rs/pinyin": "^1.7.7",
     "@ourongxing/eslint-config": "3.2.3-beta.6",

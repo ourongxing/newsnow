@@ -572,7 +572,7 @@
     "interval": 1800000,
     "title": "热播榜"
   },
-  "tech-brew": {
+  "techbrew": {
     "name": "Tech Brew",
     "type": "realtime",
     "column": "tech",

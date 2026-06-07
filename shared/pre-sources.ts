@@ -491,7 +491,7 @@ export const originSources = {
       },
     },
   },
-  "tech-brew": {
+  "techbrew": {
     name: "Tech Brew",
     color: "red",
     home: "https://www.techbrew.com",

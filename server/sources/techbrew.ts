@@ -45,5 +45,5 @@ const techBrew = defineSource(async () => {
 })
 
 export default defineSource({
-  "tech-brew": techBrew,
+  techbrew: techBrew,
 })

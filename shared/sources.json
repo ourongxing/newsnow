@@ -571,5 +571,13 @@
     "color": "green",
     "interval": 1800000,
     "title": "热播榜"
+  },
+  "tech-brew": {
+    "name": "Tech Brew",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://www.techbrew.com",
+    "color": "red",
+    "interval": 600000
   }
 }

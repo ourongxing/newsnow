@@ -37,6 +37,7 @@ declare module 'glob:./sources/{*.ts,**/index.ts}' {
   export const sputniknewscn: typeof import('./sources/sputniknewscn')
   export const sspai: typeof import('./sources/sspai')
   export const steam: typeof import('./sources/steam')
+  export const techbrew: typeof import('./sources/techbrew')
   export const tencent: typeof import('./sources/tencent')
   export const thepaper: typeof import('./sources/thepaper')
   export const tieba: typeof import('./sources/tieba')

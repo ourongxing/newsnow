@@ -491,6 +491,12 @@ export const originSources = {
       },
     },
   },
+  "techbrew": {
+    name: "Tech Brew",
+    color: "red",
+    home: "https://www.techbrew.com",
+    column: "tech",
+    type: "realtime",
   "morningbrew": {
     name: "Morning Brew",
     color: "blue",

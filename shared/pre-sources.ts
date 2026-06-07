@@ -497,6 +497,7 @@ export const originSources = {
     home: "https://www.techbrew.com",
     column: "tech",
     type: "realtime",
+  },
   "morningbrew": {
     name: "Morning Brew",
     color: "blue",

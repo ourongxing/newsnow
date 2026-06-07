@@ -571,5 +571,13 @@
     "color": "green",
     "interval": 1800000,
     "title": "热播榜"
+  },
+  "morningbrew": {
+    "name": "Morning Brew",
+    "type": "realtime",
+    "column": "world",
+    "home": "https://www.morningbrew.com",
+    "color": "blue",
+    "interval": 600000
   }
 }

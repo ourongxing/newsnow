@@ -26,7 +26,7 @@ interface SanityResponse {
   result: SanityIssue[]
 }
 
-export default defineSource(async () => {
+const fetchMorningBrew = defineSource(async () => {
   const url = new URL("https://bl383u0v.apicdn.sanity.io/v2024-01-01/data/query/production")
   url.searchParams.set("query", SANITY_QUERY)
 
@@ -42,4 +42,9 @@ export default defineSource(async () => {
       ? { hover: issue.previewText }
       : undefined,
   }))
+})
+
+export default defineSource({
+  "morningbrew": fetchMorningBrew,
+  "morningbrew-trending-today": fetchMorningBrew,
 })

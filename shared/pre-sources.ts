@@ -496,7 +496,12 @@ export const originSources = {
     color: "blue",
     home: "https://www.morningbrew.com",
     column: "world",
-    type: "realtime",
+    sub: {
+      "trending-today": {
+        title: "Newsletter",
+        type: "realtime",
+      },
+    },
   },
 } as const satisfies Record<string, OriginSource>
 

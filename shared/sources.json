@@ -573,11 +573,22 @@
     "title": "热播榜"
   },
   "morningbrew": {
+    "redirect": "morningbrew-trending-today",
     "name": "Morning Brew",
     "type": "realtime",
     "column": "world",
     "home": "https://www.morningbrew.com",
     "color": "blue",
-    "interval": 600000
+    "interval": 600000,
+    "title": "Newsletter"
+  },
+  "morningbrew-trending-today": {
+    "name": "Morning Brew",
+    "type": "realtime",
+    "column": "world",
+    "home": "https://www.morningbrew.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "Newsletter"
   }
 }

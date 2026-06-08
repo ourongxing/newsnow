@@ -571,5 +571,13 @@
     "color": "green",
     "interval": 1800000,
     "title": "热播榜"
+  },
+  "techcrunch": {
+    "name": "TechCrunch",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://techcrunch.com",
+    "color": "green",
+    "interval": 600000
   }
 }

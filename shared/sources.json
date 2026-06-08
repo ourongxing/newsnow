@@ -16,6 +16,77 @@
     "interval": 600000,
     "title": "最新分享"
   },
+  "hackernews": {
+    "name": "Hacker News",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://news.ycombinator.com/",
+    "color": "orange",
+    "interval": 600000
+  },
+  "producthunt": {
+    "name": "Product Hunt",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://www.producthunt.com/",
+    "color": "red",
+    "interval": 600000
+  },
+  "github": {
+    "redirect": "github-trending-today",
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "github-trending-today": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Today"
+  },
+  "morningbrew": {
+    "redirect": "morningbrew-trending-today",
+    "name": "Morning Brew",
+    "type": "realtime",
+    "column": "world",
+    "home": "https://www.morningbrew.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "Newsletter"
+  },
+  "morningbrew-trending-today": {
+    "name": "Morning Brew",
+    "type": "realtime",
+    "column": "world",
+    "home": "https://www.morningbrew.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "Newsletter"
+  },
+  "techbrew": {
+    "name": "Tech Brew",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://www.techbrew.com",
+    "color": "red",
+    "interval": 600000
+  },
+  "steam": {
+    "title": "在线人数",
+    "name": "Steam",
+    "type": "hottest",
+    "column": "world",
+    "home": "https://store.steampowered.com",
+    "color": "blue",
+    "interval": 600000
+  },
   "zhihu": {
     "name": "知乎",
     "type": "hottest",
@@ -322,41 +393,6 @@
     "color": "teal",
     "interval": 3600000
   },
-  "hackernews": {
-    "name": "Hacker News",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://news.ycombinator.com/",
-    "color": "orange",
-    "interval": 600000
-  },
-  "producthunt": {
-    "name": "Product Hunt",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://www.producthunt.com/",
-    "color": "red",
-    "interval": 600000
-  },
-  "github": {
-    "redirect": "github-trending-today",
-    "name": "Github",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://github.com/",
-    "color": "gray",
-    "interval": 600000,
-    "title": "Today"
-  },
-  "github-trending-today": {
-    "name": "Github",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://github.com/",
-    "color": "gray",
-    "interval": 600000,
-    "title": "Today"
-  },
   "bilibili": {
     "redirect": "bilibili-hot-search",
     "name": "哔哩哔哩",
@@ -495,15 +531,6 @@
     "column": "china",
     "home": "https://www.douban.com",
     "color": "green",
-    "interval": 600000
-  },
-  "steam": {
-    "title": "在线人数",
-    "name": "Steam",
-    "type": "hottest",
-    "column": "world",
-    "home": "https://store.steampowered.com",
-    "color": "blue",
     "interval": 600000
   },
   "tencent": {

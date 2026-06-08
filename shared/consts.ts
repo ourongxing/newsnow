@@ -13,3 +13,13 @@ export const Homepage = packageJSON.homepage
 
 export const Version = packageJSON.version
 export const Author = packageJSON.author
+
+export const OriginalAuthor = {
+  name: "ourongxing",
+  url: "https://github.com/ourongxing",
+}
+
+export const OriginalProject = {
+  name: "NewsNow",
+  url: "https://github.com/ourongxing/newsnow",
+}

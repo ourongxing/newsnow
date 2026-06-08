@@ -24,6 +24,59 @@ export const originSources = {
       },
     },
   },
+  "hackernews": {
+    name: "Hacker News",
+    color: "orange",
+    column: "tech",
+    type: "hottest",
+    home: "https://news.ycombinator.com/",
+  },
+  "producthunt": {
+    name: "Product Hunt",
+    color: "red",
+    column: "tech",
+    type: "hottest",
+    home: "https://www.producthunt.com/",
+  },
+  "github": {
+    name: "Github",
+    color: "gray",
+    home: "https://github.com/",
+    column: "tech",
+    sub: {
+      "trending-today": {
+        title: "Today",
+        type: "hottest",
+      },
+    },
+  },
+  "morningbrew": {
+    name: "Morning Brew",
+    color: "blue",
+    home: "https://www.morningbrew.com",
+    column: "world",
+    sub: {
+      "trending-today": {
+        title: "Newsletter",
+        type: "realtime",
+      },
+    },
+  },
+  "techbrew": {
+    name: "Tech Brew",
+    color: "red",
+    home: "https://www.techbrew.com",
+    column: "tech",
+    type: "realtime",
+  },
+  "steam": {
+    name: "Steam",
+    column: "world",
+    title: "在线人数",
+    color: "blue",
+    type: "hottest",
+    home: "https://store.steampowered.com",
+  },
   "zhihu": {
     name: "知乎",
     type: "hottest",
@@ -259,32 +312,6 @@ export const originSources = {
     home: "https://solidot.org",
     interval: Time.Slow,
   },
-  "hackernews": {
-    name: "Hacker News",
-    color: "orange",
-    column: "tech",
-    type: "hottest",
-    home: "https://news.ycombinator.com/",
-  },
-  "producthunt": {
-    name: "Product Hunt",
-    color: "red",
-    column: "tech",
-    type: "hottest",
-    home: "https://www.producthunt.com/",
-  },
-  "github": {
-    name: "Github",
-    color: "gray",
-    home: "https://github.com/",
-    column: "tech",
-    sub: {
-      "trending-today": {
-        title: "Today",
-        type: "hottest",
-      },
-    },
-  },
   "bilibili": {
     name: "哔哩哔哩",
     color: "blue",
@@ -430,14 +457,6 @@ export const originSources = {
     color: "green",
     type: "hottest",
     home: "https://www.douban.com",
-  },
-  "steam": {
-    name: "Steam",
-    column: "world",
-    title: "在线人数",
-    color: "blue",
-    type: "hottest",
-    home: "https://store.steampowered.com",
   },
   "tencent": {
     name: "腾讯新闻",

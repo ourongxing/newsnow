@@ -117,10 +117,18 @@ export const originSources = {
   "hupu": {
     name: "虎扑",
     home: "https://hupu.com",
-    column: "china",
+    column: "sports",
     title: "主干道热帖",
     type: "hottest",
     color: "red",
+  },
+  "dongqiudi": {
+    name: "懂球帝",
+    title: "头条",
+    type: "hottest",
+    column: "sports",
+    color: "green",
+    home: "https://www.dongqiudi.com",
   },
   "aihot": {
     name: "AIHOT",

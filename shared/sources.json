@@ -144,9 +144,18 @@
     "title": "主干道热帖",
     "name": "虎扑",
     "type": "hottest",
-    "column": "china",
+    "column": "sports",
     "home": "https://hupu.com",
     "color": "red",
+    "interval": 600000
+  },
+  "dongqiudi": {
+    "title": "头条",
+    "name": "懂球帝",
+    "type": "hottest",
+    "column": "sports",
+    "home": "https://www.dongqiudi.com",
+    "color": "green",
     "interval": 600000
   },
   "aihot": {

@@ -125,7 +125,7 @@ export const originSources = {
   "dongqiudi": {
     name: "懂球帝",
     title: "头条",
-    type: "hottest",
+    type: "realtime",
     column: "sports",
     color: "green",
     home: "https://www.dongqiudi.com",

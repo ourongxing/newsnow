@@ -152,7 +152,7 @@
   "dongqiudi": {
     "title": "头条",
     "name": "懂球帝",
-    "type": "hottest",
+    "type": "realtime",
     "column": "sports",
     "home": "https://www.dongqiudi.com",
     "color": "green",

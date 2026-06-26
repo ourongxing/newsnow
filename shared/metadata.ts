@@ -1,5 +1,6 @@
 import { sources } from "./sources"
 import { typeSafeObjectEntries, typeSafeObjectFromEntries } from "./type.util"
+import { updatedSourceIds as _updatedSourceIds } from "./updated-sources"
 import type { ColumnID, HiddenColumnID, Metadata, SourceID } from "./types"
 
 export const columns = {
@@ -27,9 +28,14 @@ export const columns = {
   hottest: {
     zh: "最热",
   },
+  updated: {
+    zh: "更新",
+  },
 } as const
 
-export const fixedColumnIds = ["focus", "hottest", "realtime"] as const satisfies Partial<ColumnID>[]
+const updatedSourceIds = [..._updatedSourceIds] as SourceID[]
+
+export const fixedColumnIds = ["focus", "hottest", "realtime", "updated"] as const satisfies Partial<ColumnID>[]
 export const hiddenColumns = Object.keys(columns).filter(id => !fixedColumnIds.includes(id as any)) as HiddenColumnID[]
 
 export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntries(columns).map(([k, v]) => {
@@ -48,6 +54,11 @@ export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntrie
       return [k, {
         name: v.zh,
         sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "realtime" && !v.redirect).map(([k]) => k),
+      }]
+    case "updated":
+      return [k, {
+        name: v.zh,
+        sources: updatedSourceIds.filter(id => sources[id] && !sources[id].redirect),
       }]
     default:
       return [k, {

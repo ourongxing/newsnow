@@ -96,7 +96,7 @@ function getUpdatedSourceIds() {
   try {
     const baseRef = getVersionBaseRef()
     const ids = new Map<string, number>()
-    if (!baseRef) return []
+    if (!baseRef) return
 
     const changedFiles = git(["diff", "--name-only", baseRef, "--", "server/sources"])
       .split("\n")
@@ -115,7 +115,6 @@ function getUpdatedSourceIds() {
       .map(([id]) => id)
   } catch {
     consola.warn("Skip updated sources: failed to read git info.")
-    return []
   }
 }
 
@@ -140,9 +139,13 @@ try {
 }
 
 try {
-  const updatedSourceIds = JSON.stringify(getUpdatedSourceIds(), undefined, 2)
-  writeFileSync(join(projectDir, "./shared/updated-sources.ts"), `export const updatedSourceIds = ${updatedSourceIds} as const\n`)
-  consola.info("Generated updated-sources.ts")
+  const updatedSourceIds = getUpdatedSourceIds()
+  if (updatedSourceIds) {
+    writeFileSync(join(projectDir, "./shared/updated-sources.ts"), `export const updatedSourceIds = ${JSON.stringify(updatedSourceIds, undefined, 2)} as const\n`)
+    consola.info("Generated updated-sources.ts")
+  } else {
+    consola.info("Skipped updated-sources.ts")
+  }
 } catch {
   consola.error("Failed to generate updated-sources.ts")
 }

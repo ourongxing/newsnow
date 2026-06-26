@@ -38,6 +38,13 @@ const updatedSourceIds = [..._updatedSourceIds] as SourceID[]
 export const fixedColumnIds = ["focus", "hottest", "realtime", "updated"] as const satisfies Partial<ColumnID>[]
 export const hiddenColumns = Object.keys(columns).filter(id => !fixedColumnIds.includes(id as any)) as HiddenColumnID[]
 
+function getSortedSourceIds(type: "hottest" | "realtime") {
+  return typeSafeObjectEntries(sources)
+    .filter(([, v]) => v.type === type && !v.redirect)
+    .map(([k]) => k)
+    .sort((m, n) => m.localeCompare(n))
+}
+
 export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntries(columns).map(([k, v]) => {
   switch (k) {
     case "focus":
@@ -48,12 +55,12 @@ export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntrie
     case "hottest":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "hottest" && !v.redirect).map(([k]) => k),
+        sources: getSortedSourceIds("hottest"),
       }]
     case "realtime":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "realtime" && !v.redirect).map(([k]) => k),
+        sources: getSortedSourceIds("realtime"),
       }]
     case "updated":
       return [k, {

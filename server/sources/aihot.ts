@@ -4,23 +4,29 @@ interface AIHotItem {
   id: string
   title: string
   url: string
+  permalink?: string
   source: string
   publishedAt?: string | null
   summary?: string | null
   category?: string | null
+  score?: number | null
+  selected?: boolean | null
 }
 
 interface AIHotResponse {
+  count?: number
   items?: AIHotItem[]
 }
 
+const api = "https://aihot.virxact.com/api/public/items?mode=all&take=30"
 const rss = defineRSSSource("https://aihot.virxact.com/feed/all.xml")
+const userAgent = "newsnow-aihot-source/1.0 (+https://newsnow.busiyi.world)"
 
 export default defineSource(async () => {
   try {
-    const response = await myFetch<AIHotResponse>("https://aihot.virxact.com/api/public/items?mode=all&take=30", {
+    const response = await myFetch<AIHotResponse>(api, {
       headers: {
-        "User-Agent": "aihot-api-demo/1.0 (+https://example.com/contact)",
+        "User-Agent": userAgent,
       },
     })
 

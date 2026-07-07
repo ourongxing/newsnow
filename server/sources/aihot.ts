@@ -20,7 +20,7 @@ export default defineSource(async () => {
   try {
     const response = await myFetch<AIHotResponse>("https://aihot.virxact.com/api/public/items?mode=all&take=30", {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 aihot-skill/0.2.0 newsnow/0.0.40",
+        "User-Agent": "aihot-api-demo/1.0 (+https://example.com/contact)",
       },
     })
 

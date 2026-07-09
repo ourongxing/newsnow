@@ -5,11 +5,10 @@
   "private": true,
   "packageManager": "pnpm@10.30.3",
   "author": {
-    "url": "https://github.com/ourongxing/",
-    "email": "orongxing@gmail.com",
-    "name": "ourongxing"
+    "url": "https://github.com/GavinGu0",
+    "name": "GavinGu0"
   },
-  "homepage": "https://github.com/ourongxing/newsnow",
+  "homepage": "https://github.com/GavinGu0/newsnow",
   "scripts": {
     "dev": "npm run presource && cross-env NODE_OPTIONS=--use-env-proxy vite dev",
     "build": "npm run presource && vite build",

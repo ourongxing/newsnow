@@ -130,8 +130,4 @@ The new version is coming soon and we will no longer accept contributions
 
 [MIT](./LICENSE) © ourongxing
 
-## Sponsorship
 
-If you rely on this service, sponsorship is welcome to help it run for the long term. If you need customization or other help, you can also use the contact method below and include a note.
-
-![](./screenshots/reward.gif)

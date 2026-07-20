@@ -25,7 +25,7 @@
         "newsnow-mcp-server"
       ],
       "env": {
-        "BASE_URL": "https://newsnow.busiyi.world"
+        "BASE_URL": "https://news.94likeu.cn"
       }
     }
   }
@@ -106,10 +106,4 @@ pnpm dev
 新バージョンは近日公開予定のため、現在のバージョンではコントリビューションの受付を終了します。
 
 ## ライセンス
-[MIT](./LICENSE) © ourongxing
-
-## スポンサー
-
-このサービスをご利用いただいている場合、長期的な運営を支援するスポンサーを歓迎します。カスタマイズやその他のサポートが必要な場合も、以下の連絡方法から備考を添えてお問い合わせください。
-
-![](./screenshots/reward.gif)
+[MIT](./LICENSE) © 2024 ourongxing, modified by GavinGu0

@@ -26,7 +26,7 @@ English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
         "newsnow-mcp-server"
       ],
       "env": {
-        "BASE_URL": "https://newsnow.busiyi.world"
+        "BASE_URL": "https://news.94likeu.cn"
       }
     }
   }
@@ -116,7 +116,6 @@ For detailed instructions on how to add new sources, see [CONTRIBUTING.md](CONTR
 - Expand **data sources** to cover global news in multiple languages.
 
 **_release when ready_**
-![](https://testmnbbs.oss-cn-zhangjiakou.aliyuncs.com/pic/20250328172146_rec_.gif?x-oss-process=base_webp)
 
 ## Contributing
 
@@ -128,10 +127,6 @@ The new version is coming soon and we will no longer accept contributions
 
 ## License
 
-[MIT](./LICENSE) © ourongxing
+[MIT](./LICENSE) © 2024 ourongxing, modified by GavinGu0
 
-## Sponsorship
 
-If you rely on this service, sponsorship is welcome to help it run for the long term. If you need customization or other help, you can also use the contact method below and include a note.
-
-![](./screenshots/reward.gif)

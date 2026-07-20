@@ -6,4 +6,8 @@ export default ourongxing({
   ignores: ["src/routeTree.gen.ts", "imports.app.d.ts", "public/", ".vscode", "**/*.json"],
 }).append(react({
   files: ["src/**"],
-}))
+})).append({
+  rules: {
+    "react-dom/no-children-in-void-dom-elements": "off",
+  },
+})
